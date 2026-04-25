@@ -1,4 +1,4 @@
-# 🏗️ Riesgo de Corrupción en Obras Públicas mediante Machine Learning
+# 🏗️ Sistema de Detección de Riesgos de Corrupción en Obras Públicas mediante Machine Learning
 
 **Repositorio oficial del proyecto de tesis de Maestría en Inteligencia Artificial – UNI**  
 **Autores:** Fernando García Atúncar / Hilario Aradiel Castañeda  
