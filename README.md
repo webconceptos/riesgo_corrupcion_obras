@@ -139,6 +139,7 @@ El dataset final se encuentra en:
 ```text
 data/processed/dataset_modelado.parquet
 ---
+```
 
 ## ⚙️ Instalación local
 
