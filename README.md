@@ -119,7 +119,25 @@ riesgo_corrupcion_obras/
 ├── requirements-dev.txt
 └── README.md
 ```
+## 📊 Dataset
 
+El modelo se entrena a partir de un dataset consolidado que integra información de diversas fuentes institucionales relacionadas a la ejecución de obras públicas en el Perú.
+
+### 🔗 Fuentes de datos
+
+- OSCE / SEACE (contrataciones públicas)
+- MEF (inversión pública)
+- Contraloría General de la República
+- Registros administrativos de obras, empresas y funcionarios
+
+---
+
+### 🧱 Estructura del dataset
+
+El dataset final se encuentra en:
+
+```text
+data/processed/dataset_modelado.parquet
 ---
 
 ## ⚙️ Instalación local
