@@ -371,7 +371,7 @@ Documentación complementaria:
 
 ## 👥 Autores
 
-- Fernando García Atúncar
+- Fernando García Atúncar @webconceptos
 - Hilario Aradiel Castañeda
 
 **Maestría en Inteligencia Artificial – Universidad Nacional de Ingeniería**
