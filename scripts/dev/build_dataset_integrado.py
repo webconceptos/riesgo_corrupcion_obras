@@ -1,8 +1,7 @@
 """
 Script maestro: integración de obras, empresas y funcionarios
 Proyecto: Detección de Riesgo de Corrupción en Obras Públicas (CGR)
-Autor: Webconceptos / Fernando García
-Versión: Semana 6 → Dataset Integrado para Semana 7
+Autor: Fernando García - Hilario Aradiel
 """
 
 import pandas as pd
@@ -62,7 +61,7 @@ def main():
     empresas = clean(load_csv_folder(BASE / "empresa"))
     funcionarios = clean(load_csv_folder(BASE / "funcionario"))
 
-    print(f"📊 Obras: {obras.shape}, Empresas: {empresas.shape}, Funcionarios: {funcionarios.shape}")
+    print(f"Obras: {obras.shape}, Empresas: {empresas.shape}, Funcionarios: {funcionarios.shape}")
 
     # ------------------------------------------------------------------
     # Carga de perfilamientos

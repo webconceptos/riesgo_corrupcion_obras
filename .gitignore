@@ -19,19 +19,9 @@ __pycache__/
 !.env.example
 
 # =========================
-# Jupyter
-# =========================
-.ipynb_checkpoints/
-*.nbconvert.ipynb
-
-# =========================
 # Data
 # =========================
-data/raw/**
-data/external/**
-data/processed/*.parquet
-data/external/**/*.xlsx
-data/external/**/*.csv
+*.xls
 *.zip
 *.7z
 *.rar
@@ -43,26 +33,6 @@ logs/**
 *.log
 reports/logs/**
 
-# =========================
-# Large model artifacts
-# =========================
-models/**/*.pth
-models/**/*.bin
-models/**/*.onnx
-models/**/*.pt
-models/**/*.ckpt
-models/experiments/
-
-# Mantener metadatos y modelos pequeños si son parte del baseline
-!models/**/pipeline_meta.json
-!models/**/metrics.json
-
-# =========================
-# Frontend
-# =========================
-apps/frontend/node_modules/
-dist/
-build/
 
 # =========================
 # OS / IDE

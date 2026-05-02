@@ -1,0 +1,28 @@
+entidad,archivo,extension,tamano_kb,sheets
+catalogos,catalogos\Diccionario vistas dashboards y datasets.xlsx,.xlsx,17.2,DICCIONARIO
+catalogos,catalogos\Diccionario_Datos_ML_Completo_V1.xlsx,.xlsx,30.76,"1. MATRIZ_ML_DW, 2. OBRA_ML_DW, 3. EMPRESA_ML_DW, 4. MIEMBRO_ML_DW"
+catalogos,catalogos\Diccionario_Datos_Sistemas_Fuente_V1.xlsx,.xlsx,128.19,"1. INVIERTE, 2. SEACE, 3. SIAF, 4. RNP, 5. SERVIR, 6. SBS, 7. AIRHSP -SP, 8. SUNAT, 9. SAGU - CONTROL PREVIO, 10. SAGU - CONTROL SIMULTÁNEO"
+catalogos,catalogos\diccionario_campos.xlsx,.xlsx,31.01,"1. MATRIZ_ML_DW, 2. OBRA_ML_DW, 3. EMPRESA_ML_DW, 4. MIEMBRO_ML_DW"
+empresa,empresa\DS_DASH_Empresa_1A.csv,.csv,81.4,
+empresa,empresa\DS_DASH_Empresa_1B.csv,.csv,190.7,
+empresa,empresa\DS_DASH_Empresa_2A.csv,.csv,35.64,
+empresa,empresa\DS_DASH_Empresa_2B.csv,.csv,486.72,
+empresa,empresa\DS_DASH_Empresa_2C.csv,.csv,0.51,
+empresa,empresa\Datos generales - Empresa -2023.05.15.xlsx,.xlsx,20.95,Datos generales
+empresa,empresa\perfilamiento_empresa_riesgosa.xlsx,.xlsx,27.08,"Indicadores, Datos generales"
+funcionario,funcionario\DS_DASH_Miembro_1A.csv,.csv,94.93,
+funcionario,funcionario\DS_DASH_Miembro_2A.csv,.csv,37.11,
+funcionario,funcionario\DS_DASH_Miembro_3A.csv,.csv,212.24,
+funcionario,funcionario\DS_DASH_Miembro_3B.csv,.csv,53.88,
+funcionario,funcionario\Datos generales - Funcionario - 2025.05.15.xlsx,.xlsx,21.63,Datos generales
+funcionario,funcionario\perfilamiento_funcionario_riesgoso.xlsx,.xlsx,27.89,"Indicadores y variables, Datos generales"
+obra,obra\DS_DASH_Obra_1A.csv,.csv,94.47,
+obra,obra\DS_DASH_Obra_2A_3A.csv,.csv,304.36,
+obra,obra\DS_DASH_Obra_2B.csv,.csv,144.61,
+obra,obra\DS_DASH_Obra_3B.csv,.csv,2135.11,
+obra,obra\DS_DASH_Obra_3C.csv,.csv,870.22,
+obra,obra\DS_DASH_Obra_4A.csv,.csv,92.88,
+obra,obra\DS_DASH_Obra_4B.csv,.csv,100.89,
+obra,obra\DS_DASH_Obra_5A.csv,.csv,93.16,
+obra,obra\Datos generales - Obra - 2025.05.15.xlsx,.xlsx,21.74,Datos generales
+obra,obra\perfilamiento_obra_riesgosa.xlsx,.xlsx,37.85,"Indicadores Finales, Datos generales"

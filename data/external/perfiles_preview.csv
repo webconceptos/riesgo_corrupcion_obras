@@ -1,0 +1,40 @@
+archivo,columna,dtype,n_nulos,pct_nulos,n_unicos
+obra/perfilamiento_obra_riesgosa.xlsx,Notas extras,object,1,0.0238,7
+obra/perfilamiento_obra_riesgosa.xlsx,Comentario,object,1,0.0238,24
+obra/perfilamiento_obra_riesgosa.xlsx,Categoría,object,0,0.0,2
+obra/perfilamiento_obra_riesgosa.xlsx,Etapa ,object,0,0.0,6
+obra/perfilamiento_obra_riesgosa.xlsx,Fuente de información de donde provino la variable o indicador,object,0,0.0,7
+obra/perfilamiento_obra_riesgosa.xlsx,Tipo,object,0,0.0,7
+obra/perfilamiento_obra_riesgosa.xlsx,Norma que aplica,object,0,0.0,12
+obra/perfilamiento_obra_riesgosa.xlsx,Fase (interno),object,0,0.0,13
+obra/perfilamiento_obra_riesgosa.xlsx,Base de datos,object,0,0.0,19
+obra/perfilamiento_obra_riesgosa.xlsx,Tabla,object,0,0.0,22
+obra/perfilamiento_obra_riesgosa.xlsx,Fórmula,object,0,0.0,23
+obra/perfilamiento_obra_riesgosa.xlsx,Regla,object,0,0.0,29
+obra/perfilamiento_obra_riesgosa.xlsx,Campos,object,0,0.0,39
+obra/perfilamiento_obra_riesgosa.xlsx,N°,int64,0,0.0,42
+obra/perfilamiento_obra_riesgosa.xlsx,Código Interno,object,0,0.0,42
+obra/perfilamiento_obra_riesgosa.xlsx,Variable o Indicador,object,0,0.0,42
+empresa/perfilamiento_empresa_riesgosa.xlsx,Categoría,object,0,0.0,1
+empresa/perfilamiento_empresa_riesgosa.xlsx,Fuente de información de donde provino la variable o indicador,object,0,0.0,4
+empresa/perfilamiento_empresa_riesgosa.xlsx,Fórmula,object,0,0.0,7
+empresa/perfilamiento_empresa_riesgosa.xlsx,Base de datos,object,0,0.0,8
+empresa/perfilamiento_empresa_riesgosa.xlsx,Comentario,object,0,0.0,8
+empresa/perfilamiento_empresa_riesgosa.xlsx,Tabla,object,0,0.0,9
+empresa/perfilamiento_empresa_riesgosa.xlsx,Regla,object,0,0.0,9
+empresa/perfilamiento_empresa_riesgosa.xlsx,N°,int64,0,0.0,10
+empresa/perfilamiento_empresa_riesgosa.xlsx,Código Interno,object,0,0.0,10
+empresa/perfilamiento_empresa_riesgosa.xlsx,Variable o Indicador,object,0,0.0,10
+empresa/perfilamiento_empresa_riesgosa.xlsx,Campos,object,0,0.0,10
+funcionario/perfilamiento_funcionario_riesgoso.xlsx,Categoría,object,0,0.0,2
+funcionario/perfilamiento_funcionario_riesgoso.xlsx,Fuente de información de donde provino la variable o indicador,object,0,0.0,4
+funcionario/perfilamiento_funcionario_riesgoso.xlsx,Clasificación de uso,object,0,0.0,4
+funcionario/perfilamiento_funcionario_riesgoso.xlsx,Regla,object,0,0.0,5
+funcionario/perfilamiento_funcionario_riesgoso.xlsx,Comentario,object,0,0.0,5
+funcionario/perfilamiento_funcionario_riesgoso.xlsx,Base de datos,object,0,0.0,9
+funcionario/perfilamiento_funcionario_riesgoso.xlsx,Tabla,object,0,0.0,10
+funcionario/perfilamiento_funcionario_riesgoso.xlsx,Fórmula,object,0,0.0,10
+funcionario/perfilamiento_funcionario_riesgoso.xlsx,Campos,object,0,0.0,16
+funcionario/perfilamiento_funcionario_riesgoso.xlsx,N°,int64,0,0.0,18
+funcionario/perfilamiento_funcionario_riesgoso.xlsx,Código Interno,object,0,0.0,18
+funcionario/perfilamiento_funcionario_riesgoso.xlsx,Variable o Indicador,object,0,0.0,18
