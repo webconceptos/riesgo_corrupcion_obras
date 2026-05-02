@@ -10,7 +10,7 @@ A diferencia de versiones iniciales, el proyecto ha evolucionado hacia un enfoqu
 
 ---
 
-# 🧠 Arquitectura de Datos
+# Arquitectura de Datos
 
 El sistema sigue una arquitectura en capas:
 
@@ -18,19 +18,19 @@ FUENTES → DATASETS ESPECIALIZADOS → DATASET MAESTRO → MODELOS
 
 ---
 
-# 📂 Estructura del directorio
+# Estructura del directorio
 
 data/
 ├── raw/                  # Fuentes originales (trazabilidad)
 ├── external/             # Datos por dominio (obra, empresa, funcionario)
 ├── interim/              # Transformaciones intermedias
-├── processed/            # ⭐ Datasets finales para modelado
+├── processed/            # Datasets finales para modelado
 ├── datasets.json         # Metadatos de ingesta
 └── README.md             # Este archivo
 
 ---
 
-# 🔄 Evolución del Proyecto
+# Evolución del Proyecto
 
 ## Versión inicial
 - Dataset único integrado
@@ -46,9 +46,9 @@ dataset_maestro_v2
 
 ---
 
-# ⭐ DATASETS FINALES (processed/)
+# DATASETS FINALES (processed/)
 
-## 1️⃣ Dataset de Obras
+## 1. Dataset de Obras
 
 Archivo:
 dataset_obras_v3_4niveles_participante.parquet
@@ -67,7 +67,7 @@ Valores:
 
 ---
 
-## 2️⃣ Dataset de Empresas
+## 2. Dataset de Empresas
 
 Archivo:
 dataset_empresa_v3_4niveles.parquet
@@ -89,7 +89,7 @@ No existe etiqueta oficial → se construye un indicador proxy.
 
 ---
 
-## 3️⃣ Dataset de Funcionarios
+## 3. Dataset de Funcionarios
 
 Archivo:
 dataset_funcionario_v3_4niveles_model.parquet
@@ -107,7 +107,7 @@ Basado en:
 
 ---
 
-## 4️⃣ Dataset Maestro ⭐
+## 4. Dataset Maestro ⭐
 
 Archivo:
 dataset_maestro_v2_4niveles.parquet
@@ -120,15 +120,15 @@ OBRA + EMPRESA (agregado) + FUNCIONARIO (agregado)
 
 ---
 
-# 🎯 Target final
+# Target final
 
 y_riesgo_obra_4niveles
 
 ---
 
-# ⚙️ Estrategia de Modelado
+#  Estrategia de Modelado
 
-## 🔹 Modelo Maestro
+##  Modelo Maestro
 Input:
 - features obra
 - features empresa
@@ -139,7 +139,7 @@ Output:
 
 ---
 
-## 🔹 Modelos Especializados
+##  Modelos Especializados
 Modelo Obra
 Modelo Empresa
 Modelo Funcionario
@@ -151,7 +151,7 @@ Salida:
 
 ---
 
-## 🔹 Arquitectura Híbrida (Recomendada)
+##  Arquitectura Híbrida (Recomendada)
 Modelos especializados → Modelo maestro
 
 Permite:
@@ -160,7 +160,7 @@ Permite:
 
 ---
 
-# ⚠️ Riesgos de Datos Identificados
+#  Riesgos de Datos Identificados
 
 ## 1. Desbalance de clases
 Solución: redefinición a 4 niveles
@@ -186,7 +186,7 @@ mapeo explícito entre llaves
 
 ---
 
-# 📊 Calidad del Dataset
+#  Calidad del Dataset
 
 Obra: alto  
 Empresa: medio (proxy)  
@@ -195,7 +195,7 @@ Maestro: alto
 
 ---
 
-# 🔁 Reproducibilidad
+#  Reproducibilidad
 
 notebooks/
 ├── build_dataset_obras_v3
@@ -205,7 +205,7 @@ notebooks/
 
 ---
 
-# 🚀 Estado actual
+#  Estado actual
 
 ✔ Dataset maestro funcional  
 ✔ Integración multi-actor  
@@ -215,7 +215,7 @@ notebooks/
 
 ---
 
-# 🎓 Uso para Tesis
+#  Uso para Tesis
 
 Permite:
 - detectar riesgo de corrupción en obras
@@ -225,6 +225,6 @@ Permite:
 
 ---
 
-# 🧠 Nota final
+#  Nota final
 
 Este proyecto evoluciona hacia un modelo **multi-actor e integrado**, alineado con sistemas modernos de detección de fraude y corrupción.
