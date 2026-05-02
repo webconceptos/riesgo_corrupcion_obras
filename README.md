@@ -225,18 +225,13 @@ Para reproducir:
 ---
 
 ## Ejecución
+El pipeline actual se reproduce principalmente mediante notebooks ejecutados en orden.
+notebooks/05_train_baseline_maestro_4niveles.ipynb
 
-Instalar dependencias:
+Este notebook genera:
+models/production/pipeline_maestro_4niveles_baseline.pkl
+models/production/pipeline_maestro_4niveles_baseline_meta.json
 
-pip install -r requirements.txt
-
-Entrenar modelo:
-
-python src/models/train.py
-
-Levantar API:
-
-uvicorn src.api.main:app --reload --port 8000
 
 ---
 
