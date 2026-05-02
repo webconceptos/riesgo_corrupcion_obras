@@ -56,56 +56,36 @@ API de inferencia
 
 ## Arquitectura de datos
 
-<<<<<<< HEAD
 ```text
 riesgo_corrupcion_obras/
-├── .github/                 # Workflows CI/CD
-├── apps/                    # Frontend o componentes demostrativos
 ├── data/
-│   ├── raw/                 # Datos originales no versionados
-│   ├── processed/           # Datos procesados
-│   └── external/            # Catálogos y fuentes externas
-├── docs/
-│   ├── dataset.md           # Descripción de datos
-│   ├── run_guide.md         # Guía de ejecución
-│   ├── deployment.md        # Despliegue
-│   ├── entregables/         # Evidencias académicas
-│   └── evidencias/          # Capturas y soportes
+│   ├── raw/
+│   ├── external/
+│   ├── processed/
+│   └── README.md
 ├── models/
-│   ├── production/          # Modelo oficial del Sprint 1
-│   │   ├── pipeline.pkl
-│   │   └── pipeline_meta.json
-│   └── experiments/         # Experimentos no productivos
+│   ├── production/
+│   └── experiments/
 ├── notebooks/
-│   ├── 01_eda/              # Exploración
-│   ├── 02_data/             # Construcción de dataset
-│   ├── 03_modeling/         # Entrenamiento
-│   ├── 04_evaluation/       # Evaluación
-│   └── experiments/         # Experimentos por sprint
-├── reports/                 # Reportes y figuras
+│   ├── 01_eda_diccionarios.ipynb
+│   ├── 02_build_dataset_obra_v3_4_etiquetas.ipynb
+│   ├── 02_build_dataset_empresa_v3_4_etiquetas.ipynb
+│   ├── 02_build_dataset_funcionario_v3_4_etiquetas.ipynb
+│   ├── 03_build_dataset_maestro_v2_4niveles_limpio.ipynb
+│   ├── 04_EDA_maestro.ipynb
+│   ├── 05_train_baseline_maestro_4niveles.ipynb
+│   └── README_notebooks.md
 ├── scripts/
-│   ├── dev/                 # Scripts de desarrollo
-│   ├── ops/                 # Operación y ejecución
-│   ├── experiments/         # Scripts experimentales
-│   └── legacy/              # Código histórico
-├── src/                     # Código fuente principal
-├── tests/                   # Pruebas automáticas
-├── .env.example             # Variables de entorno de ejemplo
-├── .gitignore
-├── CHANGELOG.md
-├── Dockerfile.prod
-├── docker-compose.prod.yml
-├── Makefile
-├── pyproject.toml
+├── src/
+├── tests/
 ├── requirements.txt
-├── requirements-dev.txt
 └── README.md
 ```
-## 📊 Dataset
+##  Dataset
 
 El modelo se entrena a partir de un dataset consolidado que integra información de diversas fuentes institucionales relacionadas a la ejecución de obras públicas en el Perú.
 
-### 🔗 Fuentes de datos
+###  Fuentes de datos
 
 - OSCE / SEACE (contrataciones públicas)
 - MEF (inversión pública)
@@ -114,7 +94,7 @@ El modelo se entrena a partir de un dataset consolidado que integra información
 
 ---
 
-### 🧱 Estructura del dataset
+###  Estructura del dataset
 
 El dataset final se encuentra en:
 
@@ -123,28 +103,7 @@ data/processed/dataset_modelado.parquet
 ---
 ```
 
-## ⚙️ Instalación local
-=======
-### Dataset de Obras
-- Unidad: obra + participación
-- Target: y_riesgo_obra_4niveles
-
-### Dataset de Empresas
-- Unidad: empresa + participación
-- Target proxy: y_riesgo_empresa
-
-### Dataset de Funcionarios
-- Unidad: funcionario + obra
-- Target proxy: y_riesgo_funcionario
-
-### Dataset Maestro
-- Unidad: IDENTIFICADOR_OBRA
-- Integración de variables de obra, empresa y funcionario
-
----
-
-## Análisis exploratorio (EDA)
->>>>>>> 0d9cfe5 (feat: Sprint 1 - Aactualiza pipeline ML multi-actor con dataset maestro, EDA y baseline)
+##  Instalación local
 
 El EDA incluye:
 
