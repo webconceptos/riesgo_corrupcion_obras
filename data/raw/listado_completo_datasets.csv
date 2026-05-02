@@ -1,0 +1,313 @@
+origen_zip,ruta_relativa,extension,tamano_kb
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/10 QueryInvierteEjecHitos_Cslt.csv",.csv,13.61
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/11 QueryInvierteAdic_Deduc_Cslt.csv",.csv,8.67
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/12 QueryInvierteAmpli_Cslt.csv",.csv,4.64
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/13 QueryInvierteValoriz_Cslt.csv",.csv,7.53
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/15 QueryInviertePIM_Dev_Cslt.csv",.csv,71.44
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/16 QueryInvierteEjecObra_Cslt.csv",.csv,6.64
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/5 QueryInvierteAcc_Cslt.csv",.csv,8.95
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/6 QueryInvierteExp_Cslt.csv",.csv,1236.94
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/7 QueryInvierteExpDet_Cslt.csv",.csv,1015.98
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/8 QueryInvierteAvanFisPI_Cslt.csv",.csv,43.34
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/9 QueryInvierteExpHitos_Cslt.csv",.csv,100.31
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/2. SEACE/Query_Cronograma_Proceso.csv",.csv,204.94
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/2. SEACE/Query_Miembros_Comite.csv",.csv,34.64
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/2. SEACE/Query_Seace_Ampliacion.csv",.csv,0.41
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/2. SEACE/Query_Seace_Contratos.csv",.csv,12.65
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/2. SEACE/Query_Seace_Expediente.csv",.csv,29.68
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/2. SEACE/Query_Seace_Ganador.csv",.csv,26.18
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/2. SEACE/Query_Seace_Nulidad.csv",.csv,0.06
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/2. SEACE/Query_Seace_Participante.csv",.csv,107.98
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/3. SIAF/Query SIAF.csv",.csv,22558.76
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/4. RNP/inhabilitado_megaproyectos.csv",.csv,96.32
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/4. RNP/scripts_rnp.csv",.csv,627.22
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/6. SBS/SCRIPT_SBS_MEGAPROYECTOS.csv",.csv,101.6
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/7. AIRHSP/SCRIPT_AIRHSP_MEGAPROYECTOS.csv",.csv,132.82
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/8. SUNAT/SCRIPT_SUNAT_MEGAPROYECTOS.csv",.csv,153.85
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_Empresa_1A.csv,.csv,81.4
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_Empresa_1B.csv,.csv,190.7
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_Empresa_2A.csv,.csv,35.64
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_Empresa_2B.csv,.csv,486.72
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_Empresa_2C.csv,.csv,0.51
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_MatrizPriorizacion_1A.csv,.csv,282.33
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_MatrizPriorizacion_2A.csv,.csv,88.18
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_MatrizPriorizacion_3A.csv,.csv,74.18
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_Miembro_1A.csv,.csv,94.93
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_Miembro_2A.csv,.csv,37.11
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_Miembro_3A.csv,.csv,212.24
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_Miembro_3B.csv,.csv,53.88
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_Obra_1A.csv,.csv,94.47
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_Obra_2A_3A.csv,.csv,304.36
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_Obra_2B.csv,.csv,144.61
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_Obra_3B.csv,.csv,2135.11
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_Obra_3C.csv,.csv,870.22
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_Obra_4A.csv,.csv,92.88
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_Obra_4B.csv,.csv,100.89
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/DS_DASH_Obra_5A.csv,.csv,93.16
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/dataset_maestro_corrupcion.csv,.csv,274.1
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/Datasets Dashboards/riesgo_funcionarios.csv,.csv,76.76
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR01 - Proyectos de inversión pública/input/00_Departamento.csv,.csv,0.67
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR01 - Proyectos de inversión pública/input/00_Provincia.csv,.csv,7.83
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR01 - Proyectos de inversión pública/input/DS_DASH_MatrizPriorizacion_1A.csv,.csv,292.23
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR01 - Proyectos de inversión pública/input/DS_DASH_MatrizPriorizacion_2A.csv,.csv,88.18
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR01 - Proyectos de inversión pública/input/DS_DASH_MatrizPriorizacion_3A.csv,.csv,74.18
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR02 - Obras públicas/input/00_Departamento.csv,.csv,0.67
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR02 - Obras públicas/input/00_Provincia.csv,.csv,7.83
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR02 - Obras públicas/input/DS_DASH_Obra_1A.csv,.csv,94.47
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR02 - Obras públicas/input/DS_DASH_Obra_2A_3A.csv,.csv,304.36
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR02 - Obras públicas/input/DS_DASH_Obra_2B.csv,.csv,144.61
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR02 - Obras públicas/input/DS_DASH_Obra_3B.csv,.csv,2135.11
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR02 - Obras públicas/input/DS_DASH_Obra_3C.csv,.csv,870.22
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR02 - Obras públicas/input/DS_DASH_Obra_4A.csv,.csv,92.73
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR02 - Obras públicas/input/DS_DASH_Obra_4B.csv,.csv,100.89
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR02 - Obras públicas/input/DS_DASH_Obra_5A.csv,.csv,93.16
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR03 - Empresas/input/DS_DASH_Empresa_1A.csv,.csv,81.4
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR03 - Empresas/input/DS_DASH_Empresa_1B.csv,.csv,190.7
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR03 - Empresas/input/DS_DASH_Empresa_2A.csv,.csv,35.64
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR03 - Empresas/input/DS_DASH_Empresa_2B.csv,.csv,486.72
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR03 - Empresas/input/DS_DASH_Empresa_2C.csv,.csv,0.51
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR04 - Miembros de comité/input/DS_DASH_Miembro_1A.csv,.csv,94.93
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR04 - Miembros de comité/input/DS_DASH_Miembro_2A.csv,.csv,42.88
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR04 - Miembros de comité/input/DS_DASH_Miembro_3A.csv,.csv,212.24
+Etapa1.zip,Etapa1/4.- Disponibilizacion/CGR04 - Miembros de comité/input/DS_DASH_Miembro_3B.csv,.csv,53.88
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR01 - Proyectos de inversión pública/input/00_Departamento.csv,.csv,0.67
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR01 - Proyectos de inversión pública/input/00_Provincia.csv,.csv,7.83
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR01 - Proyectos de inversión pública/input/DS_DASH_MatrizPriorizacion_1A.csv,.csv,292.23
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR01 - Proyectos de inversión pública/input/DS_DASH_MatrizPriorizacion_2A.csv,.csv,88.18
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR01 - Proyectos de inversión pública/input/DS_DASH_MatrizPriorizacion_3A.csv,.csv,74.18
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR02 - Obras públicas/input/00_Departamento.csv,.csv,0.67
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR02 - Obras públicas/input/00_Provincia.csv,.csv,7.83
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR02 - Obras públicas/input/DS_DASH_Obra_1A.csv,.csv,94.47
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR02 - Obras públicas/input/DS_DASH_Obra_2A_3A.csv,.csv,304.36
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR02 - Obras públicas/input/DS_DASH_Obra_2B.csv,.csv,144.61
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR02 - Obras públicas/input/DS_DASH_Obra_3B.csv,.csv,2135.11
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR02 - Obras públicas/input/DS_DASH_Obra_3C.csv,.csv,870.22
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR02 - Obras públicas/input/DS_DASH_Obra_4A.csv,.csv,92.73
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR02 - Obras públicas/input/DS_DASH_Obra_4B.csv,.csv,100.89
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR02 - Obras públicas/input/DS_DASH_Obra_5A.csv,.csv,93.16
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR03 - Empresas/input/DS_DASH_Empresa_1A.csv,.csv,81.4
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR03 - Empresas/input/DS_DASH_Empresa_1B.csv,.csv,190.7
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR03 - Empresas/input/DS_DASH_Empresa_2A.csv,.csv,35.64
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR03 - Empresas/input/DS_DASH_Empresa_2B.csv,.csv,486.72
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR03 - Empresas/input/DS_DASH_Empresa_2C.csv,.csv,0.51
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR04 - Miembros de comité/input/DS_DASH_Miembro_1A.csv,.csv,94.93
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR04 - Miembros de comité/input/DS_DASH_Miembro_2A.csv,.csv,42.88
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR04 - Miembros de comité/input/DS_DASH_Miembro_3A.csv,.csv,212.24
+Etapa1.zip,Etapa1/4.- Disponibilizacion/PBIX/CGR04 - Miembros de comité/input/DS_DASH_Miembro_3B.csv,.csv,53.88
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 1.xls,.xls,20.5
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 10.xls,.xls,40.5
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 11.xls,.xls,40.5
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 12.xls,.xls,40.5
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 13.xls,.xls,40.5
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 14.xls,.xls,40.5
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 15.xls,.xls,20.0
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 16.xls,.xls,40.5
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 2.xls,.xls,20.0
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 3.xls,.xls,19.5
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 4.xls,.xls,24.5
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 5.xls,.xls,20.0
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 6.xls,.xls,41.0
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 7.xls,.xls,41.0
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 8.xls,.xls,20.0
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 9.xls,.xls,21.0
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/11. CONTROL SIMULT╡NEO/Data exportada/Data exportada ControlSimultáneo1.xls,.xls,1260.5
+Etapa1.zip,"Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIαN/Otros archivos/DD SEACE/DD ADM (Administración, tablas maestras) a Abr.2022.xls",.xls,52.08
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIαN/Otros archivos/DD SEACE/DD ADM a Nov.2013.xls,.xls,200.5
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIαN/Otros archivos/DD SEACE/DD CON (Contratos) a Abr.2022.xls,.xls,48.71
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIαN/Otros archivos/DD SEACE/DD INT a Nov.2013.xls,.xls,85.5
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIαN/Otros archivos/DD SEACE/DD PAC (Plan Anual de Contrataciones) a Abr.2022.xls,.xls,36.54
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIαN/Otros archivos/DD SEACE/DD PCE a Nov.2013.xls,.xls,85.0
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIαN/Otros archivos/DD SEACE/DD PRO (Procesos) a Abr.2022.xls,.xls,252.16
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIαN/Otros archivos/DD SEACE/DD PRO a Nov.2013.xls,.xls,562.0
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/3. SIAF/Data exportada/Data exportada del SIAF.xls,.xls,24.0
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/4. RNP/Data exportada/Data exportada RNP1.xls,.xls,22.5
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/4. RNP/Data exportada/Data exportada RNP2.xls,.xls,28.0
+Etapa1.zip,"Etapa1/1.-Ingesta/1.4 Diccionario de Datos INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE.xlsx",.xlsx,18.38
+Etapa1.zip,"Etapa1/1.-Ingesta/1.4 Diccionario de Datos INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/2. SEACE.xlsx",.xlsx,35.99
+Etapa1.zip,"Etapa1/1.-Ingesta/1.4 Diccionario de Datos INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/3. SIAF.xlsx",.xlsx,23.57
+Etapa1.zip,"Etapa1/1.-Ingesta/1.4 Diccionario de Datos INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/4. RNP.xlsx",.xlsx,33.5
+Etapa1.zip,"Etapa1/1.-Ingesta/1.4 Diccionario de Datos INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/5. SERVIR.xlsx",.xlsx,17.08
+Etapa1.zip,"Etapa1/1.-Ingesta/1.4 Diccionario de Datos INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/6. SBS.xlsx",.xlsx,16.7
+Etapa1.zip,"Etapa1/1.-Ingesta/1.4 Diccionario de Datos INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/7. AIRHSP -SP.xlsx",.xlsx,17.83
+Etapa1.zip,"Etapa1/1.-Ingesta/1.4 Diccionario de Datos INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/8. SUNAT.xlsx",.xlsx,20.88
+Etapa1.zip,"Etapa1/1.-Ingesta/1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/5. SERVIR/5. SERVIR - INHABILITADOS.xlsx",.xlsx,27.71
+Etapa1.zip,Etapa1/1.-Ingesta/Detalle de Columnas.xlsx,.xlsx,75.65
+Etapa1.zip,Etapa1/1.-Ingesta/Diccionario Data Warehouse/Diccionario_Datos_ML_Completo_V1.xlsx,.xlsx,33.6
+Etapa1.zip,Etapa1/1.-Ingesta/Diccionario Data Warehouse/Diccionario_Datos_Sistemas_Fuente_V1.xlsx,.xlsx,135.18
+Etapa1.zip,Etapa1/1.-Ingesta/Diccionario vistas dashboards y datasets.xlsx,.xlsx,17.2
+Etapa1.zip,Etapa1/1.-Ingesta/Diccionario_Datos_ML_Completo_V1.xlsx,.xlsx,31.01
+Etapa1.zip,Etapa1/1.-Ingesta/Diccionario_Datos_Sistemas_Fuente_V1.xlsx,.xlsx,132.3
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/1. INVIERTE/1. Invierte_Indicadores.xlsx,.xlsx,113.23
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/1. INVIERTE/1. Invierte_Universo.xlsx,.xlsx,38.4
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/10. SAGU - CONTROL SIMULT╡NEO/10.1 SAGU - CONTROL SIMULT╡NEO.xlsx,.xlsx,67.22
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/11. CONTROL SIMULT╡NEO/11.1 CONTROL SIMULTANEO - Resumen.xlsx,.xlsx,24.63
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/11. CONTROL SIMULT╡NEO/11.2 CONTROL SIMULTANEO - Detalle del Informe.xlsx,.xlsx,177.68
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/12. SICA - CONTROL POSTERIOR/12.1 SICA - CONTROL POSTERIOR - Datos Generales.xlsx,.xlsx,18.59
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/12. SICA - CONTROL POSTERIOR/12.2 SICA - CONTROL POSTERIOR - Informes.xlsx,.xlsx,20.73
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/13. INFOBRAS/13.1 INFOBRAS.xlsx,.xlsx,191.11
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/13. INFOBRAS/13.2 INFOBRAS - Territorio.xlsx,.xlsx,63.92
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/14. DDJJCI/14. DDJJCI.xlsx,.xlsx,27.24
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/15. DDJJ BR/15. DDJJ BR.xlsx,.xlsx,64.79
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/2. SEACE/2. SEACE_EJECUCIαN CONTRACTUAL.xlsx,.xlsx,47.81
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/2. SEACE/2. SEACE_PROCESO DE SELECCIαN.xlsx,.xlsx,83.96
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/3. SIAF/3. SIAF.xlsx,.xlsx,390.51
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/4 RNP/4.1 RNP.xlsx,.xlsx,890.62
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/4 RNP/4.2 RNP INHABILIDATOS.xlsx,.xlsx,81.16
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/5. SERVIR - INHABILITADOS/5. SERVIR - INHABILITADOS.xlsx,.xlsx,27.71
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/6. SBS/6. SBS.xlsx,.xlsx,77.07
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/7. AIRHSP -SP/7. AIRHSP -SP.xlsx,.xlsx,59.12
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/8. SUNAT - PADRαN RUC/8.1 SUNAT_MEGAPROYECTOS.xlsx,.xlsx,353.89
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/9. SAGU - CONTROL PREVIO/9.1 SAGU - CONTROL PREVIO - Datos Generales.xlsx,.xlsx,21.22
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/0.Dataset/9. SAGU - CONTROL PREVIO/9.2 SAGU - CONTROL PREVIO - Datos Informe Control Previo.xlsx,.xlsx,29.84
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Otros archivos/Diccionario_datos_Invierte.xlsx,.xlsx,34.2
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Otros archivos/Variables Identificadas - Invierte.xlsx,.xlsx,29.75
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/1. INVIERTE/Querys Consultor JP/Universo_Proyectos_Invierte.xlsx,.xlsx,88.53
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/10. SAGU - CONTROL SIMULT╡NEO/Otros archivos/LV-88204-cgr.xlsx,.xlsx,24.83
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/10. SAGU - CONTROL SIMULT╡NEO/Otros archivos/LV.xlsx,.xlsx,19.63
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/11. CONTROL SIMULT╡NEO/Otros archivos/5. Lista de variables  - CONTROL SIMULT╡NEO 2022.12.02.xlsx,.xlsx,26.11
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/12. SICA - CONTROL POSTERIOR/Otros archivos/Lista de variables - SICA- CONTROL POSTERIOR 2022.12.02.xlsx,.xlsx,38.69
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/13. INFOBRAS/Otros archivos/Lista de variables finales - INFOBRAS 30.11.22.xlsx,.xlsx,27.35
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/14. DDJJCI/Otros archivos/Lista de variables finales -DJI.xlsx,.xlsx,21.27
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/15. DDJJ BR/Otros archivos/Lista de variables finales -DJBR.xlsx,.xlsx,18.9
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/16. Relaciones entre BD/Matriz de PK por Base de datos.xlsx,.xlsx,28.18
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/2. SEACE/EJECUCIαN CONTRACTUAL/Data exportada/Data exportada- SEACE Ejecución Contractual.xlsx,.xlsx,9323.33
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/2. SEACE/EJECUCIαN CONTRACTUAL/Otros archivos/Listado de campos - DBSEACE EJECUCCIαN CONTRACTUAL.xlsx,.xlsx,20.13
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIαN/Otros archivos/10. VARIABLES IDENTIFICADAS - CONSULTOR ESP. EN BASE DE DATOS DE SEACE.xlsx,.xlsx,42.67
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIαN/Otros archivos/DD SEACE/Contratos v3/Diccionario de Datos CONTRATOS v3.xlsx,.xlsx,61.7
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIαN/Otros archivos/DD SEACE/DD PAC (Plan Anual de Contrataciones) a Ene.2022.xlsx,.xlsx,49.79
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIαN/Otros archivos/DD SEACE/DD PRO a Feb.2022.xlsx,.xlsx,260.46
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/3. SIAF/Otros archivos/11.Variables identificadas - Siaf.xlsx,.xlsx,22.57
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/3. SIAF/Otros archivos/DD SIAF (incluye MCPP) a Feb.2022.xlsx,.xlsx,210.0
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/4. RNP/Otros archivos/Diccionario_datos_inhab (1).xlsx,.xlsx,19.8
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/4. RNP/Otros archivos/Lista de campos - BDRNP.xlsx,.xlsx,23.2
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/5. SERVIR - INHABILITADOS/Otros archivos/Listado de campos - SERVIR INHABILITADOS.xlsx,.xlsx,18.96
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/6. SBS/Otros archivos/14. Lista de variables finales -SBS.xlsx,.xlsx,21.63
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/7. AIRHSP -SP/Otros archivos/13. Lista de variables finales -AIRHSP-MEF.xlsx,.xlsx,22.87
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/7. AIRHSP -SP/Otros archivos/Diccionario de Datos-AIRHSP-MEF.xlsx,.xlsx,24.96
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/8. SUNAT - PADRαN RUC/Otros archivos/17. Lista de variables finales -SUNAT PADRON RUC.xlsx,.xlsx,22.87
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/8. SUNAT - PADRαN RUC/Otros archivos/Diccionario de datos SUNAT - Padron RUC.xlsx,.xlsx,33.65
+Etapa1.zip,Etapa1/1.-Ingesta/Remitido-CGR/4.3.5 Base de datos/9. SAGU - CONTROL PREVIO/Otros archivos/Lista de variables  - SAGU INTERNO - CONTROL PREVIO 2022.12.02.xlsx,.xlsx,1057.03
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/OneDrive_1_3-7-2025/4.3.2 Obra Riesgosa/Categoría X/Perfilamiento Obra Riesgosa_CATEGOR╓A X_2023.05.12.xlsx,.xlsx,71.88
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/OneDrive_1_3-7-2025/4.3.2 Obra Riesgosa/Datos Generales/Datos generales - Obra - 2023.05.15.xlsx,.xlsx,21.74
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/OneDrive_1_3-7-2025/4.3.3 Empresa Riesgosa/Categoría X/Perfilamiento de Empresa riesgosa_ CATEGOR╓A X _2023.05.12.xlsx,.xlsx,27.08
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/OneDrive_1_3-7-2025/4.3.3 Empresa Riesgosa/Datos Generales/Datos generales - Empresa -2023.05.15.xlsx,.xlsx,20.95
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/OneDrive_1_3-7-2025/4.3.4 Miembro de comité involucrado/Categoría X/Perfilamiento de Funcionario riesgoso_ CATEGOR╓A X _2023.05.12.xlsx,.xlsx,27.89
+Etapa1.zip,Etapa1/3.- Almacenamiento_DataSet/OneDrive_1_3-7-2025/4.3.4 Miembro de comité involucrado/Datos Generales/Datos generales - Funcionario - 2023.05.15.xlsx,.xlsx,21.63
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 1.xls,.xls,20.5
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 10.xls,.xls,40.5
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 11.xls,.xls,40.5
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 12.xls,.xls,40.5
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 13.xls,.xls,40.5
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 14.xls,.xls,40.5
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 15.xls,.xls,20.0
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 16.xls,.xls,40.5
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 2.xls,.xls,20.0
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 3.xls,.xls,19.5
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 4.xls,.xls,24.5
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 5.xls,.xls,20.0
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 6.xls,.xls,41.0
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 7.xls,.xls,41.0
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 8.xls,.xls,20.0
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Data exportada/Query 9.xls,.xls,21.0
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/11. CONTROL SIMULTÁNEO/Data exportada/Data exportada ControlSimultáneo1.xls,.xls,1260.5
+OneDrive_1_10-7-2025.zip,"4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIÓN/Otros archivos/DD SEACE/DD ADM (Administración, tablas maestras) a Abr.2022.xls",.xls,52.08
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIÓN/Otros archivos/DD SEACE/DD ADM a Nov.2013.xls,.xls,200.5
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIÓN/Otros archivos/DD SEACE/DD CON (Contratos) a Abr.2022.xls,.xls,48.71
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIÓN/Otros archivos/DD SEACE/DD INT a Nov.2013.xls,.xls,85.5
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIÓN/Otros archivos/DD SEACE/DD PAC (Plan Anual de Contrataciones) a Abr.2022.xls,.xls,36.54
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIÓN/Otros archivos/DD SEACE/DD PCE a Nov.2013.xls,.xls,85.0
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIÓN/Otros archivos/DD SEACE/DD PRO (Procesos) a Abr.2022.xls,.xls,252.16
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIÓN/Otros archivos/DD SEACE/DD PRO a Nov.2013.xls,.xls,562.0
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/3. SIAF/Data exportada/Data exportada del SIAF.xls,.xls,24.0
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/4. RNP/Data exportada/Data exportada RNP1.xls,.xls,22.5
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/4. RNP/Data exportada/Data exportada RNP2.xls,.xls,28.0
+OneDrive_1_10-7-2025.zip,4.3.2 Obra Riesgosa/Categoría X/Perfilamiento Obra Riesgosa_CATEGORÍA X_2023.05.12.xlsx,.xlsx,37.85
+OneDrive_1_10-7-2025.zip,4.3.2 Obra Riesgosa/Datos Generales/Datos generales - Obra - 2023.05.15.xlsx,.xlsx,21.74
+OneDrive_1_10-7-2025.zip,4.3.3 Empresa Riesgosa/Categoría X/Perfilamiento de Empresa riesgosa_ CATEGORÍA X _2023.05.12.xlsx,.xlsx,27.08
+OneDrive_1_10-7-2025.zip,4.3.3 Empresa Riesgosa/Datos Generales/Datos generales - Empresa -2023.05.15.xlsx,.xlsx,20.95
+OneDrive_1_10-7-2025.zip,4.3.4 Miembro de comité involucrado/Categoría X/Perfilamiento de Funcionario riesgoso_ CATEGORÍA X _2023.05.12.xlsx,.xlsx,27.89
+OneDrive_1_10-7-2025.zip,4.3.4 Miembro de comité involucrado/Datos Generales/Datos generales - Funcionario - 2023.05.15.xlsx,.xlsx,21.63
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/1. INVIERTE/1. Invierte_Indicadores.xlsx,.xlsx,113.23
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/1. INVIERTE/1. Invierte_Universo.xlsx,.xlsx,38.4
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/10. SAGU - CONTROL SIMULTÁNEO/10.1 SAGU - CONTROL SIMULTÁNEO.xlsx,.xlsx,67.22
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/11. CONTROL SIMULTÁNEO/11.1 CONTROL SIMULTANEO - Resumen.xlsx,.xlsx,24.63
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/11. CONTROL SIMULTÁNEO/11.2 CONTROL SIMULTANEO - Detalle del Informe.xlsx,.xlsx,177.68
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/12. SICA - CONTROL POSTERIOR/12.1 SICA - CONTROL POSTERIOR - Datos Generales.xlsx,.xlsx,18.59
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/12. SICA - CONTROL POSTERIOR/12.2 SICA - CONTROL POSTERIOR - Informes.xlsx,.xlsx,20.73
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/13. INFOBRAS/13.1 INFOBRAS.xlsx,.xlsx,191.11
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/13. INFOBRAS/13.2 INFOBRAS - Territorio.xlsx,.xlsx,63.92
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/14. DDJJCI/14. DDJJCI.xlsx,.xlsx,27.24
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/15. DDJJ BR/15. DDJJ BR.xlsx,.xlsx,64.79
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/2. SEACE/2. SEACE_EJECUCIÓN CONTRACTUAL.xlsx,.xlsx,47.81
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/2. SEACE/2. SEACE_PROCESO DE SELECCIÓN.xlsx,.xlsx,83.96
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/3. SIAF/3. SIAF.xlsx,.xlsx,390.51
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/4 RNP/4.1 RNP.xlsx,.xlsx,890.62
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/4 RNP/4.2 RNP INHABILIDATOS.xlsx,.xlsx,81.16
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/5. SERVIR - INHABILITADOS/5. SERVIR - INHABILITADOS.xlsx,.xlsx,27.71
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/6. SBS/6. SBS.xlsx,.xlsx,77.07
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/7. AIRHSP -SP/7. AIRHSP -SP.xlsx,.xlsx,59.12
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/8. SUNAT - PADRÓN RUC/8.1 SUNAT_MEGAPROYECTOS.xlsx,.xlsx,353.89
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/9. SAGU - CONTROL PREVIO/9.1 SAGU - CONTROL PREVIO - Datos Generales.xlsx,.xlsx,21.22
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/0.Dataset/9. SAGU - CONTROL PREVIO/9.2 SAGU - CONTROL PREVIO - Datos Informe Control Previo.xlsx,.xlsx,29.84
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Otros archivos/Diccionario_datos_Invierte.xlsx,.xlsx,34.2
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Otros archivos/Variables Identificadas - Invierte.xlsx,.xlsx,29.75
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/1. INVIERTE/Querys Consultor JP/Universo_Proyectos_Invierte.xlsx,.xlsx,88.53
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/10. SAGU - CONTROL SIMULTÁNEO/Otros archivos/LV-88204-cgr.xlsx,.xlsx,24.83
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/10. SAGU - CONTROL SIMULTÁNEO/Otros archivos/LV.xlsx,.xlsx,19.63
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/11. CONTROL SIMULTÁNEO/Otros archivos/5. Lista de variables  - CONTROL SIMULTÁNEO 2022.12.02.xlsx,.xlsx,26.11
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/12. SICA - CONTROL POSTERIOR/Otros archivos/Lista de variables - SICA- CONTROL POSTERIOR 2022.12.02.xlsx,.xlsx,38.69
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/13. INFOBRAS/Otros archivos/Lista de variables finales - INFOBRAS 30.11.22.xlsx,.xlsx,27.35
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/14. DDJJCI/Otros archivos/Lista de variables finales -DJI.xlsx,.xlsx,21.27
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/15. DDJJ BR/Otros archivos/Lista de variables finales -DJBR.xlsx,.xlsx,18.9
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/16. Relaciones entre BD/Matriz de PK por Base de datos.xlsx,.xlsx,28.18
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/2. SEACE/EJECUCIÓN CONTRACTUAL/Data exportada/Data exportada- SEACE Ejecución Contractual.xlsx,.xlsx,9323.33
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/2. SEACE/EJECUCIÓN CONTRACTUAL/Otros archivos/Listado de campos - DBSEACE EJECUCCIÓN CONTRACTUAL.xlsx,.xlsx,20.13
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIÓN/Otros archivos/10. VARIABLES IDENTIFICADAS - CONSULTOR ESP. EN BASE DE DATOS DE SEACE.xlsx,.xlsx,42.67
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIÓN/Otros archivos/DD SEACE/Contratos v3/Diccionario de Datos CONTRATOS v3.xlsx,.xlsx,61.7
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIÓN/Otros archivos/DD SEACE/DD PAC (Plan Anual de Contrataciones) a Ene.2022.xlsx,.xlsx,49.79
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/2. SEACE/PROCESO DE SELECCIÓN/Otros archivos/DD SEACE/DD PRO a Feb.2022.xlsx,.xlsx,260.46
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/3. SIAF/Otros archivos/11.Variables identificadas - Siaf.xlsx,.xlsx,22.57
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/3. SIAF/Otros archivos/DD SIAF (incluye MCPP) a Feb.2022.xlsx,.xlsx,210.0
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/4. RNP/Otros archivos/Diccionario_datos_inhab (1).xlsx,.xlsx,19.8
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/4. RNP/Otros archivos/Lista de campos - BDRNP.xlsx,.xlsx,23.2
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/5. SERVIR - INHABILITADOS/Otros archivos/Listado de campos - SERVIR INHABILITADOS.xlsx,.xlsx,18.96
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/6. SBS/Otros archivos/14. Lista de variables finales -SBS.xlsx,.xlsx,21.63
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/7. AIRHSP -SP/Otros archivos/13. Lista de variables finales -AIRHSP-MEF.xlsx,.xlsx,22.87
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/7. AIRHSP -SP/Otros archivos/Diccionario de Datos-AIRHSP-MEF.xlsx,.xlsx,24.96
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/8. SUNAT - PADRÓN RUC/Otros archivos/17. Lista de variables finales -SUNAT PADRON RUC.xlsx,.xlsx,22.87
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/8. SUNAT - PADRÓN RUC/Otros archivos/Diccionario de datos SUNAT - Padron RUC.xlsx,.xlsx,33.65
+OneDrive_1_10-7-2025.zip,4.3.5 Base de datos/9. SAGU - CONTROL PREVIO/Otros archivos/Lista de variables  - SAGU INTERNO - CONTROL PREVIO 2022.12.02.xlsx,.xlsx,1057.03
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/10 QueryInvierteEjecHitos_Cslt.csv",.csv,13.61
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/11 QueryInvierteAdic_Deduc_Cslt.csv",.csv,8.67
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/12 QueryInvierteAmpli_Cslt.csv",.csv,4.64
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/13 QueryInvierteValoriz_Cslt.csv",.csv,7.53
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/15 QueryInviertePIM_Dev_Cslt.csv",.csv,71.44
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/16 QueryInvierteEjecObra_Cslt.csv",.csv,6.64
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/5 QueryInvierteAcc_Cslt.csv",.csv,8.95
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/6 QueryInvierteExp_Cslt.csv",.csv,1236.94
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/7 QueryInvierteExpDet_Cslt.csv",.csv,1015.98
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/8 QueryInvierteAvanFisPI_Cslt.csv",.csv,43.34
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE/9 QueryInvierteExpHitos_Cslt.csv",.csv,100.31
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/2. SEACE/Query_Cronograma_Proceso.csv",.csv,204.94
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/2. SEACE/Query_Miembros_Comite.csv",.csv,34.64
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/2. SEACE/Query_Seace_Ampliacion.csv",.csv,0.41
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/2. SEACE/Query_Seace_Contratos.csv",.csv,12.65
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/2. SEACE/Query_Seace_Expediente.csv",.csv,29.68
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/2. SEACE/Query_Seace_Ganador.csv",.csv,26.18
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/2. SEACE/Query_Seace_Nulidad.csv",.csv,0.06
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/2. SEACE/Query_Seace_Participante.csv",.csv,107.98
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/3. SIAF/Query SIAF.csv",.csv,22558.76
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/4. RNP/inhabilitado_megaproyectos.csv",.csv,96.32
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/4. RNP/scripts_rnp.csv",.csv,627.22
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/6. SBS/SCRIPT_SBS_MEGAPROYECTOS.csv",.csv,101.6
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/7. AIRHSP/SCRIPT_AIRHSP_MEGAPROYECTOS.csv",.csv,132.82
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/8. SUNAT/SCRIPT_SUNAT_MEGAPROYECTOS.csv",.csv,153.85
+OneDrive_3_10-7-2025.zip,"1.4 Diccionario de Datos INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/1. INVIERTE.xlsx",.xlsx,18.38
+OneDrive_3_10-7-2025.zip,"1.4 Diccionario de Datos INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/2. SEACE.xlsx",.xlsx,35.99
+OneDrive_3_10-7-2025.zip,"1.4 Diccionario de Datos INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/3. SIAF.xlsx",.xlsx,23.57
+OneDrive_3_10-7-2025.zip,"1.4 Diccionario de Datos INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/4. RNP.xlsx",.xlsx,33.5
+OneDrive_3_10-7-2025.zip,"1.4 Diccionario de Datos INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/5. SERVIR.xlsx",.xlsx,17.08
+OneDrive_3_10-7-2025.zip,"1.4 Diccionario de Datos INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/6. SBS.xlsx",.xlsx,16.7
+OneDrive_3_10-7-2025.zip,"1.4 Diccionario de Datos INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/7. AIRHSP -SP.xlsx",.xlsx,17.83
+OneDrive_3_10-7-2025.zip,"1.4 Diccionario de Datos INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/8. SUNAT.xlsx",.xlsx,20.88
+OneDrive_3_10-7-2025.zip,"1.5 Datasets INVIERTE, SEACE, SIAF, RNP, AIRHSP, SBS, SERVIR y SUNAT/5. SERVIR/5. SERVIR - INHABILITADOS.xlsx",.xlsx,27.71

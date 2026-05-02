@@ -1,0 +1,5 @@
+y_riesgo_4niveles,n,pct,descripcion
+0,32,0.0982,Sin riesgo
+1,52,0.1595,Bajo riesgo
+2,87,0.2669,Medio riesgo
+3,155,0.4755,Alto/Extremo riesgo

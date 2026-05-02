@@ -1,80 +1,62 @@
-# 🏗️ Sistema de Detección de Riesgos de Corrupción en Obras Públicas mediante Machine Learning
+# Sistema de Detección de Riesgos de Corrupción en Obras Públicas mediante Machine Learning
 
-**Repositorio oficial del proyecto de tesis de Maestría en Inteligencia Artificial – UNI**  
-**Autores:** Fernando García Atúncar / Hilario Aradiel Castañeda  
-**Proyecto:** Sistema de identificación y priorización de obras públicas con riesgo potencial de corrupción en el Perú  
-**Versión:** `v0.1.0-sprint1`
-
----
-
-## 🎯 Objetivo del proyecto
-
-Desarrollar un sistema basado en **Machine Learning** que permita identificar y priorizar **obras públicas con riesgo potencial de corrupción**, integrando información de obras, empresas, procesos de contratación y actores vinculados.
-
-El sistema busca apoyar un enfoque de control más **preventivo, predictivo y basado en datos**, mediante un pipeline reproducible de procesamiento, entrenamiento, evaluación e inferencia.
+Repositorio del proyecto de tesis de Maestría en Inteligencia Artificial – UNI  
+Autores: Fernando García Atúncar / Hilario Aradiel Castañeda  
+Versión: v0.2.0-sprint1-final
 
 ---
 
-## 🧠 Problema que aborda
+## Objetivo del proyecto
 
-La ejecución de obras públicas presenta riesgos asociados a sobrecostos, retrasos, deficiencias contractuales, concentración de proveedores, antecedentes de empresas y señales tempranas de irregularidad.
+Desarrollar un sistema basado en Machine Learning que permita identificar y priorizar obras públicas con riesgo potencial de corrupción, integrando información de:
 
-El enfoque tradicional de control suele ser principalmente reactivo. Este proyecto propone una estrategia basada en datos para:
-
-- Detectar patrones de riesgo.
-- Priorizar obras para evaluación o auditoría.
-- Reducir la dependencia de revisión manual no focalizada.
-- Fortalecer la toma de decisiones mediante evidencia.
+- Obras públicas
+- Empresas contratistas
+- Funcionarios públicos
 
 ---
 
-## 🧭 Estado actual del Sprint 1
+## Enfoque del problema
 
-En el Sprint 1 se consolidó un **baseline funcional y reproducible** del sistema:
+El riesgo de corrupción no depende de un solo factor, sino de la interacción entre:
 
-- Estructura profesional del repositorio.
-- Pipeline base de datos y modelado.
-- Modelo oficial en `models/production/`.
-- API de inferencia con FastAPI.
-- Endpoints de salud, metadata y predicción.
-- Separación entre código productivo, notebooks, experimentos y documentación.
-- Pruebas automáticas con PyTest.
-- Configuración para despliegue con Docker.
+OBRA + EMPRESA + FUNCIONARIO
+
+Por ello, el sistema implementa una arquitectura multi-actor que permite capturar relaciones relevantes y mejorar la capacidad de detección.
 
 ---
 
-## 🧱 Arquitectura general
+## Estado actual
 
-```text
-Fuentes de datos
-    ↓
-Ingesta y preprocesamiento
-    ↓
-Feature engineering
-    ↓
-Modelo de Machine Learning
-    ↓
-API FastAPI
-    ↓
-Predicción de riesgo / priorización
-```
+El proyecto cuenta con:
 
-Arquitectura por capas:
-
-```text
-src/
-├── api/        # Servicio REST con FastAPI
-├── config/     # Configuración y rutas del sistema
-├── data/       # Ingesta y preprocesamiento
-├── features/   # Ingeniería de características
-├── models/     # Entrenamiento, evaluación e inferencia
-└── utils/      # Utilidades generales
-```
+- Datasets especializados por tipo de actor
+- Dataset maestro integrado
+- Análisis exploratorio de datos (EDA)
+- Modelo baseline multiclase
+- Pipeline reproducible de datos y modelado
 
 ---
 
-## 🗂️ Estructura del repositorio
+## Arquitectura del sistema
 
+Fuentes de datos  
+↓  
+Ingesta y normalización  
+↓  
+Construcción de datasets especializados  
+↓  
+Dataset maestro  
+↓  
+Modelo de Machine Learning  
+↓  
+API de inferencia  
+
+---
+
+## Arquitectura de datos
+
+<<<<<<< HEAD
 ```text
 riesgo_corrupcion_obras/
 ├── .github/                 # Workflows CI/CD
@@ -142,265 +124,140 @@ data/processed/dataset_modelado.parquet
 ```
 
 ## ⚙️ Instalación local
+=======
+### Dataset de Obras
+- Unidad: obra + participación
+- Target: y_riesgo_obra_4niveles
 
-### 1. Clonar repositorio
+### Dataset de Empresas
+- Unidad: empresa + participación
+- Target proxy: y_riesgo_empresa
 
-```bash
-git clone https://github.com/webconceptos/riesgo_corrupcion_obras.git
-cd riesgo_corrupcion_obras
-```
+### Dataset de Funcionarios
+- Unidad: funcionario + obra
+- Target proxy: y_riesgo_funcionario
 
-### 2. Crear entorno virtual
+### Dataset Maestro
+- Unidad: IDENTIFICADOR_OBRA
+- Integración de variables de obra, empresa y funcionario
 
-```bash
-python -m venv .venv
-```
+---
 
-Activar en Windows:
+## Análisis exploratorio (EDA)
+>>>>>>> 0d9cfe5 (feat: Sprint 1 - Aactualiza pipeline ML multi-actor con dataset maestro, EDA y baseline)
 
-```powershell
-.venv\Scripts\activate
-```
+El EDA incluye:
 
-Activar en Linux/Mac:
+- Estadísticas descriptivas
+- Distribución del target
+- Análisis de outliers
+- Correlación entre variables
 
-```bash
-source .venv/bin/activate
-```
+### Riesgos identificados
 
-### 3. Instalar dependencias
+- Desbalance de clases
+- Data leakage (variables eliminadas)
+- Posible drift temporal
 
-```bash
-python -m pip install --upgrade pip
+---
+
+## Modelo baseline
+
+Modelo implementado:
+
+- Regresión logística multiclase
+
+Pipeline:
+
+- Imputación de valores faltantes
+- Codificación de variables categóricas (OneHotEncoder)
+- Entrenamiento con class_weight="balanced"
+
+Métricas utilizadas:
+
+- Accuracy
+- Balanced Accuracy
+- Macro F1
+
+---
+
+## Notebooks
+
+El pipeline es completamente reproducible a través de los siguientes notebooks:
+
+- 01_eda_diccionarios.ipynb
+- 02_build_dataset_obra_v3_4_etiquetas.ipynb
+- 02_build_dataset_empresa_v3_4_etiquetas.ipynb
+- 02_build_dataset_funcionario_v3_4_etiquetas.ipynb
+- 03_build_dataset_maestro_v2_4niveles_limpio.ipynb
+- 04_EDA_maestro.ipynb
+- 05_train_baseline_maestro_4niveles.ipynb
+
+Flujo reproducible:
+
+EDA inicial  
+→ construcción de datasets  
+→ dataset maestro  
+→ EDA final  
+→ entrenamiento baseline  
+
+---
+
+## Reproducibilidad
+
+El proyecto garantiza reproducibilidad mediante:
+
+- Estructura clara del repositorio
+- Uso de rutas relativas
+- Versionamiento de dependencias (requirements.txt)
+- Notebooks ejecutables de extremo a extremo
+- Scripts de entrenamiento en src/
+- Configuración mediante variables de entorno (.env)
+
+Para reproducir:
+
+1. Crear entorno virtual
+2. Instalar dependencias
+3. Ejecutar notebooks en orden
+4. Entrenar modelo baseline
+5. Ejecutar API opcionalmente
+
+---
+
+## Ejecución
+
+Instalar dependencias:
+
 pip install -r requirements.txt
-pip install -r requirements-dev.txt
-```
 
----
+Entrenar modelo:
 
-## 🔐 Configuración
+python src/models/train.py
 
-Crear un archivo `.env` a partir de `.env.example`.
+Levantar API:
 
-```bash
-cp .env.example .env
-```
-
-Ejemplo de variables:
-
-```env
-ENV=dev
-DATASET_PATH=data/processed/dataset_modelado.parquet
-MODEL_PATH=models/production/pipeline.pkl
-MODEL_META_PATH=models/production/pipeline_meta.json
-API_HOST=0.0.0.0
-API_PORT=8000
-LOG_LEVEL=INFO
-```
-
----
-
-## 🤖 Entrenamiento del modelo
-
-Ejemplo de entrenamiento:
-
-```bash
-python src/models/train.py \
-  --input data/processed/dataset_modelado.parquet \
-  --target target_column \
-  --model rf \
-  --out models/production/pipeline.pkl \
-  --meta-out models/production/pipeline_meta.json
-```
-
-Modelos soportados:
-
-- `rf` → Random Forest
-- `xgb` → XGBoost
-- `lgbm` → LightGBM
-
-Salida esperada:
-
-```text
-models/production/
-├── pipeline.pkl
-└── pipeline_meta.json
-```
-
----
-
-## 🚀 Ejecución de la API
-
-```bash
 uvicorn src.api.main:app --reload --port 8000
-```
-
-Documentación automática:
-
-```text
-http://127.0.0.1:8000/docs
-```
 
 ---
 
-## 🔎 Endpoints principales
+## Roadmap
 
-| Método | Ruta | Descripción |
-|---|---|---|
-| `GET` | `/health` | Verifica disponibilidad de la API y carga del modelo |
-| `GET` | `/model_meta` | Devuelve metadata segura del modelo |
-| `POST` | `/predict_proba` | Predicción batch con esquema validado |
-| `POST` | `/predict_batch` | Endpoint alternativo para predicción batch simple |
-
-### Ejemplo de solicitud
-
-```json
-{
-  "filas": [
-    {
-      "feature_1": 10,
-      "feature_2": "LIMA",
-      "feature_3": 1250000
-    }
-  ]
-}
-```
-
-### Ejemplo de respuesta
-
-```json
-{
-  "resultados": [
-    {
-      "proba": 0.82,
-      "threshold": 0.5,
-      "riesgoso": true
-    }
-  ]
-}
-```
+- Modelos más avanzados (Random Forest, XGBoost)
+- Interpretabilidad (SHAP)
+- Monitoreo de drift
+- Dashboard de priorización
 
 ---
 
-## 🧪 Pruebas automáticas
+## Autores
 
-Ejecutar:
+Fernando García Atúncar  
+Hilario Aradiel Castañeda  
 
-```bash
-pytest -q
-```
-
-También se recomienda validar estilo:
-
-```bash
-ruff check .
-ruff format .
-```
+Maestría en Inteligencia Artificial – UNI
 
 ---
 
-## 🐳 Docker
+## Nota final
 
-Construcción y ejecución en modo producción:
-
-```bash
-docker compose -f docker-compose.prod.yml up --build
-```
-
----
-
-## 📊 Métricas del modelo
-
-Las métricas se registran en `pipeline_meta.json` y pueden incluir:
-
-| Métrica | Descripción |
-|---|---|
-| Accuracy | Exactitud global |
-| Precision | Precisión sobre casos marcados como riesgosos |
-| Recall | Capacidad de identificar casos riesgosos |
-| F1-Score | Balance entre precisión y recall |
-| ROC-AUC | Separabilidad del modelo |
-
-> Las métricas del Sprint 1 son preliminares y deben validarse con nuevos datos, calibración y revisión de sesgos.
-
----
-
-## 📓 Notebooks
-
-Los notebooks documentan el proceso experimental y de investigación:
-
-```text
-notebooks/
-├── 01_eda/
-├── 02_data/
-├── 03_modeling/
-├── 04_evaluation/
-└── experiments/
-```
-
-La implementación operativa del sistema se encuentra en `src/`.
-
----
-
-## 📚 Documentación
-
-Documentación complementaria:
-
-- `docs/dataset.md` → estructura y descripción de datos
-- `docs/run_guide.md` → guía de ejecución
-- `docs/deployment.md` → despliegue
-- `docs/entregables/` → evidencias académicas
-- `docs/evidencias/` → capturas y soportes
-
----
-
-## 🧩 Tecnologías principales
-
-- Python 3.11+
-- FastAPI
-- Pandas / NumPy
-- Scikit-learn
-- XGBoost
-- LightGBM
-- Joblib
-- PyTest
-- Ruff
-- Docker
-
----
-
-## 🧭 Roadmap
-
-### Sprint 1
-- [x] Estructura profesional del repositorio
-- [x] Modelo baseline funcional
-- [x] API FastAPI
-- [x] Metadata del modelo
-- [x] Pruebas básicas
-
-### Próximos pasos
-- [ ] Calibración de probabilidades
-- [ ] Endpoint `/explain` con SHAP
-- [ ] Dashboard de priorización
-- [ ] Registro de experimentos con MLflow
-- [ ] Monitoreo de drift y desempeño
-- [ ] Validación con expertos de control
-
----
-
-## 👥 Autores
-
-- Fernando García Atúncar @webconceptos
-- Hilario Aradiel Castañeda
-
-**Maestría en Inteligencia Artificial – Universidad Nacional de Ingeniería**
-
----
-
-## ⚖️ Licencia
-
-MIT License.
-
----
-
-> La detección temprana de patrones de riesgo permite fortalecer el control preventivo, priorizar mejor los recursos y proteger la inversión pública.
+Este sistema implementa un enfoque reproducible y escalable para la detección de riesgos de corrupción, integrando múltiples fuentes de datos y permitiendo su extensión hacia modelos más avanzados.

@@ -1,7 +1,7 @@
 """
 Script de integración para generar dataset de entrenamiento ML
 Proyecto: Detección de Riesgo de Corrupción en Obras Públicas (Semana 6)
-Autor: Webconceptos / Fernando García
+Autores: Fernando García - Hilario Aradiel
 """
 
 import pandas as pd
