@@ -1,0 +1,43 @@
+{
+  "version": "v4",
+  "descripcion": "Features de empresa para dataset maestro. No es dataset final de entrenamiento.",
+  "unidad_salida_principal": "CODIGO_OBRA",
+  "salida_principal": "C:\\IA_Investigacion\\Deteccion_Corrupcion\\data\\processed\\dataset_empresa_v4_features_por_obra.parquet",
+  "salidas_auxiliares": {
+    "features_por_obra_csv": "C:\\IA_Investigacion\\Deteccion_Corrupcion\\data\\processed\\dataset_empresa_v4_features_por_obra.csv",
+    "vinculo_auditoria": "C:\\IA_Investigacion\\Deteccion_Corrupcion\\data\\processed\\dataset_empresa_v4_vinculo_auditoria.parquet",
+    "unico_auditoria": "C:\\IA_Investigacion\\Deteccion_Corrupcion\\data\\processed\\dataset_empresa_v4_unico_auditoria.parquet"
+  },
+  "n_rows_features_por_obra": 230,
+  "n_cols_features_por_obra": 18,
+  "features_por_obra": [
+    "CODIGO_OBRA",
+    "emp_n_empresas",
+    "emp_n_vinculos",
+    "emp_n_contrapartes_unicas",
+    "emp_n_ganadores",
+    "emp_n_participantes",
+    "emp_riesgo_max",
+    "emp_riesgo_mean",
+    "emp_riesgo_std",
+    "emp_pct_alto_riesgo",
+    "emp_score_proxy_mean",
+    "emp_score_proxy_max",
+    "emp_ratio_ganador_mean",
+    "emp_ratio_participante_mean",
+    "emp_intensidad_red_mean",
+    "emp_efectividad_ganador_mean",
+    "emp_ratio_ganadores_vinculos",
+    "emp_ratio_participantes_vinculos"
+  ],
+  "restricciones_modelado": [
+    "RUC y nombres se conservan solo en archivos de auditoria.",
+    "La salida principal no debe usarse como target, sino como input del dataset maestro.",
+    "CODIGO_OBRA se usa únicamente como llave temporal de integración."
+  ],
+  "riesgos": [
+    "El riesgo de empresa es proxy, no etiqueta oficial.",
+    "Debe evitarse usar RUC o nombres como variables predictoras.",
+    "El dataset final de entrenamiento será el dataset maestro."
+  ]
+}

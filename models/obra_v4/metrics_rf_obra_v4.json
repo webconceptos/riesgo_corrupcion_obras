@@ -1,0 +1,19 @@
+{
+    "model_name": "RandomForest_obra_v4",
+    "dataset": "obra_v4",
+    "n_features": 31,
+    "n_train": 260,
+    "n_test": 66,
+    "accuracy": 0.5757575757575758,
+    "balanced_accuracy": 0.4123232323232323,
+    "macro_f1": 0.4267857142857142,
+    "weighted_f1": 0.5762987012987013,
+    "best_params": {
+        "model__bootstrap": false,
+        "model__max_depth": 10,
+        "model__max_features": "log2",
+        "model__min_samples_leaf": 1,
+        "model__min_samples_split": 5,
+        "model__n_estimators": 661
+    }
+}

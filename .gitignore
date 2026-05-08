@@ -18,6 +18,10 @@ __pycache__/
 .env.*
 !.env.example
 
+
+# NODE
+node_modules/
+
 # =========================
 # Data
 # =========================
