@@ -28,13 +28,25 @@ Por ello, el sistema implementa una arquitectura multi-actor que permite captura
 
 ## Estado actual
 
-El proyecto cuenta con:
+El proyecto cuenta actualmente con:
 
-- Datasets especializados por tipo de actor
-- Dataset maestro integrado
-- Análisis exploratorio de datos (EDA)
-- Modelo baseline multiclase
-- Pipeline reproducible de datos y modelado
+- Construcción del dataset especializado `obra_v4`
+- Feature engineering multivariable
+- Target multiclase oficial de riesgo
+- Entrenamiento baseline multiclase
+- Cross Validation estratificado
+- Hyperparameter Tuning
+- Exportación de modelo baseline oficial
+- Pipeline reproducible de extremo a extremo
+
+Estado de otros componentes:
+
+| Componente | Estado |
+|---|---|
+| Dataset obra_v4 | ✔ Finalizado |
+| Dataset empresa | ⚠ Exploratorio |
+| Dataset funcionario | ⚠ Exploratorio |
+| Dataset maestro definitivo | ⚠ Pendiente reconstrucción |
 
 ---
 
@@ -46,9 +58,17 @@ Ingesta y normalización
 ↓  
 Construcción de datasets especializados  
 ↓  
-Dataset maestro  
-↓  
-Modelo de Machine Learning  
+Construcción obra_v4
+↓
+Feature Engineering
+↓
+Modelo baseline RF
+↓
+Cross Validation
+↓
+Hyperparameter Tuning
+↓
+Exportación modelo final
 ↓  
 API de inferencia  
 
@@ -68,10 +88,11 @@ riesgo_corrupcion_obras/
 │   └── experiments/
 ├── notebooks/
 │   ├── 01_eda_diccionarios.ipynb
-│   ├── 02_build_dataset_obra_v3_4_etiquetas.ipynb
+│   ├── 02_build_dataset_obra_v4_features_maestro.ipynb
 │   ├── 02_build_dataset_empresa_v3_4_etiquetas.ipynb
 │   ├── 02_build_dataset_funcionario_v3_4_etiquetas.ipynb
 │   ├── 03_build_dataset_maestro_v2_4niveles_limpio.ipynb
+│   ├── 03_train_obra_v4.ipynb
 │   ├── 04_EDA_maestro.ipynb
 │   ├── 05_train_baseline_maestro_4niveles.ipynb
 │   └── README_notebooks.md
@@ -99,8 +120,16 @@ El modelo se entrena a partir de un dataset consolidado que integra información
 El dataset final se encuentra en:
 
 ```text
-data/processed/dataset_modelado.parquet
+data/processed/dataset_obra_v4_model.parquet
 ---
+```
+
+## Dataset obra_v4
+
+Unidad de análisis:
+
+```text
+1 fila = 1 obra
 ```
 
 ##  Instalación local
