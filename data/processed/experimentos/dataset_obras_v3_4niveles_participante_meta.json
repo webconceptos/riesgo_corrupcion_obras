@@ -1,0 +1,51 @@
+{
+  "version": "v3",
+  "unidad_analisis": "obra-participante/oferta",
+  "target": "y_riesgo_4niveles",
+  "target_definicion": {
+    "0": "Sin riesgo: RIESGO_OBRA == 0",
+    "1": "Bajo riesgo: RIESGO_OBRA == 1",
+    "2": "Medio riesgo: RIESGO_OBRA == 2",
+    "3": "Alto/Extremo riesgo: RIESGO_OBRA >= 3"
+  },
+  "shape": [
+    5249,
+    34
+  ],
+  "n_obras_unicas": 324,
+  "distribucion_target": {
+    "0": 168,
+    "1": 1287,
+    "2": 1792,
+    "3": 2002
+  },
+  "archivos_fuente": [
+    "DS_DASH_Obra_1A.csv",
+    "DS_DASH_Obra_2A_3A.csv",
+    "DS_DASH_Obra_2B.csv",
+    "DS_DASH_Obra_3B.csv",
+    "DS_DASH_Obra_3C.csv",
+    "DS_DASH_Obra_4A.csv",
+    "DS_DASH_Obra_4B.csv",
+    "DS_DASH_Obra_5A.csv"
+  ],
+  "leakage_cols_excluidas": [
+    "RIESGO_OBRA",
+    "RIESGO_DESCRIPCION_OBRA",
+    "y_riesgo_4niveles_desc"
+  ],
+  "all_nan_cols_eliminadas": [],
+  "constant_cols_eliminadas": [
+    "TIEMPO_ABSOLUCION_CONSULTAS",
+    "TIEMPO_PRESENTACION_OFERTAS",
+    "obra_1a_n_registros",
+    "obra_1a_nunique_PROCESO",
+    "obra_1a_nunique_OBJETO_PROCESO",
+    "obra_2a3a_nunique_PROCESO",
+    "obra_2a3a_nunique_OBJETO_PROCESO",
+    "obra_2a3a_nunique_CONVOCATORIA_PROCESO_GANADO",
+    "obra_2a3a_nunique_CODIGO_CONTRATO",
+    "obra_2a3a_nunique_NUMERO_CONTRATO",
+    "obra_2b_nunique_PROCESO"
+  ]
+}
