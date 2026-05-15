@@ -1,0 +1,64 @@
+{
+  "unidad_funcionario": "CODIGO_DNI",
+  "target": "y_riesgo_funcionario_4niveles",
+  "target_definicion": {
+    "0": "sin señales",
+    "1": "bajo riesgo",
+    "2": "medio riesgo",
+    "3": "alto/extremo riesgo"
+  },
+  "regla_score": {
+    "score_responsabilidad": "RESP_PENAL*3 + RESP_ADMIN*2 + RESP_CIVIL*2",
+    "score_sancion": "SERVIR>0*3 + RNP>0*3 + INHABILITADO>0*4",
+    "clases": "0 si score<=0; 1 si <=2; 2 si <=6; 3 si >6"
+  },
+  "shapes": {
+    "funcionario_unico": [
+      739,
+      15
+    ],
+    "funcionario_obra": [
+      1613,
+      16
+    ],
+    "funcionario_empresa": [
+      3249,
+      14
+    ],
+    "funcionario_vinculo": [
+      4862,
+      23
+    ],
+    "modelo": [
+      4219,
+      13
+    ]
+  },
+  "distribucion_target_modelo": {
+    "0": 3499,
+    "1": 40,
+    "2": 149,
+    "3": 531
+  },
+  "leakage_cols_excluidas": [
+    "RESP_PENAL",
+    "RESP_ADMIN",
+    "RESP_CIVIL",
+    "SANCIONADA_SERVIR",
+    "SANCIONADA_RNP",
+    "INHABILITADOS_SERVIR",
+    "score_responsabilidad",
+    "score_sancion",
+    "score_riesgo_funcionario"
+  ],
+  "metrics_baseline": {
+    "accuracy": 0.7992874109263658,
+    "balanced_accuracy": 0.35926441582550184,
+    "macro_f1": 0.3511483082781326,
+    "weighted_f1": 0.7401277823247797,
+    "n_train": 3377,
+    "n_test": 842,
+    "n_groups_train": 591,
+    "n_groups_test": 148
+  }
+}
