@@ -48,7 +48,82 @@ lo cual permitió reducir complejidad, mejorar estabilidad y controlar riesgos d
 
 ---
 
-# 3. Dataset Utilizado
+# 3. Evolución Experimental del Proyecto
+
+El proyecto se desarrolla mediante iteraciones incrementales orientadas a mejorar progresivamente la estabilidad, calidad y capacidad predictiva del sistema de detección de riesgos.
+
+Cada sprint representa una evolución metodológica respecto a la variante anterior.
+
+---
+
+## Sprint 1 — Variante 1
+
+En la primera iteración se construyó un dataset maestro preliminar integrando información de:
+
+```text
+OBRA + EMPRESA + FUNCIONARIO
+```
+
+Objetivos:
+
+- validar arquitectura inicial
+- explorar relaciones multientidad
+- construir baseline preliminar
+- evaluar viabilidad predictiva
+
+Notebooks asociados:
+
+```text
+04_EDA_maestro.ipynb
+05_train_baseline_maestro_4niveles.ipynb
+```
+
+Problemas identificados:
+
+- riesgo de data leakage
+- alta complejidad estructural
+- dificultad de trazabilidad
+- métricas inestables
+- baja interpretabilidad
+
+---
+
+## Sprint 2 — Variante 2
+
+En la segunda iteración se rediseñó la arquitectura hacia un dataset especializado `obra_v4`, utilizando una unidad de análisis consistente:
+
+```text
+1 fila = 1 obra
+```
+
+Mejoras implementadas:
+
+- feature engineering agregado
+- control de leakage
+- pipeline reproducible
+- comparación de algoritmos
+- cross validation
+- hyperparameter tuning
+- reporting experimental
+
+Notebooks oficiales:
+
+```text
+02_build_dataset_obra_v4_features_maestro.ipynb
+03_train_obra_v4.ipynb
+06_generate_reports_obra_v4.ipynb
+```
+
+Resultados obtenidos:
+
+- mejora de estabilidad
+- mejor interpretabilidad
+- métricas más consistentes
+- baseline oficial reproducible
+
+---
+
+# 4. Dataset Utilizado
 
 ## Dataset oficial
 
@@ -81,7 +156,7 @@ data/processed/dataset_obra_v4_model.parquet
 
 ---
 
-# 4. Feature Engineering
+# 5. Feature Engineering
 
 El dataset `obra_v4` incorpora variables derivadas de:
 
@@ -122,7 +197,7 @@ El dataset `obra_v4` incorpora variables derivadas de:
 
 ---
 
-# 5. Prevención de Data Leakage
+# 6. Prevención de Data Leakage
 
 Durante el entrenamiento se identificaron variables con riesgo de contaminación del modelo debido a su asociación directa con el target.
 
@@ -137,7 +212,7 @@ Asimismo, todas las transformaciones fueron ajustadas exclusivamente sobre el co
 
 ---
 
-# 6. Modelos Evaluados
+# 7. Modelos Evaluados
 
 | Modelo | Accuracy | Macro F1 |
 |---|---:|---:|
@@ -148,7 +223,7 @@ Asimismo, todas las transformaciones fueron ajustadas exclusivamente sobre el co
 
 ---
 
-# 7. Validación Cruzada
+# 8. Validación Cruzada
 
 Se aplicó validación cruzada estratificada de 5 folds para evaluar estabilidad y capacidad de generalización del modelo.
 
@@ -156,7 +231,7 @@ La validación permitió verificar consistencia en las métricas obtenidas y red
 
 ---
 
-# 8. Hyperparameter Tuning
+# 9. Hyperparameter Tuning
 
 Se aplicó `RandomizedSearchCV` sobre el modelo Random Forest utilizando múltiples combinaciones de hiperparámetros.
 
@@ -175,7 +250,7 @@ Se aplicó `RandomizedSearchCV` sobre el modelo Random Forest utilizando múltip
 
 ---
 
-# 9. Resultados Relevantes
+# 10. Resultados Relevantes
 
 Las variables con mayor importancia predictiva fueron:
 
@@ -189,7 +264,7 @@ Esto sugiere que el comportamiento económico y competitivo de los procesos cont
 
 ---
 
-# 10. Artefactos Generados
+# 11. Artefactos Generados
 
 ## Modelos
 
@@ -225,7 +300,7 @@ reports/figures/model_comparison.png
 
 ---
 
-# 11. Notebooks Oficiales
+# 12. Notebooks Oficiales
 
 ## Construcción dataset
 
@@ -251,7 +326,7 @@ reports/figures/model_comparison.png
 
 ---
 
-# 12. Conclusiones
+# 13. Conclusiones
 
 - El modelo Random Forest obtuvo el mejor desempeño general.
 - El tuning permitió mejorar ligeramente las métricas del baseline inicial.
@@ -262,7 +337,7 @@ reports/figures/model_comparison.png
 
 ---
 
-# 13. Próximos Pasos
+# 14. Próximos Pasos
 
 - reconstrucción del dataset maestro
 - integración obra–empresa–funcionario
