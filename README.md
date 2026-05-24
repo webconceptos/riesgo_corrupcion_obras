@@ -1,32 +1,121 @@
 # Sistema de Detección de Riesgos de Corrupción en Obras Públicas mediante Machine Learning
 
-Repositorio del proyecto de tesis de Maestría en Inteligencia Artificial – UNI  
-Autores: Fernando García Atúncar / Hilario Aradiel Castañeda  
-Versión: v0.2.0-sprint1-final
+Repositorio del proyecto de tesis de Maestría en Inteligencia Artificial – UNI
+
+**Autores:**  
+Fernando García Atúncar  
+Hilario Aradiel Castañeda
+
+**Versión actual:** v0.3.0-sprint2-semana5
 
 ---
 
-## Objetivo del proyecto
+# Objetivo del Proyecto
 
-Desarrollar un sistema basado en Machine Learning que permita identificar y priorizar obras públicas con riesgo potencial de corrupción, integrando información de:
+Desarrollar un sistema basado en Machine Learning capaz de identificar y priorizar obras públicas con riesgo potencial de corrupción utilizando información derivada de:
 
 - Obras públicas
 - Empresas contratistas
 - Funcionarios públicos
+- Contrataciones públicas
+- Variables económicas y de ejecución
 
 ---
 
-## Enfoque del problema
+# Enfoque Actual del Proyecto
 
-El riesgo de corrupción no depende de un solo factor, sino de la interacción entre:
+El proyecto evoluciona hacia una arquitectura multi-actor:
 
+```text
 OBRA + EMPRESA + FUNCIONARIO
+```
 
-Por ello, el sistema implementa una arquitectura multi-actor que permite capturar relaciones relevantes y mejorar la capacidad de detección.
+Sin embargo, el baseline oficial actual del sistema está construido sobre el dataset especializado:
+
+```text
+obra_v4
+```
+
+el cual representa la primera versión validada metodológicamente del pipeline ML reproducible.
 
 ---
 
-## Estado actual
+# Evolución Experimental del Proyecto
+
+El desarrollo del sistema se realiza mediante iteraciones incrementales orientadas a mejorar progresivamente la estabilidad, calidad y capacidad predictiva del modelo.
+
+Cada sprint representa una evolución metodológica respecto a la variante anterior.
+
+---
+
+## Sprint 1 — Variante 1
+
+En la primera iteración se construyó un dataset maestro preliminar integrando información de:
+
+```text
+OBRA + EMPRESA + FUNCIONARIO
+```
+
+### Objetivos
+
+- validar arquitectura inicial
+- explorar relaciones multientidad
+- construir baseline preliminar
+- evaluar viabilidad predictiva
+
+### Notebooks asociados
+
+```text
+04_EDA_maestro.ipynb
+05_train_baseline_maestro_4niveles.ipynb
+```
+
+### Problemas identificados
+
+- riesgo de data leakage
+- alta complejidad estructural
+- dificultad de trazabilidad
+- métricas inestables
+- baja interpretabilidad
+
+---
+
+## Sprint 2 — Variante 2
+
+En la segunda iteración se rediseñó la arquitectura hacia un dataset especializado `obra_v4`, utilizando una unidad de análisis consistente:
+
+```text
+1 fila = 1 obra
+```
+
+### Mejoras implementadas
+
+- feature engineering agregado
+- control de leakage
+- pipeline reproducible
+- comparación de algoritmos
+- cross validation
+- hyperparameter tuning
+- reporting experimental
+
+### Notebooks oficiales
+
+```text
+02_build_dataset_obra_v4_features_maestro.ipynb
+03_train_obra_v4.ipynb
+06_generate_reports_obra_v4.ipynb
+```
+
+### Resultados obtenidos
+
+- mejora de estabilidad
+- mejor interpretabilidad
+- métricas más consistentes
+- baseline oficial reproducible
+
+---
+
+# Estado Actual
 
 El proyecto cuenta actualmente con:
 
@@ -38,26 +127,36 @@ El proyecto cuenta actualmente con:
 - Hyperparameter Tuning
 - Exportación de modelo baseline oficial
 - Pipeline reproducible de extremo a extremo
+- Corrección y validación de data leakage
+- Generación de evidencia experimental visual
 
-Estado de otros componentes:
+---
+
+# Estado de Componentes
 
 | Componente | Estado |
 |---|---|
 | Dataset obra_v4 | ✔ Finalizado |
+| Feature Engineering | ✔ Finalizado |
+| Baseline ML | ✔ Finalizado |
+| Cross Validation | ✔ Finalizado |
+| Hyperparameter Tuning | ✔ Finalizado |
+| Reporting Experimental | ✔ Finalizado |
 | Dataset empresa | ⚠ Exploratorio |
 | Dataset funcionario | ⚠ Exploratorio |
 | Dataset maestro definitivo | ⚠ Pendiente reconstrucción |
 
 ---
 
-## Arquitectura del sistema
+# Arquitectura del Sistema
 
-Fuentes de datos  
-↓  
-Ingesta y normalización  
-↓  
-Construcción de datasets especializados  
-↓  
+```text
+Fuentes de datos
+↓
+Ingesta y normalización
+↓
+Construcción de datasets especializados
+↓
 Construcción obra_v4
 ↓
 Feature Engineering
@@ -69,178 +168,151 @@ Cross Validation
 Hyperparameter Tuning
 ↓
 Exportación modelo final
-↓  
-API de inferencia  
-
----
-
-## Arquitectura de datos
-
-```text
-riesgo_corrupcion_obras/
-├── data/
-│   ├── raw/
-│   ├── external/
-│   ├── processed/
-│   └── README.md
-├── models/
-│   ├── production/
-│   └── experiments/
-├── notebooks/
-│   ├── 01_eda_diccionarios.ipynb
-│   ├── 02_build_dataset_obra_v4_features_maestro.ipynb
-│   ├── 02_build_dataset_empresa_v3_4_etiquetas.ipynb
-│   ├── 02_build_dataset_funcionario_v3_4_etiquetas.ipynb
-│   ├── 03_build_dataset_maestro_v2_4niveles_limpio.ipynb
-│   ├── 03_train_obra_v4.ipynb
-│   ├── 04_EDA_maestro.ipynb
-│   ├── 05_train_baseline_maestro_4niveles.ipynb
-│   └── README_notebooks.md
-├── scripts/
-├── src/
-├── tests/
-├── requirements.txt
-└── README.md
+↓
+API de inferencia
 ```
-##  Dataset
-
-El modelo se entrena a partir de un dataset consolidado que integra información de diversas fuentes institucionales relacionadas a la ejecución de obras públicas en el Perú.
-
-###  Fuentes de datos
-
-- OSCE / SEACE (contrataciones públicas)
-- MEF (inversión pública)
-- Contraloría General de la República
-- Registros administrativos de obras, empresas y funcionarios
 
 ---
 
-###  Estructura del dataset
-
-El dataset final se encuentra en:
+# Dataset Principal
 
 ```text
 data/processed/dataset_obra_v4_model.parquet
----
 ```
 
-## Dataset obra_v4
+---
 
-Unidad de análisis:
+# Dataset obra_v4
+
+## Unidad de análisis
 
 ```text
 1 fila = 1 obra
 ```
 
-##  Instalación local
+---
 
-El EDA incluye:
+## Target Oficial
 
-- Estadísticas descriptivas
-- Distribución del target
-- Análisis de outliers
-- Correlación entre variables
-
-### Riesgos identificados
-
-- Desbalance de clases
-- Data leakage (variables eliminadas)
-- Posible drift temporal
+```text
+y_riesgo_obra_5niveles
+```
 
 ---
 
-## Modelo baseline
+# Modelos Evaluados
 
-Modelo implementado:
-
-- Regresión logística multiclase
-
-Pipeline:
-
-- Imputación de valores faltantes
-- Codificación de variables categóricas (OneHotEncoder)
-- Entrenamiento con class_weight="balanced"
-
-Métricas utilizadas:
-
-- Accuracy
-- Balanced Accuracy
-- Macro F1
+- Logistic Regression
+- Gradient Boosting
+- Random Forest
+- Random Forest Tuned
 
 ---
 
-## Notebooks
+# Mejor Modelo Actual
 
-El pipeline es completamente reproducible a través de los siguientes notebooks:
-
-- 01_eda_diccionarios.ipynb
-- 02_build_dataset_obra_v3_4_etiquetas.ipynb
-- 02_build_dataset_empresa_v3_4_etiquetas.ipynb
-- 02_build_dataset_funcionario_v3_4_etiquetas.ipynb
-- 03_build_dataset_maestro_v2_4niveles_limpio.ipynb
-- 04_EDA_maestro.ipynb
-- 05_train_baseline_maestro_4niveles.ipynb
-
-Flujo reproducible:
-
-EDA inicial  
-→ construcción de datasets  
-→ dataset maestro  
-→ EDA final  
-→ entrenamiento baseline  
+```text
+RandomForestClassifier
+```
 
 ---
 
-## Reproducibilidad
+# Métricas Aproximadas
 
-El proyecto garantiza reproducibilidad mediante:
-
-- Estructura clara del repositorio
-- Uso de rutas relativas
-- Versionamiento de dependencias (requirements.txt)
-- Notebooks ejecutables de extremo a extremo
-- Scripts de entrenamiento en src/
-- Configuración mediante variables de entorno (.env)
-
-Para reproducir:
-
-1. Crear entorno virtual
-2. Instalar dependencias
-3. Ejecutar notebooks en orden
-4. Entrenar modelo baseline
-5. Ejecutar API opcionalmente
+| Métrica | Valor |
+|---|---:|
+| Accuracy | ~0.58 |
+| Balanced Accuracy | ~0.41 |
+| Macro F1 | ~0.43 |
 
 ---
 
-## Ejecución
-El pipeline actual se reproduce principalmente mediante notebooks ejecutados en orden.
-notebooks/05_train_baseline_maestro_4niveles.ipynb
+# Variables Más Relevantes
 
-Este notebook genera:
-models/production/pipeline_maestro_4niveles_baseline.pkl
-models/production/pipeline_maestro_4niveles_baseline_meta.json
+Las variables con mayor importancia predictiva estuvieron asociadas principalmente a:
 
+- montos ofertados
+- número de participantes
+- ratios de participación
+- variabilidad económica
+- composición del comité
 
----
-
-## Roadmap
-
-- Modelos más avanzados (Random Forest, XGBoost)
-- Interpretabilidad (SHAP)
-- Monitoreo de drift
-- Dashboard de priorización
+Esto sugiere que el comportamiento económico y competitivo de los procesos contiene señales relevantes asociadas al riesgo de corrupción.
 
 ---
 
-## Autores
+# Pipeline Reproducible
+
+## Construcción Dataset
+
+```text
+notebooks/02_build_dataset_obra_v4_features_maestro.ipynb
+```
+
+---
+
+## Entrenamiento
+
+```text
+notebooks/03_train_obra_v4.ipynb
+```
+
+---
+
+## Reporting Experimental
+
+```text
+notebooks/06_generate_reports_obra_v4.ipynb
+```
+
+---
+
+# Artefactos Generados
+
+## Modelos
+
+```text
+models/obra_v4/
+```
+
+- pipeline_rf_obra_v4.pkl
+- metrics_rf_obra_v4.json
+- feature_importance_rf_obra_v4.csv
+
+---
+
+## Figuras
+
+```text
+reports/figures/
+```
+
+- confusion_matrix_rf_tuned.png
+- feature_importance_rf.png
+- model_comparison.png
+
+---
+
+# Roadmap
+
+- Rediseño datasets empresa y funcionario
+- Reconstrucción del dataset maestro
+- Integración multiactor
+- XGBoost / LightGBM
+- SHAP Explainability
+- Detección de redes de riesgo
+- API de inferencia
+
+---
+
+# Autor
 
 Fernando García Atúncar  
-Hilario Aradiel Castañeda  
 
 Maestría en Inteligencia Artificial – UNI
 
 ---
 
-## Nota final
+# Nota Final
 
-Este sistema implementa un enfoque reproducible y escalable para la detección de riesgos de corrupción, integrando múltiples fuentes de datos y permitiendo su extensión hacia modelos más avanzados.
+El proyecto consolida actualmente una primera versión reproducible y validada metodológicamente del sistema de detección de riesgos de corrupción basado en Machine Learning aplicado a obras públicas, permitiendo evolucionar progresivamente hacia arquitecturas multiactor más complejas.
