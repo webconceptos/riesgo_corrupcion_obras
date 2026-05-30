@@ -1,19 +1,27 @@
 {
-    "model_name": "RandomForest_obra_v4",
-    "dataset": "obra_v4",
-    "n_features": 31,
+    "model_name": "RandomForest_obra_v4_tuned",
+    "dataset": "obra_v4_4niveles",
+    "target_strategy": "4 niveles (Decisi\u00f3n D1)",
+    "n_features": 77,
     "n_train": 260,
     "n_test": 66,
-    "accuracy": 0.5757575757575758,
-    "balanced_accuracy": 0.4123232323232323,
-    "macro_f1": 0.4267857142857142,
-    "weighted_f1": 0.5762987012987013,
+    "accuracy": 0.6666666666666666,
+    "balanced_accuracy": 0.5580940988835725,
+    "macro_f1": 0.580392156862745,
+    "weighted_f1": 0.6430778371954843,
+    "cv_macro_f1_mean": 0.5901215162356392,
     "best_params": {
         "model__bootstrap": false,
-        "model__max_depth": 10,
+        "model__max_depth": 30,
         "model__max_features": "log2",
-        "model__min_samples_leaf": 1,
-        "model__min_samples_split": 5,
-        "model__n_estimators": 661
-    }
+        "model__min_samples_leaf": 3,
+        "model__min_samples_split": 13,
+        "model__n_estimators": 666
+    },
+    "class_labels": [
+        "Sin Riesgo",
+        "Bajamente Riesgosa",
+        "Med/Alt Riesgosa",
+        "Extrem. Riesgosa"
+    ]
 }
