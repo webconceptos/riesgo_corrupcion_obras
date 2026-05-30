@@ -1,138 +1,214 @@
-# Sistema de Detección de Riesgos de Corrupción en Obras Públicas mediante Machine Learning
+# Sistema de Detección y Priorización de Riesgos de Corrupción en Obras Públicas mediante Machine Learning
 
-Repositorio del proyecto de tesis de Maestría en Inteligencia Artificial – UNI
+Repositorio oficial del proyecto de tesis de Maestría en Inteligencia Artificial orientado al desarrollo de un sistema predictivo para la detección temprana y priorización de riesgos de corrupción en obras públicas del Perú.
 
-**Autores:**  
-Fernando García Atúncar  
-Hilario Aradiel Castañeda
+---
 
-**Versión actual:** v0.3.0-sprint2-semana5
+# Información General
+
+## Proyecto de Investigación
+
+**Título de tesis:**
+
+> Estrategia Basada en Machine Learning para la Detección y Priorización de Riesgos de Corrupción en la Ejecución de Obras Públicas en la Contraloría General de la República
+
+## Institución Académica
+
+Universidad Nacional de Ingeniería – FIIS  
+Maestría en Inteligencia Artificial
+
+## Autores
+
+- Fernando García Atúncar
+- Hilario Aradiel Castañeda
+
+## Estado actual del repositorio
+
+```text
+Versión actual: v0.4.0-sprint2-semana7
+Estado: Sprint 2 finalizado
+```
 
 ---
 
 # Objetivo del Proyecto
 
-Desarrollar un sistema basado en Machine Learning capaz de identificar y priorizar obras públicas con riesgo potencial de corrupción utilizando información derivada de:
+Desarrollar un sistema basado en Machine Learning y Explainable AI (XAI) capaz de:
 
-- Obras públicas
-- Empresas contratistas
-- Funcionarios públicos
-- Contrataciones públicas
-- Variables económicas y de ejecución
+- detectar riesgos potenciales de corrupción
+- priorizar obras públicas riesgosas
+- identificar patrones anómalos
+- apoyar la fiscalización preventiva
+- fortalecer el control gubernamental basado en datos
+
+El sistema utiliza información derivada de:
+
+- obras públicas
+- contrataciones públicas
+- empresas contratistas
+- funcionarios públicos
+- ejecución contractual
+- variables económicas
+- patrones de participación
 
 ---
 
-# Enfoque Actual del Proyecto
+# Problema que Resuelve
 
-El proyecto evoluciona hacia una arquitectura multi-actor:
-
-```text
-OBRA + EMPRESA + FUNCIONARIO
-```
-
-Sin embargo, el baseline oficial actual del sistema está construido sobre el dataset especializado:
+El modelo tradicional de control gubernamental es predominantemente reactivo y posterior a la ocurrencia de irregularidades.
+Este proyecto busca evolucionar hacia un enfoque:
 
 ```text
-obra_v4
+Preventivo + Predictivo + Basado en Datos
 ```
 
-el cual representa la primera versión validada metodológicamente del pipeline ML reproducible.
+mediante técnicas de:
+- Machine Learning
+- Analítica avanzada
+- Explainable AI
+- Feature Engineering
+- Modelamiento multientidad
 
 ---
 
 # Evolución Experimental del Proyecto
 
-El desarrollo del sistema se realiza mediante iteraciones incrementales orientadas a mejorar progresivamente la estabilidad, calidad y capacidad predictiva del modelo.
-
-Cada sprint representa una evolución metodológica respecto a la variante anterior.
+El desarrollo del sistema se realiza mediante sprints incrementales.
+Cada sprint representa una evolución metodológica respecto a la versión anterior.
 
 ---
 
-## Sprint 1 — Variante 1
+# Sprint 1 — Variante 1
 
-En la primera iteración se construyó un dataset maestro preliminar integrando información de:
+## Arquitectura Inicial
 
 ```text
 OBRA + EMPRESA + FUNCIONARIO
 ```
 
-### Objetivos
+## Objetivos
 
 - validar arquitectura inicial
 - explorar relaciones multientidad
 - construir baseline preliminar
 - evaluar viabilidad predictiva
 
-### Notebooks asociados
-
-```text
-04_EDA_maestro.ipynb
-05_train_baseline_maestro_4niveles.ipynb
-```
+## Resultados
 
 ### Problemas identificados
 
 - riesgo de data leakage
-- alta complejidad estructural
-- dificultad de trazabilidad
 - métricas inestables
+- baja trazabilidad
+- complejidad excesiva
 - baja interpretabilidad
 
----
-
-## Sprint 2 — Variante 2
-
-En la segunda iteración se rediseñó la arquitectura hacia un dataset especializado `obra_v4`, utilizando una unidad de análisis consistente:
+## Notebooks asociados
 
 ```text
-1 fila = 1 obra
+04_EDA_maestro.ipynb - Eliminado
+05_train_baseline_maestro_4niveles.ipynb - Eliminado
 ```
 
-### Mejoras implementadas
+---
 
-- feature engineering agregado
-- control de leakage
-- pipeline reproducible
-- comparación de algoritmos
-- cross validation
-- hyperparameter tuning
-- reporting experimental
+# Sprint 2 — Variante 2 (Baseline Oficial Actual)
 
-### Notebooks oficiales
+En esta etapa se rediseñó completamente la arquitectura experimental.
+
+## Cambio metodológico principal
+
+Se adoptó una unidad de análisis consistente:
 
 ```text
-02_build_dataset_obra_v4_features_maestro.ipynb
-03_train_obra_v4.ipynb
-06_generate_reports_obra_v4.ipynb
+1 fila = 1 obra pública
 ```
 
-### Resultados obtenidos
+## Nuevo dataset especializado
 
-- mejora de estabilidad
-- mejor interpretabilidad
-- métricas más consistentes
-- baseline oficial reproducible
-
----
-
-# Estado Actual
-
-El proyecto cuenta actualmente con:
-
-- Construcción del dataset especializado `obra_v4`
-- Feature engineering multivariable
-- Target multiclase oficial de riesgo
-- Entrenamiento baseline multiclase
-- Cross Validation estratificado
-- Hyperparameter Tuning
-- Exportación de modelo baseline oficial
-- Pipeline reproducible de extremo a extremo
-- Corrección y validación de data leakage
-- Generación de evidencia experimental visual
+```text
+obra_v4
+```
 
 ---
 
-# Estado de Componentes
+# Mejoras Implementadas
+
+```text
+✔ control de leakage
+✔ feature engineering agregado
+✔ pipelines reproducibles
+✔ cross validation estratificado
+✔ hyperparameter tuning
+✔ reporting experimental
+✔ exportación de artefactos
+✔ validación experimental formal
+```
+
+---
+
+# Notebooks Oficiales Sprint 2
+
+```text
+notebooks/
+├── 01_eda_diccionarios.ipynb
+├── 02_build_dataset_obra_v4_features_maestro.ipynb
+├── 03_train_obra_v4.ipynb
+├── 04_generate_reports_obra_v4.ipynb
+└── README.md
+```
+
+---
+
+# Resultados Experimentales Oficiales
+
+```text
+============================================================
+RESUMEN NOTEBOOK 03 — obra_v4
+============================================================
+
+Dataset          : 326 obs × 77 features
+Target           : 4 niveles (Decisión D1)
+
+Mejor modelo     : RandomForest (hold-out)
+
+Macro F1 baseline: 0.5939
+Macro F1 tuned   : 0.5804  (-2.3%)
+
+Bal. Accuracy    : 0.5581
+```
+
+---
+
+# Interpretación Experimental
+
+## Hallazgos relevantes
+
+- El modelo RandomForest continúa siendo el baseline oficial del proyecto.
+- El tuning de hiperparámetros no mejoró el Macro F1 respecto al baseline inicial.
+- El pipeline alcanzó una estabilidad razonable considerando:
+  - tamaño reducido del dataset
+  - desbalance de clases
+  - heterogeneidad institucional
+  - complejidad de variables
+
+## Variables más relevantes
+
+Las variables con mayor importancia predictiva estuvieron asociadas principalmente a:
+
+- montos ofertados
+- dispersión económica
+- número de participantes
+- composición del comité
+- ratios de competencia
+- patrones contractuales
+- ejecución de obra
+
+Esto evidencia que el comportamiento económico y competitivo de los procesos contiene señales relevantes asociadas al riesgo de corrupción.
+
+---
+
+# Estado Actual del Sistema
 
 | Componente | Estado |
 |---|---|
@@ -142,47 +218,74 @@ El proyecto cuenta actualmente con:
 | Cross Validation | ✔ Finalizado |
 | Hyperparameter Tuning | ✔ Finalizado |
 | Reporting Experimental | ✔ Finalizado |
-| Dataset empresa | ⚠ Exploratorio |
-| Dataset funcionario | ⚠ Exploratorio |
-| Dataset maestro definitivo | ⚠ Pendiente reconstrucción |
+| Exportación de artefactos | ✔ Finalizado |
+| Explainability SHAP | En progreso |
+| Dataset empresa | Exploratorio |
+| Dataset funcionario | Exploratorio |
+| Dataset maestro definitivo | Pendiente |
 
 ---
 
 # Arquitectura del Sistema
 
 ```text
-Fuentes de datos
-↓
-Ingesta y normalización
-↓
-Construcción de datasets especializados
-↓
-Construcción obra_v4
-↓
+Fuentes institucionales
+(SEACE / SIAF / SIGA / INFOBRAS / INVIERTE)
+                    ↓
+Ingesta y validación
+                    ↓
+Normalización
+                    ↓
 Feature Engineering
-↓
-Modelo baseline RF
-↓
+                    ↓
+Construcción obra_v4
+                    ↓
+Entrenamiento baseline
+                    ↓
 Cross Validation
-↓
+                    ↓
 Hyperparameter Tuning
-↓
-Exportación modelo final
-↓
+                    ↓
+Reporting experimental
+                    ↓
+Explainability (SHAP)
+                    ↓
 API de inferencia
+```
+
+---
+
+# Estructura del Repositorio
+
+```text
+project/
+│
+├── notebooks/
+├── data/
+│   ├── raw/
+│   ├── processed/
+│   └── external/
+│
+├── models/
+│   └── obra_v4/
+│
+├── reports/
+│   └── figures/
+│
+├── src/
+│
+└── README.md
 ```
 
 ---
 
 # Dataset Principal
 
+## Dataset baseline oficial
+
 ```text
 data/processed/dataset_obra_v4_model.parquet
 ```
-
----
-
-# Dataset obra_v4
 
 ## Unidad de análisis
 
@@ -190,12 +293,10 @@ data/processed/dataset_obra_v4_model.parquet
 1 fila = 1 obra
 ```
 
----
-
-## Target Oficial
+## Target oficial
 
 ```text
-y_riesgo_obra_5niveles
+y_riesgo_obra
 ```
 
 ---
@@ -211,58 +312,8 @@ y_riesgo_obra_5niveles
 
 # Mejor Modelo Actual
 
-```text
+```python
 RandomForestClassifier
-```
-
----
-
-# Métricas Aproximadas
-
-| Métrica | Valor |
-|---|---:|
-| Accuracy | ~0.58 |
-| Balanced Accuracy | ~0.41 |
-| Macro F1 | ~0.43 |
-
----
-
-# Variables Más Relevantes
-
-Las variables con mayor importancia predictiva estuvieron asociadas principalmente a:
-
-- montos ofertados
-- número de participantes
-- ratios de participación
-- variabilidad económica
-- composición del comité
-
-Esto sugiere que el comportamiento económico y competitivo de los procesos contiene señales relevantes asociadas al riesgo de corrupción.
-
----
-
-# Pipeline Reproducible
-
-## Construcción Dataset
-
-```text
-notebooks/02_build_dataset_obra_v4_features_maestro.ipynb
-```
-
----
-
-## Entrenamiento
-
-```text
-notebooks/03_train_obra_v4.ipynb
-```
-
----
-
-## Reporting Experimental
-
-```text
-notebooks/06_generate_reports_obra_v4.ipynb
 ```
 
 ---
@@ -273,46 +324,143 @@ notebooks/06_generate_reports_obra_v4.ipynb
 
 ```text
 models/obra_v4/
+├── pipeline_rf_obra_v4.pkl
+├── metrics_rf_obra_v4.json
+└── feature_importance_rf_obra_v4.csv
 ```
 
-- pipeline_rf_obra_v4.pkl
-- metrics_rf_obra_v4.json
-- feature_importance_rf_obra_v4.csv
-
----
-
-## Figuras
+## Reportes y figuras
 
 ```text
 reports/figures/
+├── confusion_matrix_rf_tuned.png
+├── feature_importance_rf_tuned.png
+├── model_comparison.png
+└── target_distribution.png
 ```
 
-- confusion_matrix_rf_tuned.png
-- feature_importance_rf.png
-- model_comparison.png
+---
+
+# Validaciones Metodológicas
+
+Durante el desarrollo experimental se identificaron y corrigieron:
+
+```text
+✔ data leakage
+✔ contaminación train/test
+✔ variables derivadas del target
+✔ sobreajuste
+✔ inconsistencias de granularidad
+✔ evaluación sesgada
+```
 
 ---
 
-# Roadmap
+# Explainable AI (XAI)
 
-- Rediseño datasets empresa y funcionario
-- Reconstrucción del dataset maestro
-- Integración multiactor
-- XGBoost / LightGBM
-- SHAP Explainability
-- Detección de redes de riesgo
-- API de inferencia
+El proyecto incorpora progresivamente mecanismos de interpretabilidad orientados a:
+
+- transparencia algorítmica
+- auditabilidad institucional
+- explicabilidad de decisiones
+- trazabilidad predictiva
+- reducción de sesgos
+
+## Técnicas previstas
+
+- SHAP
+- LIME
+- Feature Importance
+- Local Explanations
 
 ---
 
-# Autor
+# Roadmap del Proyecto
 
-Fernando García Atúncar  
+## Sprint 3
 
-Maestría en Inteligencia Artificial – UNI
+```text
+→ indicaciones del profesor
+```
+
+## Sprint 4
+
+```text
+→ indicaciones del profesor
+```
+
+## Sprint 5
+
+```text
+→ indicaciones del profesor
+```
+
+---
+
+# Visión Objetivo
+
+La arquitectura objetivo del sistema evoluciona hacia:
+
+```text
+OBRA + EMPRESA + FUNCIONARIO + REDES
+```
+
+permitiendo:
+
+- detección temprana
+- análisis relacional
+- priorización inteligente
+- alertas preventivas
+- fiscalización basada en riesgo
+
+---
+
+# Tecnologías Utilizadas
+
+## Lenguaje
+
+- Python
+
+## Machine Learning
+
+- scikit-learn
+- pandas
+- numpy
+
+## Visualización
+
+- matplotlib
+- seaborn
+
+## Experimentación
+
+- Jupyter Notebook
+
+## Versionamiento
+
+- Git
+- GitHub
+
+---
+
+# Consideraciones Importantes
+
+## Estado experimental
+
+Este repositorio representa una investigación aplicada en evolución.
+
+Los resultados pueden variar conforme:
+
+- se incorporen nuevas fuentes
+- se reduzcan sesgos
+- se optimicen features
+- se amplíen datasets
+- se integren nuevos modelos
 
 ---
 
 # Nota Final
 
-El proyecto consolida actualmente una primera versión reproducible y validada metodológicamente del sistema de detección de riesgos de corrupción basado en Machine Learning aplicado a obras públicas, permitiendo evolucionar progresivamente hacia arquitecturas multiactor más complejas.
+El proyecto consolida actualmente una primera versión metodológicamente validada y reproducible de un sistema de detección de riesgos de corrupción basado en Machine Learning aplicado a obras públicas.
+
+La investigación busca evolucionar progresivamente hacia arquitecturas multientidad más complejas orientadas a fortalecer el control gubernamental preventivo mediante inteligencia artificial.
