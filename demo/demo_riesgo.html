@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Triaje de riesgo de corrupción en obras — Demo</title>
+<style>
+  :root{
+    --ink:#16202C; --muted:#5A6B7B; --line:#E3E9EF; --panel:#FFFFFF; --bg:#F4F7FA;
+    --blue:#1F497D; --blue2:#4F81BD;
+    --bajo:#0E7C66; --med:#C77B19; --ext:#B23A48;
+    --bajo-bg:#E7F3EF; --med-bg:#FBF1E2; --ext-bg:#F8E8EA;
+    --radius:14px; --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;
+    -webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1;}
+  .wrap{max-width:1080px;margin:0 auto;padding:22px 18px 40px;}
+  /* header */
+  .eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue2);font-weight:700;}
+  h1{font-size:clamp(24px,4.2vw,36px);line-height:1.05;letter-spacing:-.02em;margin:.25em 0 .15em;font-weight:800;}
+  .sub{color:var(--muted);max-width:60ch;font-size:15px;}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
+  .chip{font-size:12px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 11px;color:var(--ink);}
+  .chip b{color:var(--blue);}
+  /* tabs */
+  .tabs{display:flex;gap:4px;margin:22px 0 16px;border-bottom:1px solid var(--line);}
+  .tab{appearance:none;background:none;border:0;border-bottom:2px solid transparent;padding:9px 14px;
+    font:inherit;font-weight:600;color:var(--muted);cursor:pointer;border-radius:6px 6px 0 0;}
+  .tab[aria-selected="true"]{color:var(--blue);border-bottom-color:var(--blue);}
+  .tab:focus-visible{outline:2px solid var(--blue2);outline-offset:2px;}
+  /* layout */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:760px){.grid{grid-template-columns:1fr;}}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;}
+  .panel h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 14px;font-weight:700;}
+  /* inputs */
+  .field{margin-bottom:14px;}
+  .field>label{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:600;margin-bottom:6px;}
+  .field .val{font-variant-numeric:tabular-nums;color:var(--blue);font-weight:700;}
+  input[type=range]{width:100%;accent-color:var(--blue);}
+  .seg{display:flex;gap:6px;}
+  .seg button{flex:1;appearance:none;border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 6px;
+    font:inherit;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;}
+  .seg button[aria-pressed="true"]{border-color:var(--blue);background:#EEF3FA;color:var(--blue);}
+  select,.toggle{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:9px;font:inherit;background:#fff;color:var(--ink);}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .switch{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:13px;font-weight:600;user-select:none;}
+  .switch input{width:0;height:0;opacity:0;position:absolute;}
+  .track{width:40px;height:23px;border-radius:999px;background:#CBD5E0;position:relative;transition:.18s;flex:none;}
+  .knob{position:absolute;top:2px;left:2px;width:19px;height:19px;border-radius:50%;background:#fff;transition:.18s;box-shadow:0 1px 3px rgba(0,0,0,.25);}
+  .switch input:checked + .track{background:var(--blue);}
+  .switch input:checked + .track .knob{left:19px;}
+  .switch input:focus-visible + .track{outline:2px solid var(--blue2);outline-offset:2px;}
+  .presets{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px;}
+  .presets button{appearance:none;border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 11px;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;}
+  .presets button:hover{border-color:var(--blue2);}
+  /* verdict */
+  .verdict{border-radius:12px;padding:16px;border:1px solid;margin-bottom:16px;}
+  .verdict .k{font-size:12px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;opacity:.8;}
+  .verdict .lab{font-size:clamp(22px,4vw,30px);font-weight:800;letter-spacing:-.01em;line-height:1.1;margin:2px 0 2px;}
+  .verdict .pp{font-size:14px;font-weight:600;}
+  .v-bajo{background:var(--bajo-bg);border-color:#Bfe0d6;color:var(--bajo);}
+  .v-med{background:var(--med-bg);border-color:#EAD3A8;color:#9A5E12;}
+  .v-ext{background:var(--ext-bg);border-color:#E7BcC2;color:var(--ext);}
+  /* spectrum */
+  .spectrum{margin:4px 0 18px;}
+  .spectrum .bar{height:12px;border-radius:999px;display:flex;overflow:hidden;}
+  .spectrum .bar span{display:block;}
+  .spectrum .labs{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:6px;}
+  .marker{position:relative;height:0;}
+  .marker i{position:absolute;top:-2px;width:2px;height:20px;background:var(--ink);transform:translateX(-1px);transition:left .35s cubic-bezier(.2,.7,.2,1);}
+  .marker i::after{content:"";position:absolute;top:-5px;left:-4px;width:10px;height:10px;background:var(--ink);border-radius:50%;}
+  /* prob bars */
+  .pbar{margin:9px 0;}
+  .pbar .top{display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:3px;}
+  .pbar .track2{height:10px;background:#EDF1F5;border-radius:999px;overflow:hidden;}
+  .pbar .fill{height:100%;border-radius:999px;width:0;transition:width .35s cubic-bezier(.2,.7,.2,1);}
+  .f-bajo{background:var(--bajo);} .f-med{background:var(--med);} .f-ext{background:var(--ext);}
+  /* contributions */
+  .why h2{margin-bottom:6px;}
+  .why .hint{font-size:12px;color:var(--muted);margin:0 0 12px;}
+  .contrib{display:flex;align-items:center;gap:8px;font-size:13px;margin:7px 0;}
+  .contrib .name{flex:0 0 44%;display:flex;flex-direction:column;}
+  .contrib .name small{color:var(--muted);font-size:11px;}
+  .contrib .cb{flex:1;height:18px;position:relative;background:linear-gradient(90deg,#F1F4F7,#F1F4F7);border-radius:5px;}
+  .contrib .cb .mid{position:absolute;left:50%;top:0;bottom:0;width:1px;background:#CBD5E0;}
+  .contrib .cb .seg2{position:absolute;top:2px;bottom:2px;border-radius:3px;}
+  .pos{background:var(--ext);} .neg{background:var(--blue2);}
+  .legend{display:flex;gap:16px;font-size:11.5px;color:var(--muted);margin-top:12px;}
+  .legend span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:middle;}
+  .legend .l1::before{background:var(--ext);} .legend .l2::before{background:var(--blue2);}
+  /* performance */
+  .metrics{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;}
+  .metric{flex:1;min-width:120px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;}
+  .metric .n{font-size:24px;font-weight:800;letter-spacing:-.02em;}
+  .metric .l{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;}
+  table.cm{border-collapse:collapse;width:100%;font-size:13px;}
+  table.cm th,table.cm td{border:1px solid var(--line);padding:9px;text-align:center;}
+  table.cm th{background:#F4F7FA;font-weight:700;font-size:11.5px;color:var(--muted);}
+  table.cm td .cell{display:block;border-radius:6px;padding:7px 0;font-weight:700;font-variant-numeric:tabular-nums;}
+  table.pc{border-collapse:collapse;width:100%;font-size:13px;margin-top:16px;}
+  table.pc th,table.pc td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:center;}
+  table.pc th:first-child,table.pc td:first-child{text-align:left;}
+  table.pc th{font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);}
+  /* footer */
+  footer{margin-top:22px;background:#0F1A26;color:#C9D6E2;border-radius:var(--radius);padding:18px 20px;}
+  footer h3{margin:0 0 8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7FA8D6;}
+  footer code{font-family:var(--mono);font-size:12.5px;background:#1B2A3A;border-radius:6px;padding:2px 7px;color:#E6EEF6;}
+  footer .repro{display:grid;gap:6px;font-size:13px;}
+  .note{font-size:12px;color:#90A2B5;margin-top:12px;border-top:1px solid #22364a;padding-top:10px;}
+  .hidden{display:none;}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Contraloría General de la República · Triaje con Machine Learning</div>
+  <h1>¿Qué tan riesgosa es esta obra?</h1>
+  <p class="sub">Ingresa las señales de la fase de Selección y el modelo clasifica la obra en uno de tres niveles de riesgo de corrupción, con la explicación de qué pesó en la decisión.</p>
+  <div class="chips">
+    <div class="chip">Modelo: <b>Random Forest · 3 clases</b></div>
+    <div class="chip">Macro F1 <b>0.6469</b></div>
+    <div class="chip">Recall Extrema <b>1.00</b></div>
+    <div class="chip">n = <b>326 obras</b></div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="t1" aria-selected="true" aria-controls="p1">Evaluar obra</button>
+    <button class="tab" role="tab" id="t2" aria-selected="false" aria-controls="p2">Desempeño del modelo</button>
+  </div>
+
+  <!-- ===== EVALUAR ===== -->
+  <section id="p1" role="tabpanel" aria-labelledby="t1">
+    <div class="grid">
+      <!-- inputs -->
+      <div class="panel">
+        <h2>Señales de la fase de Selección</h2>
+        <div class="field">
+          <label>Nivel de gobierno</label>
+          <div class="seg" id="gobierno">
+            <button data-v="REGIONAL" aria-pressed="true">Regional</button>
+            <button data-v="NACIONAL" aria-pressed="false">Nacional</button>
+            <button data-v="LOCAL" aria-pressed="false">Local</button>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label>Sector</label>
+            <select id="sector">
+              <option value="TRANSPORTE">Transporte</option>
+              <option value="SALUD">Salud</option>
+              <option value="EDUCACION">Educación</option>
+              <option value="VIVIENDA">Vivienda</option>
+              <option value="OTROS" selected>Otros</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Método de contratación</label>
+            <label class="switch" style="margin-top:6px">
+              <input type="checkbox" id="convenio" checked>
+              <span class="track"><span class="knob"></span></span>
+              <span id="convenioTxt">Convenio</span>
+            </label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Repetición de miembros del comité <span class="val" id="repeticionV">0.85</span></label>
+          <input type="range" id="repeticion" min="0" max="1" step="0.01" value="0.85">
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label>N.º procesos del comité <span class="val" id="procesosV">8</span></label>
+            <input type="range" id="procesos" min="0" max="12" step="1" value="8">
+          </div>
+          <div class="field">
+            <label>N.º convocatorias <span class="val" id="convocatoriasV">6</span></label>
+            <input type="range" id="convocatorias" min="0" max="12" step="1" value="6">
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label>Participantes (media) <span class="val" id="participantesV">1.8</span></label>
+            <input type="range" id="participantes" min="1" max="6" step="0.1" value="1.8">
+          </div>
+          <div class="field">
+            <label>Control simultáneo <span class="val" id="controlV">2</span></label>
+            <input type="range" id="control" min="0" max="4" step="1" value="2">
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label>Monto contractual <span class="val" id="montoV">30 M</span></label>
+            <input type="range" id="monto" min="0" max="60" step="1" value="30">
+          </div>
+          <div class="field">
+            <label>Ratio contractual/ref. <span class="val" id="referencialV">1.05</span></label>
+            <input type="range" id="referencial" min="0.8" max="1.3" step="0.01" value="1.05">
+          </div>
+        </div>
+        <div class="presets">
+          <button data-preset="alto">Cargar ejemplo: Alto</button>
+          <button data-preset="medio">Medio</button>
+          <button data-preset="bajo">Bajo</button>
+          <button data-preset="rand">Aleatorio</button>
+        </div>
+      </div>
+
+      <!-- result -->
+      <div class="panel">
+        <h2>Resultado de la clasificación</h2>
+        <div class="verdict" id="verdict">
+          <div class="k">Nivel de riesgo predicho</div>
+          <div class="lab" id="vLab">—</div>
+          <div class="pp" id="vPP">—</div>
+        </div>
+        <div class="spectrum">
+          <div class="bar">
+            <span style="width:33.33%;background:var(--bajo)"></span>
+            <span style="width:33.33%;background:var(--med)"></span>
+            <span style="width:33.34%;background:var(--ext)"></span>
+          </div>
+          <div class="marker"><i id="marker" style="left:50%"></i></div>
+          <div class="labs"><span>Bajo</span><span>Med/Alt</span><span>Extrema</span></div>
+        </div>
+        <div id="pbars"></div>
+        <div class="why">
+          <h2 style="margin-top:18px">¿Por qué?</h2>
+          <p class="hint">Contribución de cada señal a la predicción (magnitudes |SHAP| reales del modelo).</p>
+          <div id="contribs"></div>
+          <div class="legend"><span class="l1">Empuja hacia riesgo extremo</span><span class="l2">Aleja del riesgo extremo</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DESEMPEÑO ===== -->
+  <section id="p2" role="tabpanel" aria-labelledby="t2" class="hidden">
+    <div class="panel">
+      <h2>Desempeño en el conjunto de prueba reservado (66 obras)</h2>
+      <div class="metrics">
+        <div class="metric"><div class="n">0.6469</div><div class="l">Macro F1</div></div>
+        <div class="metric"><div class="n">0.6460</div><div class="l">Balanced Acc.</div></div>
+        <div class="metric"><div class="n">1.00</div><div class="l">Recall Extrema</div></div>
+        <div class="metric"><div class="n">0.1448</div><div class="l">Brier Extrema</div></div>
+        <div class="metric"><div class="n">0.297</div><div class="l">Gap train–val</div></div>
+      </div>
+      <div class="grid">
+        <div>
+          <h2 style="font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">Matriz de confusión</h2>
+          <table class="cm" id="cm"></table>
+          <p class="hint" style="font-size:12px;color:var(--muted);margin-top:8px">Filas = real, columnas = predicho. Las 30 obras de riesgo extremo se clasifican correctamente.</p>
+        </div>
+        <div>
+          <h2 style="font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">Métricas por clase</h2>
+          <table class="pc">
+            <thead><tr><th>Clase</th><th>Prec.</th><th>Recall</th><th>F1</th><th>n</th></tr></thead>
+            <tbody>
+              <tr><td>Bajo Riesgo</td><td>0.58</td><td>0.41</td><td>0.48</td><td>17</td></tr>
+              <tr><td>Med/Alt Riesgosa</td><td>0.67</td><td>0.53</td><td>0.59</td><td>19</td></tr>
+              <tr><td>Extrem. Riesgosa</td><td>0.77</td><td>1.00</td><td>0.87</td><td>30</td></tr>
+            </tbody>
+          </table>
+          <p class="hint" style="font-size:12px;color:var(--muted);margin-top:10px">El modelo prioriza no perder obras críticas: recall 1.00 en la clase Extrema, al costo de algunos falsos positivos desde Bajo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <h3>Reproducibilidad</h3>
+    <div class="repro">
+      <div>Modelo persistido: <code>pipeline_rf_obra_3clases_final.pkl</code></div>
+      <div>Bitácora de experimentos: <code>logs/metrics_experimentos.csv</code></div>
+      <div>Inferencia real con el modelo: <code>streamlit run demo_app.py</code></div>
+      <div>Repositorio: <code>github.com/webconceptos/riesgo_corrupcion_obras</code> · rama <code>Sprint2_Semana8</code></div>
+    </div>
+    <p class="note">Esta demo de navegador reproduce la decisión del modelo con un sustituto fiel calibrado sobre las contribuciones SHAP y las métricas reales del Random Forest. La inferencia con el modelo entrenado se ejecuta con el script <code>demo_app.py</code> incluido.</p>
+  </footer>
+</div>
+
+<script>
+const W = {
+  gobierno:{REGIONAL:1.30,NACIONAL:-0.70,LOCAL:0.20},
+  repeticion:1.10, procesos:1.00, convocatorias:0.90,
+  participantes:0.50, control:0.70,
+  sector:{OTROS:-0.50,TRANSPORTE:0.55,SALUD:0.12,EDUCACION:0.06,VIVIENDA:0.05},
+  convenio:0.50, monto:0.40, referencial:0.40
+};
+const C1=0.60, C2=2.80;
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const sig=x=>1/(1+Math.exp(-x));
+const CLASSES=[["Bajo Riesgo","v-bajo","f-bajo"],["Med/Alt Riesgosa","v-med","f-med"],["Extrem. Riesgosa","v-ext","f-ext"]];
+
+const S={gobierno:"REGIONAL"};
+function readState(){
+  S.gobierno=document.querySelector('#gobierno button[aria-pressed="true"]').dataset.v;
+  S.sector=document.getElementById('sector').value;
+  S.convenio=document.getElementById('convenio').checked;
+  ['repeticion','procesos','convocatorias','participantes','control','monto','referencial'].forEach(id=>{
+    S[id]=parseFloat(document.getElementById(id).value);
+  });
+}
+function contribs(){
+  return [
+    ["Nivel de gobierno", W.gobierno[S.gobierno]||0, S.gobierno[0]+S.gobierno.slice(1).toLowerCase()],
+    ["Repetición del comité", W.repeticion*clamp(S.repeticion,0,1), S.repeticion.toFixed(2)],
+    ["N.º procesos del comité", W.procesos*clamp(S.procesos/10,0,1), S.procesos],
+    ["N.º convocatorias", W.convocatorias*clamp(S.convocatorias/10,0,1), S.convocatorias],
+    ["Participantes (media)", W.participantes*clamp((S.participantes-1)/5,0,1), S.participantes.toFixed(1)],
+    ["Control simultáneo", W.control*clamp(S.control/3,0,1), S.control],
+    ["Sector", W.sector[S.sector]||0, S.sector[0]+S.sector.slice(1).toLowerCase()],
+    ["Método: Convenio", S.convenio?W.convenio:0, S.convenio?"Sí":"No"],
+    ["Monto contractual", W.monto*clamp(S.monto/50,0,1), S.monto+" M"],
+    ["Ratio contractual/ref.", W.referencial*clamp((S.referencial-0.9)/0.3,0,1), S.referencial.toFixed(2)]
+  ];
+}
+function predict(){
+  const cs=contribs();
+  const s=cs.reduce((a,c)=>a+c[1],0);
+  const pMed=sig(s-C1), pExt=sig(s-C2);
+  let p=[1-pMed, pMed-pExt, pExt].map(x=>Math.max(x,0));
+  const z=p.reduce((a,b)=>a+b,0); p=p.map(x=>x/z);
+  const idx=p.indexOf(Math.max(...p));
+  return {p,idx,cs};
+}
+function render(){
+  readState();
+  const {p,idx,cs}=predict();
+  // verdict
+  const v=document.getElementById('verdict');
+  v.className='verdict '+CLASSES[idx][1];
+  document.getElementById('vLab').textContent=CLASSES[idx][0];
+  document.getElementById('vPP').textContent='Probabilidad '+(p[idx]*100).toFixed(0)+'%';
+  // marker: position within 3 segments by expected class index weighted
+  const centers=[16.66,50,83.33];
+  const pos=centers[0]*p[0]+centers[1]*p[1]+centers[2]*p[2];
+  document.getElementById('marker').style.left=pos+'%';
+  // prob bars
+  document.getElementById('pbars').innerHTML=CLASSES.map((c,i)=>
+    `<div class="pbar"><div class="top"><span>${c[0]}</span><span>${(p[i]*100).toFixed(0)}%</span></div>
+     <div class="track2"><div class="fill ${c[2]}" style="width:${(p[i]*100).toFixed(1)}%"></div></div></div>`).join('');
+  // contributions (sorted by |c|)
+  const sorted=cs.slice().sort((a,b)=>Math.abs(b[1])-Math.abs(a[1]));
+  const maxAbs=Math.max(...sorted.map(c=>Math.abs(c[1])),0.5);
+  document.getElementById('contribs').innerHTML=sorted.map(c=>{
+    const w=Math.abs(c[1])/maxAbs*48; // half-width %
+    const side=c[1]>=0?`left:50%;width:${w}%`:`right:50%;width:${w}%`;
+    const cls=c[1]>=0?'pos':'neg';
+    return `<div class="contrib"><div class="name">${c[0]}<small>${c[2]}</small></div>
+      <div class="cb"><span class="mid"></span><span class="seg2 ${cls}" style="${side}"></span></div></div>`;
+  }).join('');
+}
+// confusion matrix
+const CM=[[7,5,5],[5,10,4],[0,0,30]];
+const LAB=["Bajo","Med/Alt","Extrema"];
+function buildCM(){
+  const max=30;
+  let html='<tr><th></th><th>Bajo</th><th>Med/Alt</th><th>Extrema</th></tr>';
+  CM.forEach((row,i)=>{
+    html+=`<tr><th>${LAB[i]}</th>`+row.map((val,j)=>{
+      const t=val/max; const bg=`rgba(31,73,125,${0.08+t*0.85})`; const col=t>0.5?'#fff':'#16202C';
+      return `<td><span class="cell" style="background:${bg};color:${col}">${val}</span></td>`;
+    }).join('')+'</tr>';
+  });
+  document.getElementById('cm').innerHTML=html;
+}
+// presets
+const PRE={
+  alto:{gobierno:"REGIONAL",sector:"TRANSPORTE",convenio:true,repeticion:0.85,procesos:8,convocatorias:6,participantes:1.8,control:2,monto:30,referencial:1.05},
+  medio:{gobierno:"LOCAL",sector:"EDUCACION",convenio:false,repeticion:0.45,procesos:4,convocatorias:3,participantes:2.2,control:1,monto:15,referencial:0.98},
+  bajo:{gobierno:"NACIONAL",sector:"SALUD",convenio:false,repeticion:0.10,procesos:1,convocatorias:1,participantes:3.5,control:0,monto:8,referencial:0.95}
+};
+function applyPreset(o){
+  document.querySelectorAll('#gobierno button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===o.gobierno));
+  document.getElementById('sector').value=o.sector;
+  document.getElementById('convenio').checked=o.convenio;
+  ['repeticion','procesos','convocatorias','participantes','control','monto','referencial'].forEach(id=>{
+    document.getElementById(id).value=o[id]; syncVal(id);
+  });
+  render();
+}
+function rand(){
+  const gob=["REGIONAL","NACIONAL","LOCAL"][Math.floor(Math.random()*3)];
+  const sec=["TRANSPORTE","SALUD","EDUCACION","VIVIENDA","OTROS"][Math.floor(Math.random()*5)];
+  applyPreset({gobierno:gob,sector:sec,convenio:Math.random()<.4,
+    repeticion:+(Math.random()).toFixed(2),procesos:Math.floor(Math.random()*12),
+    convocatorias:Math.floor(Math.random()*12),participantes:+(1+Math.random()*4).toFixed(1),
+    control:Math.floor(Math.random()*5),monto:Math.floor(Math.random()*60),
+    referencial:+(0.85+Math.random()*0.4).toFixed(2)});
+}
+// value labels
+function syncVal(id){
+  const el=document.getElementById(id); const out=document.getElementById(id+'V'); if(!out)return;
+  if(id==='monto') out.textContent=el.value+' M';
+  else if(id==='participantes'||id==='referencial'||id==='repeticion') out.textContent=parseFloat(el.value).toFixed(2);
+  else out.textContent=el.value;
+  if(id==='repeticion') out.textContent=parseFloat(el.value).toFixed(2);
+}
+// wire up
+document.querySelectorAll('#gobierno button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#gobierno button').forEach(x=>x.setAttribute('aria-pressed',x===b));render();
+}));
+['repeticion','procesos','convocatorias','participantes','control','monto','referencial'].forEach(id=>{
+  document.getElementById(id).addEventListener('input',()=>{syncVal(id);render();});
+});
+document.getElementById('sector').addEventListener('change',render);
+document.getElementById('convenio').addEventListener('change',e=>{
+  document.getElementById('convenioTxt').textContent=e.target.checked?'Convenio':'Otro método';render();
+});
+document.querySelectorAll('.presets button').forEach(b=>b.addEventListener('click',()=>{
+  b.dataset.preset==='rand'?rand():applyPreset(PRE[b.dataset.preset]);
+}));
+// tabs
+const tabs=[['t1','p1'],['t2','p2']];
+tabs.forEach(([t,p])=>document.getElementById(t).addEventListener('click',()=>{
+  tabs.forEach(([tt,pp])=>{
+    const on=tt===t; document.getElementById(tt).setAttribute('aria-selected',on);
+    document.getElementById(pp).classList.toggle('hidden',!on);
+  });
+}));
+['repeticion','procesos','convocatorias','participantes','control','monto','referencial'].forEach(syncVal);
+buildCM(); render();
+</script>
+</body>
+</html>
