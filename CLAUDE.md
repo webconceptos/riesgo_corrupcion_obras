@@ -21,7 +21,6 @@ make lint      # ruff check .
 make fmt       # ruff format .
 make test      # PYTHONPATH=. pytest -q
 make serve     # uvicorn src.api.main:app --reload --port 8000
-make train     # python src/models/train.py  (requiere --input/--target, ver abajo)
 ```
 
 Ejecutar un solo test:
@@ -29,12 +28,7 @@ Ejecutar un solo test:
 PYTHONPATH=. pytest -q tests/test_api.py::test_predict_shape_ok
 ```
 
-Uso del script de entrenamiento (`src/models/train.py` es un CLI genérico **binario** — ver nota en Arquitectura sobre por qué no reemplaza al pipeline de los notebooks):
-```bash
-python src/models/train.py --input <dataset_binario.parquet> \
-    --target <columna_target_0_1> --model rf --out models/production/pipeline.pkl \
-    --meta-out models/production/pipeline_meta.json
-```
+No hay script de entrenamiento en `src/` (ver limpieza 2026-06-22 más abajo) — el entrenamiento del modelo vive enteramente en los notebooks.
 
 Demo (Streamlit, independiente — única UI funcional hoy):
 ```bash
@@ -64,8 +58,8 @@ streamlit run demo/demo_app.py
 - `src/api/main.py` expone `POST /predict_proba` y `POST /predict_batch`, ambos con el mismo contrato multi-clase: devuelven `probabilidades` (dict clase→prob), `clase_predicha` (índice argmax), `clase_predicha_label` y `riesgoso` (`True` si la clase predicha no es la de menor riesgo, índice 0). **Importante:** este endpoint asume que `meta["class_labels"]` existe y está alineado con el orden de columnas que produce `pipeline.predict_proba()` — si se sirve un modelo distinto, su meta JSON debe traer esa clave o la API devuelve 500. `src/api/routes/health.py` añade `GET /health` y `GET /model_meta`.
 - Los payloads de inferencia se alinean por nombre a las columnas que espera el modelo (`meta["features"]` o `meta["columns"]`); los campos faltantes se rellenan con `None`, los campos extra se descartan. `BatchPredictRequest` usa `extra="allow"` en el modelo pydantic, pero cada fila se realinea igualmente a la lista de columnas de la metadata.
 - En `main.py` el módulo `deps` se importa como `from src.api import deps` y se llama `deps.get_model_and_meta()` (no `from ... import get_model_and_meta`) — necesario para que `monkeypatch.setattr(deps, "get_model_and_meta", ...)` en los tests funcione; con un import directo del nombre, el monkeypatch no intercepta la llamada porque el módulo `main` ya tiene su propia referencia vinculada al objeto original.
-- `src/models/train.py` es un CLI genérico de entrenamiento binario (rf/xgb/lgbm, `predict_proba(X)[:, 1]`) independiente del dataset — no es lo que produjo el modelo oficial de obra_v4 (que es multi-clase) ni es compatible con el contrato de `main.py`. Úsalo solo para experimentos binarios ad-hoc, no como fuente de verdad del pipeline de producción.
-- Limpieza 2026-06-22: se eliminaron `src/data/ingest.py`, `src/features/engineering.py`, `src/utils/logging.py` y `src/main.py` — código sin un solo import real en todo el repo (ni notebooks, ni tests, ni el resto de `src/`), del primer commit del proyecto. `src/` ahora solo contiene `api/`, `config/` y `models/train.py`.
+- Limpieza 2026-06-22: se eliminaron `src/data/ingest.py`, `src/features/engineering.py`, `src/utils/logging.py`, `src/main.py` y `src/models/train.py` (este último: CLI binario genérico, incompatible con el modelo real multi-clase, sin imports reales en todo el repo salvo el target `train:` del Makefile, que también se eliminó). `src/` ahora solo contiene `api/` y `config/` — exclusivamente la capa de serving, sin nada de entrenamiento ni feature engineering.
+- También se eliminaron de la raíz `tmp_data_summary.py`/`tmp_inspect_dataset.py` (scripts de exploración descartables que referenciaban datasets de antes del pivote a obra_v4, ya inexistentes), `requirements-lock.txt` (no usado por ningún comando del repo y corrupto en UTF-16) y `docs/~$forme_ExParcial_FGARCIA.docx` (archivo de bloqueo temporal de Word, no contenido real).
 
 **Demo (`demo/demo_app.py`):** app Streamlit independiente para inferencia en vivo + explicaciones TreeSHAP, usada en presentaciones. Se ejecuta con `streamlit run demo/demo_app.py` desde la raíz del repo (sus rutas son relativas a la raíz, no al archivo). `MODEL_PATH` apunta a `models/obra_v4/pipeline_rf_obra_3clases_final.pkl` y `DATA_CANDIDATES` incluye `data/processed/dataset_obra_v4_model.parquet` como primera opción — verificado end-to-end (`pipe.feature_names_in_` con las 61 columnas tras anti-colinealidad, todas presentes en el dataset, `predict_proba` funcional). Es independiente del servicio FastAPI.
 
@@ -76,5 +70,5 @@ La API ya sirve por defecto el modelo oficial de 3 clases y su contrato de respu
 ## Inconsistencias conocidas (no "arreglar" en silencio — confirmar con el usuario primero)
 
 - `docs/Matriz_consistencia_preliminar.docx` define un plan de validación fuera de muestra (externo temporal, por grupo, backtesting, robustez sintética) que no tiene ninguna implementación todavía en `notebooks/` ni `src/`; es trabajo pendiente, no algo que se pueda asumir ya construido.
-- `src/models/train.py` (CLI genérico rf/xgb/lgbm) sigue asumiendo clasificación binaria y no es compatible con el contrato multi-clase de `src/api/main.py`; no usarlo para regenerar el modelo servido por la API sin antes adaptarlo.
+- No hay ningún script de reentrenamiento en `src/` — si se necesita reentrenar el modelo de producción, hay que hacerlo desde `notebooks/08_modelo_final_obra_v4.ipynb` (que ya guarda en la ruta correcta, `models/obra_v4/`) y regenerar a mano el meta JSON.
 - El meta JSON del modelo de 3 clases (`models/obra_v4/pipeline_rf_obra_3clases_final_meta.json`) se generó a mano, no lo exporta el notebook 08. Si se reentrena el modelo y cambian las features o las métricas, hay que regenerar este archivo (o editarlo) — no se actualiza solo.

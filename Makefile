@@ -1,4 +1,4 @@
-.PHONY: venv install lint test serve train eval fmt
+.PHONY: venv install lint test serve fmt
 
 venv:
 	python -m venv .venv
@@ -20,7 +20,4 @@ test:
 serve:
 	uvicorn src.api.main:app --reload --port 8000
 
-train:
-	python src/models/train.py
-
-all: install train serve
+all: install serve
