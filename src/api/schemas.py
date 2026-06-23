@@ -27,9 +27,14 @@ class BatchPredictRequest(BaseModel):
 
 
 class PredictResponse(BaseModel):
-    proba: float = Field(..., ge=0, le=1, description="Probabilidad estimada de riesgo.")
-    threshold: float = Field(..., ge=0, le=1, description="Umbral usado para clasificar riesgo.")
-    riesgoso: bool = Field(..., description="Indica si el registro supera el umbral de riesgo.")
+    probabilidades: dict[str, float] = Field(
+        ..., description="Probabilidad estimada por cada clase de riesgo."
+    )
+    clase_predicha: int = Field(..., ge=0, description="Índice de la clase con mayor probabilidad.")
+    clase_predicha_label: str = Field(..., description="Etiqueta de la clase con mayor probabilidad.")
+    riesgoso: bool = Field(
+        ..., description="True si la clase predicha no es la de menor riesgo (índice 0)."
+    )
 
 
 class PredictBatchResponse(BaseModel):

@@ -25,8 +25,9 @@ import streamlit as st
 import joblib
 
 MODEL_PATH = "models/obra_v4/pipeline_rf_obra_3clases_final.pkl"
-# Ajusta a tu archivo real (lo que cargaba NB08):
+# Rutas relativas a la raíz del repo (asume `streamlit run demo/demo_app.py` desde ahí).
 DATA_CANDIDATES = [
+    "data/processed/dataset_obra_v4_model.parquet",
     "dataset_obra_v4.parquet", "obra_v4.parquet", "dataset_obra.parquet",
     "dataset_obra_v4.csv", "obra_v4.csv",
 ]
