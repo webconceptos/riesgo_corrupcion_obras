@@ -1,230 +1,42 @@
-# Data Directory – Sistema de Detección de Riesgos de Corrupción
+# Data Directory — Sistema de Detección de Riesgos de Corrupción
 
-Este directorio contiene la **arquitectura completa de datos** del sistema de detección de riesgos de corrupción en obras públicas del Perú.
-
-A diferencia de versiones iniciales, el proyecto ha evolucionado hacia un enfoque **multi-actor**, integrando información de:
-
-- Obras públicas
-- Empresas contratistas
-- Funcionarios públicos
+Este directorio contiene los datos del sistema de detección de riesgos de corrupción en obras públicas del Perú.
 
 ---
 
-# Arquitectura de Datos
+# Arquitectura de datos (capas)
 
-El sistema sigue una arquitectura en capas:
+```
+raw/ → external/ → interim/ → processed/
+```
 
-FUENTES → DATASETS ESPECIALIZADOS → DATASET MAESTRO → MODELOS
-
----
-
-# Estructura del directorio
-
-data/
-├── raw/                  # Fuentes originales (trazabilidad)
-├── external/             # Datos por dominio (obra, empresa, funcionario)
-├── interim/              # Transformaciones intermedias
-├── processed/            # Datasets finales para modelado
-├── datasets.json         # Metadatos de ingesta
-└── README.md             # Este archivo
+- **`raw/`** — `listado_completo_datasets.csv`: inventario de las fuentes originales (trazabilidad).
+- **`external/`** — extractos crudos por dominio, descargados de dashboards institucionales (`DS_DASH_*.csv`):
+  - `obra/` (8 archivos, o1a…o5a) — el único dominio que alimenta el pipeline de modelado actual.
+  - `empresa/` y `funcionario/` (5 y 4 archivos) — usados solo en los experimentos archivados en `processed/experimentos/` (ver abajo), no en el dataset de producción.
+- **`interim/`** — `oXX_clean.parquet`, uno por cada fuente de `external/obra/`, producido por `notebooks/00_eda_inicial.ipynb`.
+- **`processed/`** — datasets listos para modelar:
+  - `dataset_obra_v4_model.parquet` (326 obras × 77 features) — **dataset oficial**, construido por `notebooks/02_build_dataset_obra_v4.ipynb`. Es la única entrada real del pipeline de entrenamiento (notebooks 03 y 05→08).
 
 ---
 
-# Evolución del Proyecto
+# Unidad de análisis
 
-## Versión inicial
-- Dataset único integrado
-- Bajo desempeño (problemas de desbalance y pérdida de granularidad)
+**1 fila = 1 obra pública**, clave `IDENTIFICADOR_OBRA`.
 
-## Versión actual (V3)
-Se implementa un enfoque **multi-dataset especializado**:
+# Target
 
-dataset_obras_v3
-dataset_empresa_v3
-dataset_funcionario_v3
-dataset_maestro_v2
+`y_riesgo_obra` en el dataset original, 4 niveles (Sin Riesgo / Bajo / Medio / Alto-Extremo). El modelo final (ver `notebooks/07_var3_anticol_obra_v4.ipynb` y `08_modelo_final_obra_v4.ipynb`) fusiona las dos categorías de menor riesgo y trabaja con **3 clases**: Bajo Riesgo / Med-Alt Riesgosa / Extrem. Riesgosa.
 
 ---
 
-# DATASETS FINALES (processed/)
+# `processed/experimentos/` — intentos multi-entidad (archivados, no vigentes)
 
-## 1. Dataset de Obras
-
-Archivo:
-dataset_obras_v3_4niveles_participante.parquet
-
-Unidad de análisis:
-Obra + participación (granular)
-
-Target:
-y_riesgo_obra_4niveles
-
-Valores:
-0: Sin riesgo
-1: Bajo
-2: Medio
-3: Alto / Extremo
+Documenta un intento real de extender el modelo a `OBRA + EMPRESA + FUNCIONARIO`, ejecutado y descartado por bajo desempeño (macro F1 = 0.226 vs. 0.58–0.65 del baseline solo-obra). Ver `processed/experimentos/README.md` para el detalle completo.
 
 ---
 
-## 2. Dataset de Empresas
+# Artefactos de modelo (no viven en `data/`, viven en `models/obra_v4/`)
 
-Archivo:
-dataset_empresa_v3_4niveles.parquet
-
-Unidad de análisis:
-Empresa + participación en procesos
-
-Target (proxy):
-y_riesgo_empresa
-
-Construido a partir de:
-- sanciones
-- inhabilitaciones
-- penalidades
-- responsabilidades
-
-Nota:
-No existe etiqueta oficial → se construye un indicador proxy.
-
----
-
-## 3. Dataset de Funcionarios
-
-Archivo:
-dataset_funcionario_v3_4niveles_model.parquet
-
-Unidad de análisis:
-Funcionario + vínculo con obra
-
-Target (proxy):
-y_riesgo_funcionario
-
-Basado en:
-- responsabilidades
-- sanciones administrativas
-- sanciones penales
-
----
-
-## 4. Dataset Maestro ⭐
-
-Archivo:
-dataset_maestro_v2_4niveles.parquet
-
-Unidad de análisis final:
-1 fila = 1 OBRA (IDENTIFICADOR_OBRA)
-
-Integración:
-OBRA + EMPRESA (agregado) + FUNCIONARIO (agregado)
-
----
-
-# Target final
-
-y_riesgo_obra_4niveles
-
----
-
-#  Estrategia de Modelado
-
-##  Modelo Maestro
-Input:
-- features obra
-- features empresa
-- features funcionario
-
-Output:
-- riesgo total de obra
-
----
-
-##  Modelos Especializados
-Modelo Obra
-Modelo Empresa
-Modelo Funcionario
-
-Salida:
-- riesgo_obra
-- riesgo_empresa
-- riesgo_funcionario
-
----
-
-##  Arquitectura Híbrida (Recomendada)
-Modelos especializados → Modelo maestro
-
-Permite:
-- Interpretabilidad por actor
-- Decisión consolidada
-
----
-
-#  Riesgos de Datos Identificados
-
-## 1. Desbalance de clases
-Solución: redefinición a 4 niveles
-
-## 2. Data Leakage
-Se eliminaron variables como:
-- RIESGO_OBRA
-- RIESGO_DESCRIPCION_OBRA
-
-## 3. Granularidad
-Problema inicial:
-1 fila = 1 obra
-
-Solución:
-obra + participante / empresa / funcionario
-
-## 4. Integración de llaves
-Problema:
-CODIGO_OBRA ≠ IDENTIFICADOR_OBRA
-
-Solución:
-mapeo explícito entre llaves
-
----
-
-#  Calidad del Dataset
-
-Obra: alto  
-Empresa: medio (proxy)  
-Funcionario: medio (proxy)  
-Maestro: alto  
-
----
-
-#  Reproducibilidad
-
-notebooks/
-├── build_dataset_obras_v3
-├── build_dataset_empresa_v3
-├── build_dataset_funcionario_v3
-└── build_dataset_maestro_v2
-
----
-
-#  Estado actual
-
-✔ Dataset maestro funcional  
-✔ Integración multi-actor  
-✔ Targets definidos  
-✔ Baseline listo  
-✔ Arquitectura escalable  
-
----
-
-#  Uso para Tesis
-
-Permite:
-- detectar riesgo de corrupción en obras
-- identificar actores de riesgo
-- priorizar intervenciones
-- explicar el origen del riesgo
-
----
-
-#  Nota final
-
-Este proyecto evoluciona hacia un modelo **multi-actor e integrado**, alineado con sistemas modernos de detección de fraude y corrupción.
+- `pipeline_rf_obra_v4.pkl` — baseline tuneado de 4 clases (notebook 03).
+- `pipeline_rf_obra_3clases_final.pkl` — modelo final de 3 clases (notebooks 07→08), el que la matriz de consistencia de la tesis (`docs/Matriz_consistencia_preliminar.docx`) declara como oficial. Su metadata de inferencia (features esperadas, etiquetas de clase, métricas) está en `pipeline_rf_obra_3clases_final_meta.json`, junto al `.pkl`.

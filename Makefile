@@ -23,7 +23,4 @@ serve:
 train:
 	python src/models/train.py
 
-run:
-	python -m src.main
-
-all: install train run	
+all: install train serve
