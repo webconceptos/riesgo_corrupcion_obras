@@ -2,9 +2,17 @@ import pandas as pd
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.api import deps
+from src.api import deps, explain
 from src.api.routes.health import router as health_router
-from src.api.schemas import BatchPredictRequest, PredictBatchResponse, PredictResponse
+from src.api.routes.obras import router as obras_router
+from src.api.schemas import (
+    BatchPredictRequest,
+    ExplainRequest,
+    ExplainResponse,
+    PredictBatchResponse,
+    PredictResponse,
+    ShapContribution,
+)
 
 app = FastAPI(
     title="Detección de Riesgos de Corrupción",
@@ -21,14 +29,26 @@ app.add_middleware(
 )
 
 app.include_router(health_router)
+app.include_router(obras_router)
 
 
 def _align_columns(rows: list[dict], cols_meta: list[str]) -> pd.DataFrame:
     aligned = [{col: row.get(col, None) for col in cols_meta} for row in rows]
-    return pd.DataFrame(aligned, columns=cols_meta)
+    df = pd.DataFrame(aligned, columns=cols_meta)
+    # Los valores pueden llegar como strings (formularios web, filas de CSV);
+    # se convierten a numérico cuando aplica y se dejan intactas las columnas
+    # categóricas (obra_ctx_*), donde la conversión simplemente falla.
+    for col in df.columns:
+        try:
+            df[col] = pd.to_numeric(df[col])
+        except (ValueError, TypeError):
+            pass
+    return df
 
 
-def _predict_multiclase(pipeline, X: pd.DataFrame, class_labels: list[str]) -> list[PredictResponse]:
+def _predict_multiclase(
+    pipeline, X: pd.DataFrame, class_labels: list[str]
+) -> list[PredictResponse]:
     if not hasattr(pipeline, "predict_proba"):
         raise HTTPException(status_code=500, detail="El modelo no soporta predict_proba.")
 
@@ -82,3 +102,28 @@ def predict_batch(payload: list[dict]):
     resultados = _predict_multiclase(pipeline, X, class_labels)
 
     return PredictBatchResponse(resultados=resultados)
+
+
+@app.post("/explain", response_model=ExplainResponse, tags=["predict"])
+def explain_prediction(req: ExplainRequest):
+    pipeline, meta = deps.get_model_and_meta()
+
+    cols_meta = meta.get("features") or meta.get("columns")
+    class_labels = meta.get("class_labels")
+
+    if not cols_meta or not isinstance(cols_meta, list):
+        raise HTTPException(status_code=500, detail="Metadata sin columnas/features válidas.")
+    if not class_labels or not isinstance(class_labels, list):
+        raise HTTPException(status_code=500, detail="Metadata sin class_labels válidas.")
+
+    X = _align_columns([req.fila], cols_meta)
+    probas = pipeline.predict_proba(X)
+    pred = int(probas.argmax(axis=1)[0])
+
+    contribuciones = explain.compute_top_contributions(pipeline, X, pred)
+
+    return ExplainResponse(
+        clase_predicha=pred,
+        clase_predicha_label=class_labels[pred],
+        contribuciones=[ShapContribution(**c) for c in contribuciones],
+    )

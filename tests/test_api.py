@@ -42,3 +42,50 @@ def test_predict_shape_ok(monkeypatch):
     assert body["resultados"][0]["riesgoso"] is True
     assert body["resultados"][1]["clase_predicha"] == 0
     assert body["resultados"][1]["riesgoso"] is False
+
+
+def test_explain_returns_shap_contributions(monkeypatch):
+    # SHAP TreeExplainer necesita un árbol real entrenado, no se puede mockear.
+    import numpy as np
+    from sklearn.compose import ColumnTransformer
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.pipeline import Pipeline
+    from sklearn.preprocessing import StandardScaler
+
+    from src.api import deps
+
+    rng = np.random.RandomState(0)
+    X = rng.rand(30, 2)
+    y = rng.randint(0, 3, size=30)
+
+    pipeline = Pipeline(
+        [
+            ("prep", ColumnTransformer([("num", StandardScaler(), ["a", "b"])])),
+            ("model", RandomForestClassifier(n_estimators=10, random_state=0)),
+        ]
+    )
+    import pandas as pd
+
+    X_df = pd.DataFrame(X, columns=["a", "b"])
+    pipeline.fit(X_df, y)
+
+    def fake_get():
+        return pipeline, {
+            "features": ["a", "b"],
+            "class_labels": ["Bajo Riesgo", "Med/Alt Riesgosa", "Extrem. Riesgosa"],
+        }
+
+    deps.clear_model_cache()
+    monkeypatch.setattr(deps, "get_model_and_meta", fake_get)
+    c = TestClient(app)
+    r = c.post("/explain", json={"fila": {"a": 0.5, "b": 0.5}})
+    assert r.status_code == 200
+    body = r.json()
+    assert body["clase_predicha"] in (0, 1, 2)
+    assert body["clase_predicha_label"] in (
+        "Bajo Riesgo",
+        "Med/Alt Riesgosa",
+        "Extrem. Riesgosa",
+    )
+    assert len(body["contribuciones"]) > 0
+    assert {"feature", "shap_value"} <= body["contribuciones"][0].keys()

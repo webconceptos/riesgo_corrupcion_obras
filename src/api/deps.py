@@ -3,8 +3,9 @@ from functools import lru_cache
 from typing import Any
 
 import joblib
+import pandas as pd
 
-from src.config.config import MODEL_META_PATH, MODEL_PATH
+from src.config.config import DATASET_PATH, MODEL_META_PATH, MODEL_PATH
 
 
 class ModelNotFoundError(RuntimeError):
@@ -16,6 +17,10 @@ class MetaNotFoundError(RuntimeError):
 
 
 class InvalidMetaError(RuntimeError):
+    pass
+
+
+class DatasetNotFoundError(RuntimeError):
     pass
 
 
@@ -40,3 +45,28 @@ def get_model_and_meta() -> tuple[Any, dict]:
 
 def clear_model_cache() -> None:
     get_model_and_meta.cache_clear()
+    get_dataset.cache_clear()
+    get_feature_stats.cache_clear()
+
+
+@lru_cache(maxsize=1)
+def get_dataset() -> pd.DataFrame:
+    if not DATASET_PATH.exists():
+        raise DatasetNotFoundError(f"No existe el dataset: {DATASET_PATH}")
+
+    return pd.read_parquet(DATASET_PATH)
+
+
+@lru_cache(maxsize=1)
+def get_feature_stats() -> dict[str, dict[str, float]]:
+    df = get_dataset()
+    numeric = df.select_dtypes(include="number")
+    stats = numeric.agg(["median", "min", "max"])
+    return {
+        col: {
+            "median": float(stats.loc["median", col]),
+            "min": float(stats.loc["min", col]),
+            "max": float(stats.loc["max", col]),
+        }
+        for col in numeric.columns
+    }
