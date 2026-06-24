@@ -14,3 +14,17 @@ services:
     volumes:
       - ./models:/app/models:ro
       - ./data:/app/data:ro
+
+  web:
+    build:
+      context: ./apps/frontend
+      args:
+        # Se hornea en el build (variables Vite son de compilación). Para
+        # desplegar en un dominio real, reconstruir con el build-arg apuntando
+        # a la URL pública de la API.
+        VITE_API_BASE: http://localhost:8000
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      - api

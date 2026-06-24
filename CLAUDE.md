@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Este es un repositorio de investigación de tesis de Maestría (Maestría en Inteligencia Artificial, UNI-FIIS, Perú) que construye un sistema de ML para detectar y priorizar el riesgo de corrupción en obras públicas del Perú. El repo combina experimentación dirigida por Jupyter notebooks con una API FastAPI ligera para servir el modelo. La mayor parte del trabajo "real" — construcción de datasets, feature engineering, selección de modelo — ocurre en `notebooks/`, no en `src/`. `src/` es solo la capa de serving (`api/` + `config/`); no contiene lógica de feature engineering ni de entrenamiento del modelo de producción, esos viven en los notebooks.
 
-No hay frontend en este repo (se eliminó 2026-06-22 una SPA React/Vite en `apps/frontend/` que llevaba abandonada desde el primer sprint, con endpoints y esquema de payload incompatibles con la API real — no llegó a funcionar nunca contra el modelo actual). La única UI funcional para inferencia en vivo es `demo/demo_app.py` (Streamlit).
+`apps/frontend/` es un dashboard React/Vite/Tailwind reconstruido el 2026-06-23 (el anterior, abandonado desde el primer sprint con endpoints incompatibles, se había eliminado el 2026-06-22) — este sí consume la API real (`/obras`, `/predict_proba`, `/explain`, `/predict_batch`, `/model_meta`), verificado end-to-end en navegador (Playwright headless: las 4 pestañas renderizan, predicen y no arrojan errores de consola). `demo/demo_app.py` (Streamlit) sigue siendo la alternativa sin red (carga el `.pkl` directo, sin pasar por la API) — útil como respaldo si la API no está disponible el día de la sustentación.
 
 El español es el idioma de trabajo en todo el repo: nombres de variables, docstrings, mensajes de commit y prosa de los notebooks son mayoritariamente en español. Sigue esa convención al añadir código o documentación aquí.
 
@@ -63,9 +63,29 @@ streamlit run demo/demo_app.py
 
 **Demo (`demo/demo_app.py`):** app Streamlit independiente para inferencia en vivo + explicaciones TreeSHAP, usada en presentaciones. Se ejecuta con `streamlit run demo/demo_app.py` desde la raíz del repo (sus rutas son relativas a la raíz, no al archivo). `MODEL_PATH` apunta a `models/obra_v4/pipeline_rf_obra_3clases_final.pkl` y `DATA_CANDIDATES` incluye `data/processed/dataset_obra_v4_model.parquet` como primera opción — verificado end-to-end (`pipe.feature_names_in_` con las 61 columnas tras anti-colinealidad, todas presentes en el dataset, `predict_proba` funcional). Es independiente del servicio FastAPI.
 
-## Estado de la API (actualizado 2026-06-22)
+**Dashboard (`apps/frontend/`):** React 18 + Vite + Tailwind + recharts + lucide-react + papaparse. Arranca con `npm install && npm run dev` (puerto 5173/5174 según disponibilidad) leyendo `VITE_API_BASE` de `.env` (default `http://localhost:8000`; en Windows usar `127.0.0.1` o `localhost` según a cuál de las dos se haya bindeado `uvicorn`/`vite` — en este entorno `uvicorn` solo escucha en IPv4 y `vite` solo en IPv6, así que `localhost` y `127.0.0.1` **no son intercambiables** entre los dos servicios). Cuatro pestañas, todas contra la API real:
+- **Explorar obra** (`ObraExplorer.jsx`): trae las 326 obras vía `GET /obras`, al seleccionar una pide su fila completa (`GET /obras/{id}`) y predice + explica (`POST /predict_proba` + `POST /explain`).
+- **Modo manual** (`ManualWhatIf.jsx`): sliders sobre ~8 features clave (mismo criterio por palabra clave que `demo_app.py`), resto de las variables numéricas en su mediana — vía `feature_stats` (median/min/max) que ahora expone `GET /model_meta`.
+- **Carga CSV** (`BatchUpload.jsx`): parsea con PapaParse, llama `POST /predict_batch`, permite descargar el CSV original + columnas de predicción.
+- **Panel de métricas** (`ModelMetricsPanel.jsx`): Macro F1/Bal. Acc/Recall Extrema/Brier desde `GET /model_meta`, visible siempre arriba.
+
+`RiskResultCard.jsx` y `ShapChart.jsx` (recharts) son compartidos entre Explorar/Manual. El backend se extendió para esto (ver abajo): `src/api/routes/obras.py`, `src/api/explain.py`, `POST /explain`, y `deps.get_dataset()`/`get_feature_stats()`.
+
+## Docker (despliegue, arreglado 2026-06-23)
+
+`Dockerfile.prod` ya estaba bien armado (gunicorn+uvicorn sirviendo `src.api.main:app`); lo que estaba roto era `docker-compose.dev.yml`, que apuntaba a una estructura de otro template (`./backend`, `./frontend`, módulo `api:app`, `MODEL_PATH=/app/artifacts/model.joblib`) que nunca coincidió con este repo. Se corrigió y se completó la historia de despliegue:
+
+- **`.dockerignore`** (no existía): excluye `.venv/`, `data/`, `models/`, `notebooks/`, `node_modules/` del build context — `data/`/`models/` se montan como volumen en prod, no hace falta ni conviene copiarlos a la imagen.
+- **`docker-compose.dev.yml`**: `api` corre `uvicorn --reload` montando todo el repo (`.:/app`); `web` corre `npm run dev` montando `apps/frontend`. Dos gotchas reales que se corrigieron: (1) `VITE_API_BASE` debe ser `http://localhost:8000`, no `http://api:8000` — el navegador corre en el host, no dentro de la red de Docker, así que el nombre de servicio no le resuelve; (2) `web` necesita un volumen anónimo extra en `/app/node_modules` para que el contenedor instale su propio `node_modules` Linux en vez de heredar el de Windows del host vía bind mount (binarios nativos como `esbuild` no son intercambiables entre SO).
+- **`apps/frontend/Dockerfile`** (nuevo, multi-stage): build con `node:20-slim` (`npm ci && npm run build`) → sirve con `nginx:1.27-alpine`. Se usa nginx y no `vite preview` porque Vite documenta explícitamente que `preview` no está pensado para producción. `VITE_API_BASE` se pasa como build-arg porque las variables de Vite se hornean en tiempo de compilación, no de runtime — para apuntar a otra URL de API hay que reconstruir la imagen, no alcanza con cambiar una variable de entorno del contenedor ya construido.
+- **`docker-compose.prod.yml`**: se agregó el servicio `web` (build de `apps/frontend/Dockerfile`, puerto 8080).
+- **Sin verificar con build real**: el daemon de Docker Desktop no estaba corriendo en esta máquina durante el desarrollo; solo se validó con `docker compose -f docker-compose.dev.yml config` / `docker compose -f docker-compose.prod.yml config` (sintaxis e interpolación correctas). Falta correr `docker compose -f docker-compose.dev.yml up --build` con el daemon activo para confirmar que arma y arranca de verdad.
+
+## Estado de la API (actualizado 2026-06-23)
 
 La API ya sirve por defecto el modelo oficial de 3 clases y su contrato de respuesta es multi-clase (`probabilidades`/`clase_predicha`/`clase_predicha_label`/`riesgoso`), no binario. `make serve` + `make test` funcionan de punta a punta sin configurar nada adicional. `models/obra_v4/pipeline_rf_obra_v4.pkl` (el baseline de 4 clases de NB03) sigue en el repo pero no es lo que sirve la API por defecto — **no es compatible** con el meta JSON actual (espera 77 features, no 61, y no tiene `class_labels` de 3 niveles); si se quiere servir ese modelo en su lugar, hay que generarle su propio meta JSON con `class_labels` de 4 niveles y apuntar `MODEL_PATH`/`MODEL_META_PATH` a él.
+
+Endpoints completos: `GET /health`, `GET /model_meta` (incluye `feature_stats`: median/min/max por feature numérica, usado por el dashboard), `GET /obras`, `GET /obras/{identificador_obra}`, `POST /predict_proba`, `POST /predict_batch`, `POST /explain` (SHAP vía `src/api/explain.py`, con el `TreeExplainer` cacheado por `lru_cache` — construirlo desde cero por request sería notablemente más lento dado que el RF tiene 300 árboles).
 
 ## Inconsistencias conocidas (no "arreglar" en silencio — confirmar con el usuario primero)
 

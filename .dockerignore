@@ -1,0 +1,22 @@
+.git/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Datos y modelos: se montan como volumen en docker-compose.prod.yml,
+# no hace falta (ni conviene) copiarlos a la imagen.
+data/
+models/
+notebooks/
+reports/
+logs/
+
+apps/frontend/node_modules/
+apps/frontend/dist/
+node_modules/
+
+docs/
+*.md
