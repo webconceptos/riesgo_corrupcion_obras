@@ -33,9 +33,10 @@ node_modules/
 # =========================
 # Logs / runtime
 # =========================
-logs/**
 *.log
-reports/logs/**
+logs/ingest.log
+# Artefactos de experimentos (CSV, PNG) sí se versionan
+# Solo se ignoran los logs de texto de aplicación
 
 
 # =========================

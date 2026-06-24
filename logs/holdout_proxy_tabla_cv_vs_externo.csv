@@ -1,0 +1,5 @@
+Métrica,CV interno (referencia),Holdout proxy (n=65),Δ (holdout − CV),Umbral OE3,¿Cumple?
+Macro F1,0.6469,0.9214177978883861,0.27451779788838604,≥ 0.55,SÍ
+Balanced Accuracy,0.646,0.919047619047619,0.273047619047619,—,—
+Recall Extrem. Riesgosa,1.0,1.0,0.0,≥ 0.85,SÍ
+Brier Extrem. Riesgosa,0.1448,0.05332119658119658,-0.09147880341880343,< 0.20,SÍ
