@@ -1,0 +1,2 @@
+n_sintetico,noise_factor,seed,pct_bajo,pct_med_alt,pct_extrema,psi_max,psi_features_significativas,etiquetas_reales,estado
+1000,0.1,42,24.1,23.4,52.5,2.1443,2,False,PLACEHOLDER — pendiente datos CGR 2024/2025

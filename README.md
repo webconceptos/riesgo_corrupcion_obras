@@ -1,466 +1,381 @@
-# Sistema de Detección y Priorización de Riesgos de Corrupción en Obras Públicas mediante Machine Learning
+# Sistema de Detección y Priorización de Riesgos de Corrupción en Obras Públicas — ML
 
-Repositorio oficial del proyecto de tesis de Maestría en Inteligencia Artificial orientado al desarrollo de un sistema predictivo para la detección temprana y priorización de riesgos de corrupción en obras públicas del Perú.
+> **Tesis de Maestría en Inteligencia Artificial**  
+> Universidad Nacional de Ingeniería — FIIS · Lima, Perú  
+> Autores: Fernando García Atúncar · Hilario Aradiel Castañeda
 
 ---
 
-# Información General
+## Problema que se aborda
 
-## Proyecto de Investigación
+El sistema de control gubernamental en el Perú opera predominantemente de forma **reactiva y posterior**: las irregularidades en obras públicas se detectan, en el mejor de los casos, cuando el daño ya ocurrió. La Contraloría General de la República (CGR) debe priorizar manualmente cientos de obras con recursos limitados, sin un criterio sistemático basado en señales de riesgo tempranas.
 
-**Título de tesis:**
+Este proyecto construye un sistema basado en **Machine Learning y Explainable AI (XAI)** que, a partir de datos observables de la fase de Selección (contrataciones, postores, comité, montos, control CGR), predice el nivel de riesgo de corrupción de una obra pública **antes** de que ocurran irregularidades, permitiendo priorizar el control preventivo.
 
-> Estrategia Basada en Machine Learning para la Detección y Priorización de Riesgos de Corrupción en la Ejecución de Obras Públicas en la Contraloría General de la República
+---
 
-## Institución Académica
+## Hipótesis de investigación
 
-Universidad Nacional de Ingeniería – FIIS  
-Maestría en Inteligencia Artificial
+| # | Hipótesis |
+|---|-----------|
+| H1 | Existe un conjunto de factores observables (económicos, de competencia, comité de selección y supervisión CGR) que permiten discriminar estadísticamente los niveles de riesgo de corrupción en obras públicas. |
+| H2 | Un modelo Random Forest entrenado sobre datos CGR alcanza **Macro F1 ≥ 0.60** y **Recall clase Extrema ≥ 0.90**, superando el baseline aleatorio estratificado. |
+| H3 | El modelo generaliza a datos no vistos en condiciones de distribución similar a las del entrenamiento (validación fuera de muestra). |
 
-## Autores
+---
 
-- Fernando García Atúncar
-- Hilario Aradiel Castañeda
+## Objetivos específicos (fortalecidos — Semana 10)
 
-## Estado actual del repositorio
+| OE | Enunciado | Criterio de aceptación |
+|----|-----------|------------------------|
+| **OE1** | Identificar y caracterizar los factores observables asociados al riesgo de corrupción en la fase de Selección, mediante análisis exploratorio y feature engineering sobre 8 fuentes CGR. | ≥ 60 features construidas con VIF < 10 y correlación inter-feature < 0.85; al menos 3 dominios de riesgo identificados (económico, competencia, comité). |
+| **OE2** | Construir y validar experimentalmente un modelo ML con capacidad de detección suficiente para priorización operacional. | Macro F1 ≥ 0.60 · Recall Extrema ≥ 0.90 · Brier Extrema < 0.20 en holdout estratificado 80/20. |
+| **OE3** | Evaluar la generalización del modelo fuera de muestra y prototipar un sistema operacional de apoyo a la fiscalización basada en riesgo. | Macro F1 ≥ 0.55 en validación externa · API funcional · Dashboard con explicaciones por obra. |
 
-```text
-Versión actual: v0.4.0-sprint2-semana7
-Estado: Sprint 2 finalizado
+---
+
+## Metodología
+
+### Pipeline experimental
+
+```
+[NB00] EDA + limpieza de 8 fuentes CGR
+         │
+         ▼
+[NB02] Construcción del dataset obra_v4
+         │  326 obras × 77 features iniciales
+         ▼
+[NB03] Baseline RF 4 clases (Macro F1 = 0.5939)
+         │
+         ▼
+[NB05] A/B experiments — comparación de variantes
+         │
+         ▼
+[NB06] SHAP + calibración del baseline
+         │
+         ▼
+[NB07] Reducción anti-colinealidad (77→61 features)
+         │  + fusión a 3 clases (OE2 variante Var5)
+         ▼
+[NB08] Modelo final RF 3 clases  ◄── MODELO OFICIAL
+         │  Macro F1 = 0.6469 · Recall Extrema = 1.00
+         ▼
+[NB10] Holdout temporal proxy (Opción B, OE3)
+         │
+         ▼
+[NB11] Datos sintéticos placeholder (Opción A pending)
+```
+
+### Unidad de análisis
+
+```
+1 fila = 1 obra pública  (clave: IDENTIFICADOR_OBRA)
+```
+
+### Target
+
+| Clase | Descripción | Fusión aplicada |
+|-------|-------------|-----------------|
+| 0 — Bajo Riesgo | Obras sin señales de riesgo relevantes | Clases originales 0 + 1 fusionadas |
+| 1 — Med/Alt Riesgosa | Riesgo moderado a alto | Clase original 2 |
+| 2 — Extrem. Riesgosa | Señales de riesgo extremo | Clase original 3 |
+
+La fusión a 3 clases (decisión Var5, NB07) incrementó el Macro F1 en +6.3 pp respecto al modelo de 4 clases, sin pérdida de capacidad discriminativa en la clase de mayor interés operacional.
+
+---
+
+## Dataset
+
+| Atributo | Valor |
+|----------|-------|
+| Fuente | 8 datasets CGR (`o1a` … `o5a`, fuentes de obra, empresa, comité, control) |
+| Observaciones | **326 obras públicas** (año 2023, Perú) |
+| Features iniciales | 77 (NB02) |
+| Features tras anti-colinealidad | **61** (VIF < 10, correlación < 0.85, NB07) |
+| Features eliminadas | 16 (redundancia estadística, sin pérdida predictiva) |
+| Cobertura temporal | Enero–Agosto 2023 (proxy: CONVOCATORIA_PROCESO_GANADO) |
+| Archivo | `data/processed/dataset_obra_v4_model.parquet` |
+
+### Dominios de features
+
+```
+┌─────────────────────────────┬──────────────────────────────────────────────────────┐
+│ Dominio                     │ Ejemplos                                             │
+├─────────────────────────────┼──────────────────────────────────────────────────────┤
+│ Proceso de selección        │ n_participantes, n_convocatorias_comite, n_postores   │
+│ Competencia económica       │ ratio_oferta_contrato, ratio_contractual_referencial  │
+│ Comité de selección         │ ratio_repeticion_comite, comite_no_estandar           │
+│ Supervisión CGR             │ TOTAL_CONTROL_PREVIO/SIMULTANEO/POSTERIOR             │
+│ Ejecución contractual       │ brecha_mean, ratio_real_plan, obra_paralizada         │
+│ Contexto institucional      │ sector, nivel_gobierno, departamento, metodo_contrat. │
+└─────────────────────────────┴──────────────────────────────────────────────────────┘
 ```
 
 ---
 
-# Objetivo del Proyecto
+## Evolución experimental y selección del modelo
 
-Desarrollar un sistema basado en Machine Learning y Explainable AI (XAI) capaz de:
+| Experimento | Algoritmo | Features | Clases | Macro F1 | Decisión |
+|-------------|-----------|----------|--------|----------|----------|
+| Baseline | RF | 77 | 4 | 0.5939 | Referencia |
+| Var1 | LightGBM | 77 | 4 | 0.5524 | Descartado |
+| Var3 | RF anti-col. | 61 | 4 | 0.6087 | +2.5 pp → adoptar |
+| Var4 | RF + SMOTE | 61 | 4 | 0.6139 | +0.85 pp → pendiente |
+| **Var5** | **RF anti-col.** | **61** | **3** | **0.6469** | **+6.3 pp → MODELO FINAL** |
 
-- detectar riesgos potenciales de corrupción
-- priorizar obras públicas riesgosas
-- identificar patrones anómalos
-- apoyar la fiscalización preventiva
-- fortalecer el control gubernamental basado en datos
-
-El sistema utiliza información derivada de:
-
-- obras públicas
-- contrataciones públicas
-- empresas contratistas
-- funcionarios públicos
-- ejecución contractual
-- variables económicas
-- patrones de participación
+> El experimento multi-entidad (obra + empresa + funcionario, `dataset_maestro_v2`) se evaluó y descartó por rendimiento inferior (Macro F1 = 0.226 vs. 0.594 solo-obra), documentado en `data/processed/experimentos/`.
 
 ---
 
-# Problema que Resuelve
+## Resultados del modelo final (OE2)
 
-El modelo tradicional de control gubernamental es predominantemente reactivo y posterior a la ocurrencia de irregularidades.
-Este proyecto busca evolucionar hacia un enfoque:
+**Artefacto:** `models/obra_v4/pipeline_rf_obra_3clases_final.pkl`  
+**Configuración:** RandomForestClassifier · seed=42 · n_train=260 · n_test=66 · 3 clases
 
-```text
-Preventivo + Predictivo + Basado en Datos
+| Métrica | Valor | Umbral OE2 | ¿Cumple? |
+|---------|-------|------------|----------|
+| Macro F1 | **0.6469** | ≥ 0.60 | ✔ |
+| Balanced Accuracy | **0.6460** | — | — |
+| Recall Extrem. Riesgosa | **1.0000** | ≥ 0.90 | ✔ |
+| Brier Extrem. Riesgosa | **0.1448** | < 0.20 | ✔ |
+| Gap train–val | 0.2971 | — | (sobreajuste moderado, esperado en RF/n=326) |
+
+**Los tres criterios de aceptación de OE2 se cumplen.**
+
+### Matriz de confusión (holdout, n=66)
+
+![Matriz de confusión](reports/figures/nb08_confusion_final.png)
+
+### Curvas de aprendizaje
+
+![Curvas de aprendizaje](reports/figures/nb08_learning_curve_final.png)
+
+### SHAP — factores explicativos (clase Extrema)
+
+El análisis TreeSHAP identifica los factores con mayor contribución a la predicción de riesgo extremo:
+
+![SHAP summary clase Extrema](reports/figures/nb08_shap_clase_extrema.png)
+![SHAP barras clase Extrema](reports/figures/nb08_shap_barras_extrema.png)
+
+Las variables de mayor peso predictivo corresponden a:
+- **Comité de selección:** repetición de miembros, número de convocatorias y procesos
+- **Competencia:** número de participantes, ratio oferta/contrato
+- **Supervisión CGR:** controles previos y simultáneos registrados
+- **Montos:** monto contractual total, ratio contrato/referencial
+
+### Calibración probabilística
+
+![Calibración](reports/figures/nb08_calibration_3clases.png)
+
+---
+
+## Validación fuera de muestra (OE3 — Plan de generalización)
+
+### Opción B — Holdout temporal proxy (NB10, implementado)
+
+Al no existir una columna de fecha explícita en el dataset procesado, se usó `CONVOCATORIA_PROCESO_GANADO` (ID secuencial SEACE) como proxy del orden temporal. Las 326 obras se ordenaron por este proxy y se partieron en p80 (train proxy: 261) / p20 (holdout proxy: 65).
+
+| Métrica | CV interno | Holdout proxy (n=65) | Δ | Umbral OE3 | ¿Cumple? |
+|---------|-----------|----------------------|---|------------|----------|
+| Macro F1 | 0.6469 | **0.9214** | +0.275 | ≥ 0.55 | ✔ |
+| Balanced Accuracy | 0.6460 | 0.9190 | +0.273 | — | — |
+| Recall Extrem. Riesgosa | 1.0000 | **1.0000** | 0.0 | ≥ 0.85 | ✔ |
+| Brier Extrem. Riesgosa | 0.1448 | 0.0533 | −0.091 | < 0.20 | ✔ |
+
+> El rendimiento en el holdout proxy es **superior** al CV interno. Esto es indicativo (no concluyente): el ID secuencial puede no ser un proxy temporal perfecto. Se requiere confirmación con la Opción A.
+
+**Análisis de drift PSI** (top-10 features): 3 estables, 4 moderadas, 2 significativas — atribuido principalmente a la distribución desigual de obras por segmento temporal en el dataset de 326 observaciones.
+
+![Distribución temporal proxy](logs/holdout_proxy_distribucion_convocatoria.png)
+![PSI drift](logs/holdout_proxy_drift_psi.png)
+![Confusion holdout proxy](logs/holdout_proxy_confusion_matrix.png)
+
+### Opción A — Holdout externo real (PENDIENTE)
+
+La validación definitiva de OE3 requiere:
+1. Descarga de datos CGR reales 2024/2025 (INFOBRAS/SEACE).
+2. Procesamiento con el pipeline `NB00 → NB02` sobre los nuevos datos.
+3. Aplicación del modelo congelado (sin reentrenar).
+4. Cálculo de métricas con etiquetas reales.
+
+Como placeholder hasta obtener esos datos, NB11 genera 1 000 observaciones sintéticas (bootstrap + ruido gaussiano σ×10%) y evalúa la estabilidad de las predicciones:
+
+| Dataset | % Bajo Riesgo | % Med/Alt | % Extrem. |
+|---------|--------------|-----------|-----------|
+| Real (326 obs) | 24.2% | 27.6% | 48.2% |
+| Sintético (1 000 obs) | 24.1% | 23.4% | 52.5% |
+
+![Distribución sintética vs. real](logs/sintetico_dist_predicciones.png)
+
+La distribución de predicciones es estable, lo que indica que el modelo es robusto frente a perturbaciones de ruido aleatorio.
+
+---
+
+## Sistema operacional (OE3 — prototipo)
+
+### API de inferencia (FastAPI)
+
+```
+make serve   →   http://localhost:18000
 ```
 
-mediante técnicas de:
-- Machine Learning
-- Analítica avanzada
-- Explainable AI
-- Feature Engineering
-- Modelamiento multientidad
+| Endpoint | Descripción |
+|----------|-------------|
+| `GET /health` | Estado del servicio y modelo cargado |
+| `GET /model_meta` | Metadata, métricas y estadísticas de features |
+| `GET /obras` | Lista de las 326 obras del dataset |
+| `GET /obras/{id}` | Fila completa de una obra (61 features) |
+| `POST /predict_proba` | Predicción multi-clase con probabilidades |
+| `POST /predict_batch` | Predicción en lote (CSV) |
+| `POST /explain` | Explicación TreeSHAP por obra |
 
----
+### Dashboard web (React 18 + Vite + Tailwind)
 
-# Evolución Experimental del Proyecto
-
-El desarrollo del sistema se realiza mediante sprints incrementales.
-Cada sprint representa una evolución metodológica respecto a la versión anterior.
-
----
-
-# Sprint 1 — Variante 1
-
-## Arquitectura Inicial
-
-```text
-OBRA + EMPRESA + FUNCIONARIO
+```
+cd apps/frontend && npm install && npm run dev   →   http://localhost:5173
 ```
 
-## Objetivos
+Cuatro pestañas operacionales:
 
-- validar arquitectura inicial
-- explorar relaciones multientidad
-- construir baseline preliminar
-- evaluar viabilidad predictiva
+| Pestaña | Función |
+|---------|---------|
+| **Explorar obra** | Selecciona cualquiera de las 326 obras reales, ve sus atributos en lenguaje auditor y obtiene predicción + explicación SHAP |
+| **Modo manual** | Ajusta los principales drivers con sliders y observa cómo cambia la predicción (análisis "qué pasaría si") |
+| **Carga CSV** | Sube un CSV con obras nuevas y descarga el resultado con columnas de riesgo añadidas |
+| **Métricas del modelo** | Panel permanente con Macro F1, Balanced Accuracy, Recall Extrema y Brier del modelo oficial |
 
-## Resultados
+### Demo Streamlit (alternativa sin red)
 
-### Problemas identificados
-
-- riesgo de data leakage
-- métricas inestables
-- baja trazabilidad
-- complejidad excesiva
-- baja interpretabilidad
-
-## Notebooks asociados
-
-```text
-04_EDA_maestro.ipynb - Eliminado
-05_train_baseline_maestro_4niveles.ipynb - Eliminado
+```
+streamlit run demo/demo_app.py
 ```
 
----
+Carga el `.pkl` directamente sin pasar por la API. Útil como respaldo en presentaciones.
 
-# Sprint 2 — Variante 2 (Baseline Oficial Actual)
+### Docker (producción)
 
-En esta etapa se rediseñó completamente la arquitectura experimental.
-
-## Cambio metodológico principal
-
-Se adoptó una unidad de análisis consistente:
-
-```text
-1 fila = 1 obra pública
+```
+docker compose -f docker-compose.prod.yml up --build -d
 ```
 
-## Nuevo dataset especializado
+| Servicio | Puerto | Tecnología |
+|----------|--------|------------|
+| API | 18000 | gunicorn + uvicorn |
+| Dashboard | 18080 | nginx (build estático) |
 
-```text
-obra_v4
+---
+
+## Estado actual del proyecto
+
+| Componente | Estado | Evidencia |
+|------------|--------|-----------|
+| Dataset obra_v4 (326 obs × 61 features) | ✔ Completo | `data/processed/dataset_obra_v4_model.parquet` |
+| Feature engineering (8 fuentes CGR) | ✔ Completo | `NB00`, `NB02` |
+| Selección de modelo y variantes A/B | ✔ Completo | `NB03`, `NB05`, log `metrics_experimentos.csv` |
+| SHAP + calibración | ✔ Completo | `NB06`, `NB08`, `reports/figures/` |
+| Modelo final 3 clases (OE2) | ✔ Completo | `pipeline_rf_obra_3clases_final.pkl` · F1=0.6469 |
+| API de inferencia (7 endpoints) | ✔ Completo | `src/api/` · `make test` pasa |
+| Dashboard web (4 pestañas) | ✔ Completo | `apps/frontend/` · verificado en navegador |
+| Holdout temporal proxy (OE3 — Opción B) | ✔ Completo | `NB10` · F1=0.9214 en 65 obras |
+| Datos sintéticos placeholder | ✔ Completo | `NB11` · 1 000 filas generadas |
+| **Holdout externo real (OE3 — Opción A)** | **Pendiente** | Requiere datos CGR 2024/2025 |
+| Plan de validación por grupo/región | Pendiente | Definido en Matriz de Consistencia |
+
+---
+
+## Estructura del repositorio
+
 ```
-
----
-
-# Mejoras Implementadas
-
-```text
-✔ control de leakage
-✔ feature engineering agregado
-✔ pipelines reproducibles
-✔ cross validation estratificado
-✔ hyperparameter tuning
-✔ reporting experimental
-✔ exportación de artefactos
-✔ validación experimental formal
-```
-
----
-
-# Notebooks Oficiales Sprint 2
-
-```text
-notebooks/
-├── 01_eda_diccionarios.ipynb
-├── 02_build_dataset_obra_v4_features_maestro.ipynb
-├── 03_train_obra_v4.ipynb
-├── 04_generate_reports_obra_v4.ipynb
-└── README.md
-```
-
----
-
-# Resultados Experimentales Oficiales
-
-```text
-============================================================
-RESUMEN NOTEBOOK 03 — obra_v4
-============================================================
-
-Dataset          : 326 obs × 77 features
-Target           : 4 niveles (Decisión D1)
-
-Mejor modelo     : RandomForest (hold-out)
-
-Macro F1 baseline: 0.5939
-Macro F1 tuned   : 0.5804  (-2.3%)
-
-Bal. Accuracy    : 0.5581
-```
-
----
-
-# Interpretación Experimental
-
-## Hallazgos relevantes
-
-- El modelo RandomForest continúa siendo el baseline oficial del proyecto.
-- El tuning de hiperparámetros no mejoró el Macro F1 respecto al baseline inicial.
-- El pipeline alcanzó una estabilidad razonable considerando:
-  - tamaño reducido del dataset
-  - desbalance de clases
-  - heterogeneidad institucional
-  - complejidad de variables
-
-## Variables más relevantes
-
-Las variables con mayor importancia predictiva estuvieron asociadas principalmente a:
-
-- montos ofertados
-- dispersión económica
-- número de participantes
-- composición del comité
-- ratios de competencia
-- patrones contractuales
-- ejecución de obra
-
-Esto evidencia que el comportamiento económico y competitivo de los procesos contiene señales relevantes asociadas al riesgo de corrupción.
-
----
-
-# Estado Actual del Sistema
-
-| Componente | Estado |
-|---|---|
-| Dataset obra_v4 | ✔ Finalizado |
-| Feature Engineering | ✔ Finalizado |
-| Baseline ML | ✔ Finalizado |
-| Cross Validation | ✔ Finalizado |
-| Hyperparameter Tuning | ✔ Finalizado |
-| Reporting Experimental | ✔ Finalizado |
-| Exportación de artefactos | ✔ Finalizado |
-| Explainability SHAP | En progreso |
-| Dataset empresa | Exploratorio |
-| Dataset funcionario | Exploratorio |
-| Dataset maestro definitivo | Pendiente |
-
----
-
-# Arquitectura del Sistema
-
-```text
-Fuentes institucionales
-(SEACE / SIAF / SIGA / INFOBRAS / INVIERTE)
-                    ↓
-Ingesta y validación
-                    ↓
-Normalización
-                    ↓
-Feature Engineering
-                    ↓
-Construcción obra_v4
-                    ↓
-Entrenamiento baseline
-                    ↓
-Cross Validation
-                    ↓
-Hyperparameter Tuning
-                    ↓
-Reporting experimental
-                    ↓
-Explainability (SHAP)
-                    ↓
-API de inferencia
-```
-
----
-
-# Estructura del Repositorio
-
-```text
-project/
+.
+├── notebooks/                   ← Pipeline experimental (fuente de verdad del modelado)
+│   ├── 00_eda_inicial.ipynb
+│   ├── 02_build_dataset_obra_v4.ipynb
+│   ├── 03_train_obra_v4.ipynb
+│   ├── 05_ab_experiments_obra_v4.ipynb
+│   ├── 06_shap_calibration_obra_v4.ipynb
+│   ├── 07_var3_anticol_obra_v4.ipynb
+│   ├── 08_modelo_final_obra_v4.ipynb     ← modelo oficial
+│   ├── 10_validacion_holdout_temporal_proxy.ipynb
+│   └── 11_datos_sinteticos_opcA_placeholder.ipynb
 │
-├── notebooks/
+├── models/obra_v4/
+│   ├── pipeline_rf_obra_3clases_final.pkl     ← artefacto oficial
+│   └── pipeline_rf_obra_3clases_final_meta.json
+│
+├── src/api/                     ← capa de serving (FastAPI)
+│   ├── main.py
+│   ├── deps.py
+│   ├── schemas.py
+│   ├── explain.py
+│   └── routes/
+│
+├── apps/frontend/               ← dashboard React/Vite
+├── demo/demo_app.py             ← demo Streamlit (standalone)
+│
 ├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── external/
+│   ├── external/                ← extractos crudos por dominio
+│   ├── interim/                 ← parquet limpios (obra)
+│   └── processed/               ← datasets finales
 │
-├── models/
-│   └── obra_v4/
-│
-├── reports/
-│   └── figures/
-│
-├── src/
-│
-└── README.md
+├── logs/                        ← métricas y figuras de experimentos
+└── reports/figures/             ← visualizaciones del pipeline
 ```
 
 ---
 
-# Dataset Principal
+## Cómo ejecutar
 
-## Dataset baseline oficial
+**Requisitos:** Python 3.11 · Node.js 20 · venv en `.venv/`
 
-```text
-data/processed/dataset_obra_v4_model.parquet
-```
+```bash
+# Backend
+make install      # instala dependencias Python
+make test         # ejecuta suite de tests (pytest)
+make serve        # API en http://localhost:18000
 
-## Unidad de análisis
+# Frontend
+cd apps/frontend
+npm install
+npm run dev       # dashboard en http://localhost:5173
 
-```text
-1 fila = 1 obra
-```
+# Demo Streamlit
+streamlit run demo/demo_app.py
 
-## Target oficial
-
-```text
-y_riesgo_obra
-```
-
----
-
-# Modelos Evaluados
-
-- Logistic Regression
-- Gradient Boosting
-- Random Forest
-- Random Forest Tuned
-
----
-
-# Mejor Modelo Actual
-
-```python
-RandomForestClassifier
+# Docker producción
+docker compose -f docker-compose.prod.yml up --build -d
+# API → http://localhost:18000 · Dashboard → http://localhost:18080
 ```
 
 ---
 
-# Artefactos Generados
+## Próximo paso: Opción A (validación externa real)
 
-## Modelos
+La consolidación de OE3 requiere ejecutar el modelo sobre datos CGR **fuera del período de entrenamiento (2023)**:
 
-```text
-models/obra_v4/
-├── pipeline_rf_obra_v4.pkl
-├── metrics_rf_obra_v4.json
-└── feature_importance_rf_obra_v4.csv
-```
+1. Descargar datos INFOBRAS/SEACE de obras 2024–2025.
+2. Ejecutar `NB00 → NB02` sobre los nuevos datos crudos.
+3. Aplicar el modelo congelado (`pipeline_rf_obra_3clases_final.pkl`) sin reentrenar.
+4. Calcular Macro F1, Recall Extrema y Brier con las etiquetas reales disponibles.
+5. Comparar PSI por feature para cuantificar el drift entre períodos.
 
-## Reportes y figuras
-
-```text
-reports/figures/
-├── confusion_matrix_rf_tuned.png
-├── feature_importance_rf_tuned.png
-├── model_comparison.png
-└── target_distribution.png
-```
+Este paso reemplazará el notebook NB11 (placeholder sintético) con evidencia de generalización real.
 
 ---
 
-# Validaciones Metodológicas
+## Tecnologías
 
-Durante el desarrollo experimental se identificaron y corrigieron:
-
-```text
-✔ data leakage
-✔ contaminación train/test
-✔ variables derivadas del target
-✔ sobreajuste
-✔ inconsistencias de granularidad
-✔ evaluación sesgada
-```
-
----
-
-# Explainable AI (XAI)
-
-El proyecto incorpora progresivamente mecanismos de interpretabilidad orientados a:
-
-- transparencia algorítmica
-- auditabilidad institucional
-- explicabilidad de decisiones
-- trazabilidad predictiva
-- reducción de sesgos
-
-## Técnicas previstas
-
-- SHAP
-- LIME
-- Feature Importance
-- Local Explanations
+| Capa | Tecnología |
+|------|-----------|
+| Lenguaje | Python 3.11 |
+| ML | scikit-learn, joblib |
+| XAI | SHAP (TreeExplainer) |
+| API | FastAPI, uvicorn, gunicorn |
+| Frontend | React 18, Vite, Tailwind CSS, recharts |
+| Demo | Streamlit |
+| Contenerización | Docker, nginx |
+| Versionamiento | Git, GitHub, GitLab |
+| Análisis | pandas, numpy, matplotlib, seaborn |
 
 ---
 
-# Roadmap del Proyecto
-
-## Sprint 3
-
-```text
-→ indicaciones del profesor
-```
-
-## Sprint 4
-
-```text
-→ indicaciones del profesor
-```
-
-## Sprint 5
-
-```text
-→ indicaciones del profesor
-```
-
----
-
-# Visión Objetivo
-
-La arquitectura objetivo del sistema evoluciona hacia:
-
-```text
-OBRA + EMPRESA + FUNCIONARIO + REDES
-```
-
-permitiendo:
-
-- detección temprana
-- análisis relacional
-- priorización inteligente
-- alertas preventivas
-- fiscalización basada en riesgo
-
----
-
-# Tecnologías Utilizadas
-
-## Lenguaje
-
-- Python
-
-## Machine Learning
-
-- scikit-learn
-- pandas
-- numpy
-
-## Visualización
-
-- matplotlib
-- seaborn
-
-## Experimentación
-
-- Jupyter Notebook
-
-## Versionamiento
-
-- Git
-- GitHub
-
----
-
-# Consideraciones Importantes
-
-## Estado experimental
-
-Este repositorio representa una investigación aplicada en evolución.
-
-Los resultados pueden variar conforme:
-
-- se incorporen nuevas fuentes
-- se reduzcan sesgos
-- se optimicen features
-- se amplíen datasets
-- se integren nuevos modelos
-
----
-
-# Nota Final
-
-El proyecto consolida actualmente una primera versión metodológicamente validada y reproducible de un sistema de detección de riesgos de corrupción basado en Machine Learning aplicado a obras públicas.
-
-La investigación busca evolucionar progresivamente hacia arquitecturas multientidad más complejas orientadas a fortalecer el control gubernamental preventivo mediante inteligencia artificial.
+*Repositorio de investigación — Maestría en IA, UNI-FIIS · 2026*
