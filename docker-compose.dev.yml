@@ -3,7 +3,7 @@ services:
     image: python:3.11-slim
     working_dir: /app
     command: bash -lc "pip install -r requirements.txt && PYTHONPATH=. uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload"
-    ports: ["8000:8000"]
+    ports: ["18000:8000"]
     volumes:
       - .:/app
     environment:
@@ -18,7 +18,7 @@ services:
       # El navegador corre en el host, no dentro de la red de Docker: tiene
       # que llegar a la API por el puerto publicado (localhost), no por el
       # nombre de servicio "api" (eso solo resuelve entre contenedores).
-      - VITE_API_BASE=http://localhost:8000
+      - VITE_API_BASE=http://localhost:18000
     volumes:
       - ./apps/frontend:/app
       # node_modules propio del contenedor: si se montara el del host (Windows),
