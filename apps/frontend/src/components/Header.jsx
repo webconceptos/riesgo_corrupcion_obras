@@ -6,7 +6,7 @@ export default function Header() {
       <div className="mx-auto max-w-6xl px-6 py-5">
         <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-gray-500">
           <ShieldCheck size={16} className="text-gray-400" />
-          Contraloría General de la República · Triaje con Machine Learning
+          Contraloría General de la República · Revisión con Machine Learning
         </div>
         <h1 className="mt-1 text-2xl font-semibold text-gray-900 md:text-3xl">
           ¿Qué tan riesgosa es esta obra?

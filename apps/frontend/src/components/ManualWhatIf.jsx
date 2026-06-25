@@ -15,6 +15,24 @@ const KEYWORDS = [
   'convenio',
 ]
 
+const NOMBRES = {
+  TOTAL_CONTROL_PREVIO:                        'Controles previos CGR',
+  TOTAL_CONTROL_SIMULTANEO:                    'Controles simultáneos CGR',
+  TOTAL_CONTROL_POSTERIOR:                     'Controles posteriores CGR',
+  obra_monto_contractual_sum:                  'Monto contractual total (S/)',
+  obra_n_participantes_mean:                   'Nº promedio de participantes',
+  obra_n_participantes_max:                    'Nº máximo de participantes',
+  obra_n_convocatorias_comite:                 'Nº de convocatorias del comité',
+  obra_n_procesos_comite:                      'Nº de procesos del comité',
+  obra_ratio_repeticion_comite:                'Repetición de miembros en el comité',
+  'obra_ctx_nivel_gobierno_GOBIERNO_REGIONAL': 'Nivel gobierno: Regional',
+  obra_ctx_metodo_contratacion_Convenio:       'Método de contratación: Convenio',
+}
+
+function traducir(nombre) {
+  return NOMBRES[nombre] ?? nombre.replace(/^obra_(ctx_)?/, '').replace(/_/g, ' ')
+}
+
 export default function ManualWhatIf() {
   const [meta, setMeta] = useState(null)
   const [valores, setValores] = useState({})
@@ -82,10 +100,10 @@ export default function ManualWhatIf() {
           {sliders.map(({ feature, min, max, median }) => (
             <div key={feature}>
               <div className="flex justify-between text-xs text-gray-600">
-                <span className="truncate" title={feature}>
-                  {feature}
+                <span className="truncate font-medium" title={feature}>
+                  {traducir(feature)}
                 </span>
-                <span className="font-mono">{Number(valores[feature] ?? median).toFixed(2)}</span>
+                <span className="font-mono text-gray-400">{Number(valores[feature] ?? median).toFixed(2)}</span>
               </div>
               <input
                 type="range"

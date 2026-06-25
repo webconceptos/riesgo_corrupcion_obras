@@ -4,6 +4,120 @@ import { explain, getObra, getObras, predictProba } from '../api.js'
 import RiskResultCard from './RiskResultCard.jsx'
 import ShapChart from './ShapChart.jsx'
 
+// ── Grupos de atributos para el auditor ──────────────────────────────────────
+const GRUPOS = [
+  {
+    titulo: 'Identificación de la obra',
+    campos: [
+      ['obra_ctx_sector',               'Sector',                  null],
+      ['obra_ctx_nivel_gobierno',       'Nivel de gobierno',       null],
+      ['obra_ctx_departamento',         'Departamento',            null],
+      ['obra_ctx_metodo_contratacion',  'Método de contratación',  null],
+    ],
+  },
+  {
+    titulo: 'Montos y ofertas',
+    nota: 'Los ratios fueron calculados sobre los datos fuente (CGR) durante el preprocesamiento.',
+    campos: [
+      ['obra_monto_contractual_sum',        'Monto contractual total (S/)',       null],
+      ['obra_ratio_contractual_referencial','Ratio monto contrato / referencial',  '(pre-calculado sobre datos crudos CGR)'],
+      ['obra_ratio_oferta_contrato',        'Ratio oferta promedio / contrato',    '(pre-calculado)'],
+      ['obra_ratio_ofertas_iguales',        'Proporción de ofertas idénticas',     null],
+    ],
+  },
+  {
+    titulo: 'Postores y participantes',
+    campos: [
+      ['obra_n_participantes_mean',      'Nº promedio de participantes por proceso', null],
+      ['obra_n_participantes_max',       'Nº máximo de participantes',               null],
+      ['obra_pct_postores_igual_ganador','% postores con oferta igual al ganador',   null],
+      ['obra_n_postores_igual_ganador',  'Nº postores con oferta igual al ganador',  null],
+      ['obra_n_contratos_postor_unico',  'Nº contratos con postor único',            null],
+    ],
+  },
+  {
+    titulo: 'Comité de selección',
+    campos: [
+      ['obra_ratio_repeticion_comite', 'Repetición de miembros en el comité', null],
+      ['obra_n_convocatorias_comite',  'Nº de convocatorias del comité',      null],
+      ['obra_n_procesos_comite',       'Nº de procesos del comité',           null],
+      ['obra_comite_no_estandar',      'Comité no estándar (0=No / 1=Sí)',    null],
+    ],
+  },
+  {
+    titulo: 'Control CGR',
+    campos: [
+      ['TOTAL_CONTROL_PREVIO',      'Controles previos registrados',       null],
+      ['TOTAL_CONTROL_SIMULTANEO',  'Controles simultáneos registrados',   null],
+      ['TOTAL_CONTROL_POSTERIOR',   'Controles posteriores registrados',   null],
+    ],
+  },
+]
+
+function fmtValor(v) {
+  if (v === null || v === undefined) return '—'
+  if (typeof v === 'number') {
+    return Number.isInteger(v) ? String(v) : Number(v).toLocaleString('es-PE', { maximumFractionDigits: 4 })
+  }
+  return String(v)
+}
+
+function AtributosObra({ features }) {
+  const [expandido, setExpandido] = useState(false)
+  return (
+    <details className="rounded-2xl bg-white p-5 text-xs text-gray-600 shadow">
+      <summary className="cursor-pointer text-sm font-medium text-gray-700">
+        Ver atributos de la obra
+      </summary>
+      <div className="mt-3 space-y-4">
+        {GRUPOS.map((grupo) => {
+          // Filtrar solo campos con valor no nulo
+          const camposVisibles = grupo.campos.filter(([key]) =>
+            features[key] !== null && features[key] !== undefined
+          )
+          if (camposVisibles.length === 0) return null
+          return (
+            <div key={grupo.titulo}>
+              <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-400">
+                {grupo.titulo}
+              </div>
+              {grupo.nota && (
+                <p className="mb-1 text-xs text-gray-400 italic">{grupo.nota}</p>
+              )}
+              <div className="divide-y divide-gray-50 rounded-lg border border-gray-100">
+                {camposVisibles.map(([key, label, hint]) => (
+                  <div key={key} className="flex justify-between gap-4 px-3 py-1.5">
+                    <span className="text-gray-500">
+                      {label}
+                      {hint && <span className="ml-1 text-gray-300">{hint}</span>}
+                    </span>
+                    <span className="font-medium text-gray-800 text-right">{fmtValor(features[key])}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        })}
+
+        {/* Vista técnica colapsable */}
+        <details className="mt-2" onToggle={(e) => setExpandido(e.target.open)}>
+          <summary className="cursor-pointer text-xs text-gray-400 hover:text-gray-600">
+            {expandido ? '▲' : '▶'} Ver las 61 variables técnicas del modelo
+          </summary>
+          <div className="mt-2 grid max-h-52 grid-cols-2 gap-x-4 gap-y-0.5 overflow-auto rounded border border-gray-100 p-2">
+            {Object.entries(features).map(([k, v]) => (
+              <div key={k} className="flex justify-between gap-2 border-b border-gray-50 py-0.5">
+                <span className="truncate text-gray-400">{k}</span>
+                <span className="font-mono text-gray-600">{fmtValor(v)}</span>
+              </div>
+            ))}
+          </div>
+        </details>
+      </div>
+    </details>
+  )
+}
+
 export default function ObraExplorer() {
   const [obras, setObras] = useState([])
   const [filtro, setFiltro] = useState('')
@@ -110,21 +224,7 @@ export default function ObraExplorer() {
           {error && <p className="mt-2 text-xs text-red-600">{error}</p>}
         </div>
 
-        {detalle && (
-          <details className="rounded-2xl bg-white p-5 text-xs text-gray-600 shadow">
-            <summary className="cursor-pointer text-sm font-medium text-gray-700">
-              Ver atributos de la obra ({Object.keys(detalle.features).length})
-            </summary>
-            <div className="mt-3 grid max-h-60 grid-cols-2 gap-x-4 gap-y-1 overflow-auto">
-              {Object.entries(detalle.features).map(([k, v]) => (
-                <div key={k} className="flex justify-between gap-2 border-b border-gray-50 py-1">
-                  <span className="truncate text-gray-400">{k}</span>
-                  <span className="font-mono text-gray-700">{String(v ?? '—')}</span>
-                </div>
-              ))}
-            </div>
-          </details>
-        )}
+        {detalle && <AtributosObra features={detalle.features} />}
       </div>
 
       <div className="space-y-4">
